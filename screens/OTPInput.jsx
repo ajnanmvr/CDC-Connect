@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import Button from '../atoms/Button';
+import Button from '../components/Button';
 
 const OTPInputScreen = () => {
   const [otp, setOTP] = useState('');

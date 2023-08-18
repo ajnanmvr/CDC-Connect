@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import InputField from '../atoms/InputField';
-import Button from '../atoms/Button';
+import InputField from '../components/InputField';
+import Button from '../components/Button';
 
 const SignUpScreen = () => {
   const [name, setName] = useState('');

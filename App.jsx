@@ -1,21 +1,21 @@
+// App.js
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import SignUpScreen from './components/screens/SignUp';
-import OTPInput from './components/screens/OTPInput';
+import { ThemeProvider } from './hooks/ThemeProvider';
+import { lightTheme, darkTheme } from './styles/themes';
+import { useColorScheme } from 'react-native'; // Import this for system theme detection
+
+import AppContainer from './components/AppContainer'; // Replace this with your app's main container
 
 const App = () => {
+  const colorScheme = useColorScheme(); // Get the system's color scheme (light or dark)
+
+  const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+
   return (
-    <SafeAreaView style={styles.container}>
-      <SignUpScreen />
-      <OTPInput/>
-    </SafeAreaView>
+    <ThemeProvider theme={theme}>
+      <AppContainer />
+    </ThemeProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
