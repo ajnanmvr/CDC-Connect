@@ -8,7 +8,6 @@ const AppContainer = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>My App</Text>
-      {/* Use your  components here */}
       <SignUp />
       <Login />
       <OTPInput />
@@ -19,7 +18,6 @@ const AppContainer = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', // You can set the background color based on the theme
     padding: 20,
   },
   header: {
