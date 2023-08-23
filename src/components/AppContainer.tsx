@@ -10,7 +10,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Home: undefined;
   SignUp: undefined;
-  Login: undefined;
+  Login: {name: string};
   OTPInput: undefined;
 };
 
