@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Button, ScrollView, Picker, TextInput} from 'react-native';
+import {View, Text, Button, ScrollView, TextInput} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 const AcademicStages = [
   'LKG',
@@ -23,8 +24,8 @@ const AcademicStages = [
 
 const GenderOptions = ['male', 'female'];
 
-const FamilyMemberForm = () => {
-  const [familyMember, setFamilyMember] = useState({
+const Form = () => {
+  const [formData, setFormData] = useState({
     name: '',
     mahallu: '',
     district: '',
@@ -56,7 +57,7 @@ const FamilyMemberForm = () => {
   });
 
   const handleInputChange = (field, value) => {
-    setFamilyMember(prevState => ({
+    setFormData(prevState => ({
       ...prevState,
       [field]: value,
     }));
@@ -64,14 +65,14 @@ const FamilyMemberForm = () => {
 
   const handleSubmit = () => {
     // Handle form submission here
-    console.log('Submitted:', familyMember);
+    console.log('Submitted:', formData);
   };
   return (
     <ScrollView>
       <View>
         <Text>Name</Text>
         <TextInput
-          value={familyMember.name}
+          value={formData.name}
           onChangeText={value => handleInputChange('name', value)}
         />
       </View>
@@ -79,7 +80,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Mahallu</Text>
         <TextInput
-          value={familyMember.mahallu}
+          value={formData.mahallu}
           onChangeText={value => handleInputChange('mahallu', value)}
         />
       </View>
@@ -87,7 +88,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>District</Text>
         <TextInput
-          value={familyMember.district}
+          value={formData.district}
           onChangeText={value => handleInputChange('district', value)}
         />
       </View>
@@ -95,7 +96,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Academic Stage</Text>
         <Picker
-          selectedValue={familyMember.academicStage}
+          selectedValue={formData.academicStage}
           onValueChange={value => handleInputChange('academicStage', value)}>
           <Picker.Item label="Select Academic Stage" value="" />
           {AcademicStages.map(stage => (
@@ -107,7 +108,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Head of the Family</Text>
         <TextInput
-          value={familyMember.headOfTheFamily}
+          value={formData.headOfTheFamily}
           onChangeText={value => handleInputChange('headOfTheFamily', value)}
         />
       </View>
@@ -115,7 +116,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>House Number</Text>
         <TextInput
-          value={familyMember.houseNumber}
+          value={formData.houseNumber}
           onChangeText={value => handleInputChange('houseNumber', value)}
         />
       </View>
@@ -123,7 +124,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Contact Number</Text>
         <TextInput
-          value={familyMember.contactNumber}
+          value={formData.contactNumber}
           onChangeText={value => handleInputChange('contactNumber', value)}
         />
       </View>
@@ -131,7 +132,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Area Code</Text>
         <TextInput
-          value={familyMember.areaCode}
+          value={formData.areaCode}
           onChangeText={value => handleInputChange('areaCode', value)}
         />
       </View>
@@ -139,7 +140,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Number of Family Members</Text>
         <TextInput
-          value={familyMember.numberOfFamilyMembers.toString()}
+          value={formData.numberOfFamilyMembers.toString()}
           onChangeText={value =>
             handleInputChange('numberOfFamilyMembers', parseInt(value, 10))
           }
@@ -150,7 +151,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Gender</Text>
         <Picker
-          selectedValue={familyMember.gender}
+          selectedValue={formData.gender}
           onValueChange={value => handleInputChange('gender', value)}>
           <Picker.Item label="Select Gender" value="" />
           {GenderOptions.map(gender => (
@@ -162,7 +163,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Date of Birth</Text>
         <TextInput
-          value={familyMember.dob}
+          value={formData.dob}
           onChangeText={value => handleInputChange('dob', value)}
           keyboardType="numeric"
         />
@@ -171,7 +172,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Relation with Head</Text>
         <TextInput
-          value={familyMember.relationWithHead}
+          value={formData.relationWithHead}
           onChangeText={value => handleInputChange('relationWithHead', value)}
         />
       </View>
@@ -179,7 +180,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Mobile Number</Text>
         <TextInput
-          value={familyMember.mobileNumber}
+          value={formData.mobileNumber}
           onChangeText={value => handleInputChange('mobileNumber', value)}
         />
       </View>
@@ -187,7 +188,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Marital Status</Text>
         <TextInput
-          value={familyMember.maritalStatus}
+          value={formData.maritalStatus}
           onChangeText={value => handleInputChange('maritalStatus', value)}
         />
       </View>
@@ -195,7 +196,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Educational Qualification</Text>
         <TextInput
-          value={familyMember.educationalQualification}
+          value={formData.educationalQualification}
           onChangeText={value =>
             handleInputChange('educationalQualification', value)
           }
@@ -205,7 +206,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Institution of Study</Text>
         <TextInput
-          value={familyMember.institutionOfStudy}
+          value={formData.institutionOfStudy}
           onChangeText={value => handleInputChange('institutionOfStudy', value)}
         />
       </View>
@@ -213,7 +214,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Religious Education</Text>
         <TextInput
-          value={familyMember.religiousEducation}
+          value={formData.religiousEducation}
           onChangeText={value => handleInputChange('religiousEducation', value)}
         />
       </View>
@@ -222,7 +223,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Blood Group</Text>
         <Picker
-          selectedValue={familyMember.bloodGroup}
+          selectedValue={formData.bloodGroup}
           onValueChange={value => handleInputChange('bloodGroup', value)}>
           <Picker.Item label="Select Blood Group" value="" />
           <Picker.Item label="A" value="A" />
@@ -236,7 +237,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Job Type</Text>
         <Picker
-          selectedValue={familyMember.jobType}
+          selectedValue={formData.jobType}
           onValueChange={value => handleInputChange('jobType', value)}>
           <Picker.Item label="Select Job Type" value="" />
           <Picker.Item label="Government Service" value="govtService" />
@@ -248,7 +249,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Suggestions</Text>
         <TextInput
-          value={familyMember.suggestions}
+          value={formData.suggestions}
           onChangeText={value => handleInputChange('suggestions', value)}
         />
       </View>
@@ -256,7 +257,7 @@ const FamilyMemberForm = () => {
       <View>
         <Text>Remarks</Text>
         <TextInput
-          value={familyMember.remarks}
+          value={formData.remarks}
           onChangeText={value => handleInputChange('remarks', value)}
         />
       </View>
@@ -266,4 +267,4 @@ const FamilyMemberForm = () => {
   );
 };
 
-export default FamilyMemberForm;
+export default Form;

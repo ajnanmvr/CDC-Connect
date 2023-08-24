@@ -4,6 +4,7 @@ import Home from '../screens/Home'; // Import your OTP input  component
 import SignUp from '../screens/SignUp'; // Import your sign-up  component
 import Login from '../screens/Login'; // Import your login  component
 import OTPInput from '../screens/OTPInput'; // Import your OTP input  component
+import NewMessage from '../screens/NewMessage'; // Import your OTP input  component
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -12,6 +13,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   Login: {name: string};
   OTPInput: undefined;
+  NewMessage: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,6 +26,7 @@ const AppContainer = () => {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OTPInput" component={OTPInput} />
+        <Stack.Screen name="NewMessage" component={NewMessage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

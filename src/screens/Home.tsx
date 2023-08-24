@@ -14,6 +14,11 @@ export default function Home({navigation}: HomeProps) {
         title={'Go to Login'}
         onPress={() => navigation.navigate('Login', {name: 'Ajnan'})}
       />
+      <Button
+        title={'Go to NewMessage'}
+        onPress={() => navigation.navigate('NewMessage')}
+      />
+
     </View>
   );
 }
