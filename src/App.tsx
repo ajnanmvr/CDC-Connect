@@ -1,4 +1,4 @@
-// App.js
+// App.jsx
 import React from 'react';
 import { ThemeProvider } from './hooks/ThemeProvider';
 import { lightTheme, darkTheme } from './styles/themes';
@@ -10,10 +10,11 @@ const App = () => {
   const colorScheme = useColorScheme(); // Get the system's color scheme (light or dark)
 
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+console.log("Theme: " + colorScheme);
 
   return (
     <ThemeProvider theme={theme}>
-      <AppContainer />
+      <AppContainer  />
     </ThemeProvider>
   );
 };

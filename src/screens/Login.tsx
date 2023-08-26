@@ -6,6 +6,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../components/AppContainer';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
+
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -17,6 +19,7 @@ const LoginScreen = ({route,navigation}: LoginProps) => {
   const handleLogin = () => {
     // Implement login logic here
   };
+  const theme = useTheme(); // Get the current theme
 
   return (
     <View style={styles.container}>
