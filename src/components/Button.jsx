@@ -1,9 +1,14 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
-const Button = ({ title, onPress }) => {
+const Button = ({title, onPress}) => {
+  const theme = useTheme(); // Get the current theme
+
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, {backgroundColor: theme.buttonColor}]}
+      onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -11,7 +16,6 @@ const Button = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007bff',
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',

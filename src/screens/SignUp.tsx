@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../AppContainer';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
@@ -11,22 +10,38 @@ import Screen from '../components/Screen';
 import Title from '../components/Title';
 import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
 
-type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type SignUpProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
-const LoginScreen = ({navigation}: LoginProps) => {
+const SignUpScreen = ({ navigation }: SignUpProps) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const handleLogin = () => {
-    // Implement login logic here
+  const [confirmPassword, setConfirmPassword] = useState('');
+  
+  const handleSignUp = () => {
+    // Implement sign-up logic here
   };
+  
   const theme = useTheme();
 
   return (
     <Screen>
       <View style={styles.container}>
         <Image style={styles.avatar} source={require('../media/avatar.png')} />
-        <Title>Log In</Title>
+        <Title>Sign Up</Title>
+        <InputField
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+          secureTextEntry={false}
+        />
+        <InputField
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          secureTextEntry={false}
+        />
         <InputField
           placeholder="Phone Number"
           value={phoneNumber}
@@ -39,10 +54,16 @@ const LoginScreen = ({navigation}: LoginProps) => {
           onChangeText={setPassword}
           secureTextEntry={true}
         />
-        <Button title="Log In" onPress={handleLogin} />
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-          <Text style={styles.signUpLink}>
-            Don't you have an account? <Link>Sign Up</Link>
+        <InputField
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry={true}
+        />
+        <Button title="Sign Up" onPress={handleSignUp} />
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.signInLink}>
+            Already have an account? <Link>Log In</Link>
           </Text>
         </TouchableOpacity>
       </View>
@@ -54,16 +75,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    textAlign: 'center',
     alignItems: 'center',
   },
   avatar: {
     height: 110,
     width: 110,
   },
-  signUpLink: {
+  signInLink: {
     marginTop: 20,
   },
 });
 
-export default LoginScreen;
+export default SignUpScreen;
