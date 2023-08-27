@@ -1,9 +1,16 @@
-// InputField.js
 import React from 'react';
-import {TextInput, StyleSheet} from 'react-native';
-import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
+import { TextInput, StyleSheet } from 'react-native';
+import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
 
-const InputField = ({placeholder, value, onChangeText, secureTextEntry}) => {
+const InputField = ({
+  placeholder,
+  value,
+  onChangeText,
+  maxLength,
+  secureTextEntry,
+  keyboardType,
+  style,
+}) => {
   const theme = useTheme(); // Get the current theme
 
   return (
@@ -12,7 +19,13 @@ const InputField = ({placeholder, value, onChangeText, secureTextEntry}) => {
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
-      style={[styles.input, {borderColor: theme.borderColor}]}
+      maxLength={maxLength}
+      keyboardType={keyboardType}
+      style={[
+        styles.input,
+        { borderColor: theme.borderColor },
+        style,
+      ]}
     />
   );
 };

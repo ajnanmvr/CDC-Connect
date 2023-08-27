@@ -61,7 +61,7 @@ const SignUpScreen = ({ navigation }: SignUpProps) => {
           secureTextEntry={true}
         />
         <Button title="Sign Up" onPress={handleSignUp} />
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.replace('Login')}>
           <Text style={styles.signInLink}>
             Already have an account? <Link>Log In</Link>
           </Text>

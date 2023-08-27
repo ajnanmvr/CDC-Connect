@@ -11,11 +11,15 @@ export default function Home({navigation}: HomeProps) {
     <Screen>
       <Button
         title={'Go to Login'}
-        onPress={() => navigation.navigate('Login', {name: 'Ajnan'})}
+        onPress={() => navigation.navigate('Login')}
       />
       <Button
         title={'Go to NewMessage'}
         onPress={() => navigation.navigate('NewMessage')}
+      />
+      <Button
+        title={'Go to OTPInput'}
+        onPress={() => navigation.navigate('OTPInput')}
       />
     </Screen>
   );

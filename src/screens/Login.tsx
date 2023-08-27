@@ -27,12 +27,7 @@ const LoginScreen = ({navigation}: LoginProps) => {
       <View style={styles.container}>
         <Image style={styles.avatar} source={require('../media/avatar.png')} />
         <Title>Log In</Title>
-        <InputField
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChangeText={setPhoneNumber}
-          secureTextEntry={false}
-        />
+        <InputField placeholder="Phone Number" value={phoneNumber} onChangeText={setPhoneNumber} />
         <InputField
           placeholder="Password"
           value={password}
@@ -40,7 +35,7 @@ const LoginScreen = ({navigation}: LoginProps) => {
           secureTextEntry={true}
         />
         <Button title="Log In" onPress={handleLogin} />
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
           <Text style={styles.signUpLink}>
             Don't you have an account? <Link>Sign Up</Link>
           </Text>
