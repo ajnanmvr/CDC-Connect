@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import InputField from '../components/InputField';
 import Link from '../components/Link';
 import Title from '../components/Title';
+import Axios from '../utils/Axios';
 
 const LoginScreen = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');

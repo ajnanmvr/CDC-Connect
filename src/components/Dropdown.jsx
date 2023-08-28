@@ -25,7 +25,6 @@ const Dropdown = ({selectedValue, onValueChange, label, options}) => {
         </Picker>
       </View>
 
-      {/* Conditional rendering of TextInput */}
       {showTextInput && (
         <TextInput
           style={[styles.textInput, {borderColor: theme.borderColor}]}
