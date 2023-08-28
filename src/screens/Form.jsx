@@ -12,6 +12,8 @@ import Title from '../components/Title';
 
 import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 import {Picker} from '@react-native-picker/picker';
+import Button from '../components/Button';
+import Dropdown from '../components/Dropdown';
 
 const AcademicStages = [
   'LKG',
@@ -140,89 +142,31 @@ const Form = () => {
             }
           />
         </View>
-        {/* Dropdown for Blood Group */}
-        <View style={styles.input}>
-          <Text style={styles.label}>Gender</Text>
-          <View
-            style={{
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: theme.borderColor,
-              overflow: 'hidden',
-            }}>
-            <Picker
-              selectedValue={formData.gender}
-              onValueChange={value => handleInputChange('gender', value)}>
-              <Picker.Item label="Select Gender" value="" />
-              {GenderOptions.map(gender => (
-                <Picker.Item key={gender} label={gender} value={gender} />
-              ))}
-            </Picker>
-          </View>
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Blood Group</Text>
-          <View
-            style={{
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: theme.borderColor,
-              overflow: 'hidden',
-            }}>
-            <Picker
-              selectedValue={formData.bloodGroup}
-              onValueChange={value => handleInputChange('bloodGroup', value)}>
-              <Picker.Item label="Select Blood Group" value="" />
-              <Picker.Item label="A" value="A" />
-              <Picker.Item label="B" value="B" />
-              <Picker.Item label="AB" value="AB" />
-              <Picker.Item label="O" value="O" />
-            </Picker>
-          </View>
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Academic Stage</Text>
-          <View
-            style={{
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: theme.borderColor,
-              overflow: 'hidden',
-            }}>
-            <Picker
-              selectedValue={formData.academicStage}
-              onValueChange={value =>
-                handleInputChange('academicStage', value)
-              }>
-              <Picker.Item label="Select Academic Stage" value="" />
-              {AcademicStages.map(stage => (
-                <Picker.Item key={stage} label={stage} value={stage} />
-              ))}
-            </Picker>
-          </View>
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Job Type</Text>
-          <View
-            style={{
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: theme.borderColor,
-              overflow: 'hidden',
-            }}>
-            <Picker
-              selectedValue={formData.jobType}
-              onValueChange={value => handleInputChange('jobType', value)}>
-              <Picker.Item label="Select Job Type" value="" />
-              <Picker.Item label="Government Service" value="govtService" />
-              <Picker.Item label="Private Sector" value="privateSector" />
-              <Picker.Item label="Daily Wage" value="dailyWage" />
-            </Picker>
-          </View>
-        </View>
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Submit</Text>
-        </TouchableOpacity>
+        <Dropdown
+          selectedValue={formData.gender}
+          onValueChange={value => handleInputChange('gender', value)}
+          label="Gender"
+          options={GenderOptions}
+        />
+        <Dropdown
+          selectedValue={formData.bloodGroup}
+          onValueChange={value => handleInputChange('bloodGroup', value)}
+          label="Blood Group"
+          options={['A', 'B', 'AB', 'O']}
+        />
+        <Dropdown
+          selectedValue={formData.academicStage}
+          onValueChange={value => handleInputChange('academicStage', value)}
+          label="Academic Stage"
+          options={AcademicStages}
+        />
+        <Dropdown
+          selectedValue={formData.jobType}
+          onValueChange={value => handleInputChange('jobType', value)}
+          label="Job Type"
+          options={['Government Service', 'Private Sector', 'Daily Wage']}
+        />
+        <Button title="Submit" onPress={handleSubmit} />
       </Screen>
     </ScrollView>
   );
@@ -239,18 +183,6 @@ const styles = StyleSheet.create({
   },
   input: {
     marginVertical: 10,
-  },
-
-  submitButton: {
-    backgroundColor: '#007AFF',
-    borderRadius: 8,
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  submitButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 export default Form;

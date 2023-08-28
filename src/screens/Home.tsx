@@ -4,6 +4,7 @@ import {RootStackParamList} from '../AppContainer';
 import Button from '../components/Button';
 import Screen from '../components/Screen';
 
+
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export default function Home({navigation}: HomeProps) {

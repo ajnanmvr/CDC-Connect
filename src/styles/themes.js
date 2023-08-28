@@ -3,9 +3,9 @@ export const lightTheme = {
   textColor: '#000000',
   titleColor: 'black',
   borderColor: '#ccc',
-  primaryColor: '#007bff',
-  buttonColor: '#007bff',
-  linkColor: '#007bff',
+  primaryColor: '#007AFF',
+  buttonColor: '#007AFF',
+  linkColor: '#007AFF',
 };
 
 export const darkTheme = {
@@ -13,7 +13,7 @@ export const darkTheme = {
   textColor: '#ffffff',
   titleColor: '#ffffff',
   borderColor: '#555555',
-  primaryColor: '#ff9900',
-  buttonColor: '#007bff',
-  linkColor: '#007bff',
+  primaryColor: '#007AFF',
+  buttonColor: '#007AFF',
+  linkColor: '#007AFF',
 };

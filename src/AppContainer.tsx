@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import Home from './screens/Home'; // Import your OTP input  component
 import Login from './screens/Login'; // Import your login  component
@@ -7,6 +8,7 @@ import SendMessage from './screens/SendMessage'; // Import your OTP input  compo
 import OTPInput from './screens/OTPInput'; // Import your OTP input  component
 import SignUp from './screens/SignUp'; // Import your sign-up  component
 import Form from './screens/Form'; // Import your sign-up  component
+import {useTheme} from './hooks/ThemeProvider'; // Import the theme hook
 
 export type RootStackParamList = {
   Home: undefined;
@@ -14,15 +16,22 @@ export type RootStackParamList = {
   Login: undefined;
   OTPInput: undefined;
   SendMessage: undefined;
-  Form:undefined;
+  Form: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppContainer = () => {
+  const theme = useTheme();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerTransparent:true,
+          headerTintColor: theme.primaryColor,
+        }}>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -57,5 +66,10 @@ const AppContainer = () => {
     </NavigationContainer>
   );
 };
+const styles = StyleSheet.create({
+  header: {
+
+  },
+});
 
 export default AppContainer;
