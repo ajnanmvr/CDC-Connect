@@ -21,6 +21,10 @@ export default function Home({navigation}: HomeProps) {
         title={'Go to OTPInput'}
         onPress={() => navigation.navigate('OTPInput')}
       />
+      <Button
+        title={'Go to Form'}
+        onPress={() => navigation.navigate('Form')}
+      />
     </Screen>
   );
 }

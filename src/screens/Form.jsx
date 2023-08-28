@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, Button, ScrollView, TextInput} from 'react-native';
+import {View, Text, Button, ScrollView, StyleSheet} from 'react-native';
+import InputField from '../components/InputField';
+
 import { Picker } from '@react-native-picker/picker';
 
 const AcademicStages = [
@@ -68,10 +70,10 @@ const Form = () => {
     console.log('Submitted:', formData);
   };
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <View>
         <Text>Name</Text>
-        <TextInput
+        <InputField
           value={formData.name}
           onChangeText={value => handleInputChange('name', value)}
         />
@@ -79,7 +81,7 @@ const Form = () => {
 
       <View>
         <Text>Mahallu</Text>
-        <TextInput
+        <InputField
           value={formData.mahallu}
           onChangeText={value => handleInputChange('mahallu', value)}
         />
@@ -87,7 +89,7 @@ const Form = () => {
 
       <View>
         <Text>District</Text>
-        <TextInput
+        <InputField
           value={formData.district}
           onChangeText={value => handleInputChange('district', value)}
         />
@@ -107,7 +109,7 @@ const Form = () => {
 
       <View>
         <Text>Head of the Family</Text>
-        <TextInput
+        <InputField
           value={formData.headOfTheFamily}
           onChangeText={value => handleInputChange('headOfTheFamily', value)}
         />
@@ -115,7 +117,7 @@ const Form = () => {
 
       <View>
         <Text>House Number</Text>
-        <TextInput
+        <InputField
           value={formData.houseNumber}
           onChangeText={value => handleInputChange('houseNumber', value)}
         />
@@ -123,7 +125,7 @@ const Form = () => {
 
       <View>
         <Text>Contact Number</Text>
-        <TextInput
+        <InputField
           value={formData.contactNumber}
           onChangeText={value => handleInputChange('contactNumber', value)}
         />
@@ -131,7 +133,7 @@ const Form = () => {
 
       <View>
         <Text>Area Code</Text>
-        <TextInput
+        <InputField
           value={formData.areaCode}
           onChangeText={value => handleInputChange('areaCode', value)}
         />
@@ -139,7 +141,7 @@ const Form = () => {
 
       <View>
         <Text>Number of Family Members</Text>
-        <TextInput
+        <InputField
           value={formData.numberOfFamilyMembers.toString()}
           onChangeText={value =>
             handleInputChange('numberOfFamilyMembers', parseInt(value, 10))
@@ -162,7 +164,7 @@ const Form = () => {
 
       <View>
         <Text>Date of Birth</Text>
-        <TextInput
+        <InputField
           value={formData.dob}
           onChangeText={value => handleInputChange('dob', value)}
           keyboardType="numeric"
@@ -171,7 +173,7 @@ const Form = () => {
 
       <View>
         <Text>Relation with Head</Text>
-        <TextInput
+        <InputField
           value={formData.relationWithHead}
           onChangeText={value => handleInputChange('relationWithHead', value)}
         />
@@ -179,7 +181,7 @@ const Form = () => {
 
       <View>
         <Text>Mobile Number</Text>
-        <TextInput
+        <InputField
           value={formData.mobileNumber}
           onChangeText={value => handleInputChange('mobileNumber', value)}
         />
@@ -187,7 +189,7 @@ const Form = () => {
 
       <View>
         <Text>Marital Status</Text>
-        <TextInput
+        <InputField
           value={formData.maritalStatus}
           onChangeText={value => handleInputChange('maritalStatus', value)}
         />
@@ -195,7 +197,7 @@ const Form = () => {
 
       <View>
         <Text>Educational Qualification</Text>
-        <TextInput
+        <InputField
           value={formData.educationalQualification}
           onChangeText={value =>
             handleInputChange('educationalQualification', value)
@@ -205,7 +207,7 @@ const Form = () => {
 
       <View>
         <Text>Institution of Study</Text>
-        <TextInput
+        <InputField
           value={formData.institutionOfStudy}
           onChangeText={value => handleInputChange('institutionOfStudy', value)}
         />
@@ -213,7 +215,7 @@ const Form = () => {
 
       <View>
         <Text>Religious Education</Text>
-        <TextInput
+        <InputField
           value={formData.religiousEducation}
           onChangeText={value => handleInputChange('religiousEducation', value)}
         />
@@ -248,7 +250,7 @@ const Form = () => {
 
       <View>
         <Text>Suggestions</Text>
-        <TextInput
+        <InputField
           value={formData.suggestions}
           onChangeText={value => handleInputChange('suggestions', value)}
         />
@@ -256,7 +258,7 @@ const Form = () => {
 
       <View>
         <Text>Remarks</Text>
-        <TextInput
+        <InputField
           value={formData.remarks}
           onChangeText={value => handleInputChange('remarks', value)}
         />
@@ -266,5 +268,21 @@ const Form = () => {
     </ScrollView>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    padding: 16,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    marginBottom: 10,
+  },
+  picker: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginBottom: 10,
+  },
+});
 export default Form;
