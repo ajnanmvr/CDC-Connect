@@ -6,7 +6,6 @@ import {
   View
 } from 'react-native';
 import InputField from '../components/InputField';
-import Screen from '../components/Screen';
 import Title from '../components/Title';
 
 import Button from '../components/Button';
@@ -69,7 +68,6 @@ const Form = () => {
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Screen>
         <Title>Personal Information</Title>
 
         <View style={styles.input}>
@@ -161,7 +159,6 @@ const Form = () => {
           options={['Government Service', 'Private Sector', 'Daily Wage']}
         />
         <Button title="Submit" onPress={handleSubmit} />
-      </Screen>
     </ScrollView>
   );
 };

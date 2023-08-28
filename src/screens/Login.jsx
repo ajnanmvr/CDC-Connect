@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native"
 import Button from "../components/Button"
 import InputField from "../components/InputField"
 import Link from "../components/Link"
-import Screen from "../components/Screen"
 import Title from "../components/Title"
 import { useTheme } from "../hooks/ThemeProvider" // Import the theme hook
 
@@ -19,7 +18,6 @@ const LoginScreen = ({ navigation }) => {
   const theme = useTheme()
 
   return (
-    <Screen>
       <View style={styles.container}>
         <Image style={styles.avatar} source={require("../media/avatar.png")} />
         <Title>Log In</Title>
@@ -28,21 +26,15 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Phone Number"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
-          secureTextEntry={false}
-          multiline={false}
           maxLength={10}
           keyboardType="number-pad"
-          style
         />
         <InputField
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
-          maxLength={undefined}
-          keyboardType="default"
-          multiline={false}
-          style
+
         />
         <Button title="Log In" onPress={handleLogin} />
         <TouchableOpacity onPress={() => navigation.replace("SignUp")}>
@@ -51,7 +43,6 @@ const LoginScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </Screen>
   )
 }
 

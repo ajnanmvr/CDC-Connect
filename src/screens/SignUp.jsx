@@ -20,7 +20,7 @@ const SignUpScreen = ({ navigation }) => {
 
 
   return (
-    <Screen>
+ 
       <View style={styles.container}>
         <Image style={styles.avatar} source={require("../media/avatar.png")} />
         <Title>Sign Up</Title>
@@ -81,7 +81,7 @@ const SignUpScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </Screen>
+
   )
 }
 

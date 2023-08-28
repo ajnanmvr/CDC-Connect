@@ -4,8 +4,6 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native"
 import InputField from "../components/InputField"
 import Button from "../components/Button"
 import { useNavigation } from "@react-navigation/native"
-import { useTheme } from "../hooks/ThemeProvider" // Import the theme hook
-import Screen from "../components/Screen"
 import Title from "../components/Title"
 import Link from "../components/Link"
 
@@ -17,10 +15,8 @@ const OTPInputScreen = ({ navigation }) => {
     // Implement OTP verification logic here
   }
 
-  const theme = useTheme()
 
   return (
-    <Screen>
       <View style={styles.container}>
         <Title>Enter OTP</Title>
         <Text style={styles.description}>
@@ -46,7 +42,6 @@ const OTPInputScreen = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </Screen>
   )
 }
 

@@ -21,7 +21,6 @@ const SendMessageScreen = ({ navigation }) => {
   const theme = useTheme()
 
   return (
-    <Screen>
       <View style={styles.container}>
         <Title>Send Message</Title>
         <InputField
@@ -41,7 +40,6 @@ const SendMessageScreen = ({ navigation }) => {
         />
         <Button title="Send" onPress={handleSendMessage} />
       </View>
-    </Screen>
   )
 }
 

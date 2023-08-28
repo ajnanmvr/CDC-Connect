@@ -11,7 +11,7 @@ import { useTheme } from "./hooks/ThemeProvider" // Import the theme hook
 
 const Stack = createNativeStackNavigator()
 
-const AppContainer = () => {
+const Navigation = () => {
   const theme = useTheme()
 
   return (
@@ -59,4 +59,4 @@ const AppContainer = () => {
   )
 }
 
-export default AppContainer
+export default Navigation

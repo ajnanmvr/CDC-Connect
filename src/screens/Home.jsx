@@ -1,10 +1,9 @@
 import React from "react"
 import Button from "../components/Button"
-import Screen from "../components/Screen"
-
+import {View} from 'react-native'
 export default function Home({ navigation }) {
   return (
-    <Screen>
+    <View>
       <Button
         title={"Go to Login"}
         onPress={() => navigation.navigate("Login")}
@@ -21,6 +20,6 @@ export default function Home({ navigation }) {
         title={"Go to Form"}
         onPress={() => navigation.navigate("Form")}
       />
-    </Screen>
+    </View>
   )
 }
