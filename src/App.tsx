@@ -11,6 +11,8 @@ const App = () => {
 
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 console.log("Theme: " + colorScheme);
+console.log(theme);
+
 
   return (
     <ThemeProvider theme={theme}>
