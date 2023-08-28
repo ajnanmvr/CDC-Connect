@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import InputField from "../components/InputField"
-import Button from "../components/Button"
 import { useNavigation } from "@react-navigation/native"
-import Title from "../components/Title"
+import Button from "../components/Button"
+import InputField from "../components/InputField"
 import Link from "../components/Link"
+import Title from "../components/Title"
 
 const OTPInputScreen = ({ navigation }) => {
   const [otp, setOTP] = useState("")

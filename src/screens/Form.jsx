@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import InputField from '../components/InputField';
 import Title from '../components/Title';
 
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
-import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
 const AcademicStages = [
   'LKG',
@@ -30,7 +29,6 @@ const AcademicStages = [
 const GenderOptions = ['Male', 'Female'];
 
 const Form = () => {
-  const theme = useTheme();
 
   const [formData, setFormData] = useState({
     name: '',

@@ -1,11 +1,10 @@
 import React, { useState } from "react"
-import { View, StyleSheet } from "react-native"
+import { StyleSheet, View } from "react-native"
 // ... (other imports)
 
-import InputField from "../components/InputField"
-import Button from "../components/Button"
 import { useNavigation } from "@react-navigation/native"
-import { useTheme } from "../hooks/ThemeProvider" // Import the theme hook
+import Button from "../components/Button"
+import InputField from "../components/InputField"
 import Title from "../components/Title"
 
 const SendMessageScreen = ({ navigation }) => {
@@ -16,8 +15,6 @@ const SendMessageScreen = ({ navigation }) => {
   const handleSendMessage = () => {
     // Implement send message logic here
   }
-
-  const theme = useTheme()
 
   return (
       <View style={styles.container}>
