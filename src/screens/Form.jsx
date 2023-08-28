@@ -1,44 +1,21 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import InputField from '../components/InputField';
 import Title from '../components/Title';
 
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
 
-const AcademicStages = [
-  'LKG',
-  'UKG',
-  'Class 1',
-  'Class 2',
-  'Class 3',
-  'Class 4',
-  'Class 5',
-  'Class 6',
-  'Class 7',
-  'Class 8',
-  'Class 9',
-  'Class 10',
-  'Class 11',
-  'Class 12',
-  'Undergraduate',
-  'Postgraduate',
-  'Doctorate',
-];
-
 const GenderOptions = ['Male', 'Female'];
 
 const Form = () => {
-
   const [formData, setFormData] = useState({
     name: '',
-    academicStage: '',
     contactNumber: '',
     gender: 'male',
     age: '',
     mobileNumber: '',
     maritalStatus: '',
-    educationalQualification: '',
     institutionOfStudy: '',
     religiousEducation: '',
     materialEducation: '',
@@ -75,6 +52,7 @@ const Form = () => {
         <InputField
           value={formData.contactNumber}
           onChangeText={value => handleInputChange('contactNumber', value)}
+          keyboardType="numeric"
         />
       </View>
 
@@ -86,43 +64,39 @@ const Form = () => {
           keyboardType="numeric"
         />
       </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Mobile Number</Text>
-        <InputField
-          value={formData.mobileNumber}
-          onChangeText={value => handleInputChange('mobileNumber', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Marital Status</Text>
-        <InputField
-          value={formData.maritalStatus}
-          onChangeText={value => handleInputChange('maritalStatus', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Educational Qualification</Text>
-        <InputField
-          value={formData.educationalQualification}
-          onChangeText={value =>
-            handleInputChange('educationalQualification', value)
-          }
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Institution of Study</Text>
-        <InputField
-          value={formData.institutionOfStudy}
-          onChangeText={value => handleInputChange('institutionOfStudy', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Religious Education</Text>
-        <InputField
-          value={formData.religiousEducation}
-          onChangeText={value => handleInputChange('religiousEducation', value)}
-        />
-      </View>
+
+      <Dropdown
+        selectedValue={formData.maritalStatus}
+        onValueChange={value => handleInputChange('maritalStatus', value)}
+        label="Marital Status"
+        options={['Married', 'Unmarried', 'Widow/er']}
+      />
+      <Dropdown
+        selectedValue={formData.materialEducation}
+        onValueChange={value => handleInputChange('materialEducation', value)}
+        label="Material Education"
+        options={['Primary', 'Secondary', 'Predegree', 'Degree', 'PG', 'Phd']}
+      />
+
+      <Dropdown
+        selectedValue={formData.institutionOfStudy}
+        onValueChange={value => handleInputChange('institutionOfStudy', value)}
+        label="Institution Of Study"
+        options={[
+          'Government',
+          'Aided',
+          'Self Finance',
+          'Institute of National Importance',
+          'Centeral University',
+          'Other',
+        ]}
+      />
+      <Dropdown
+        selectedValue={formData.religiousEducation}
+        onValueChange={value => handleInputChange('religiousEducation', value)}
+        label="Religious Education"
+        options={['Dars', 'Arabic Collage', 'Madrasa']}
+      />
       <Dropdown
         selectedValue={formData.gender}
         onValueChange={value => handleInputChange('gender', value)}
@@ -133,14 +107,9 @@ const Form = () => {
         selectedValue={formData.bloodGroup}
         onValueChange={value => handleInputChange('bloodGroup', value)}
         label="Blood Group"
-        options={['A', 'B', 'AB', 'O']}
+        options={['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']}
       />
-      <Dropdown
-        selectedValue={formData.academicStage}
-        onValueChange={value => handleInputChange('academicStage', value)}
-        label="Academic Stage"
-        options={AcademicStages}
-      />
+
       <Dropdown
         selectedValue={formData.jobType}
         onValueChange={value => handleInputChange('jobType', value)}

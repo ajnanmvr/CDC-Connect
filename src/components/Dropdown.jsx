@@ -1,26 +1,37 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
-
-const Dropdown = ({ selectedValue, onValueChange, label, options }) => {
+const Dropdown = ({selectedValue, onValueChange, label, options}) => {
   const theme = useTheme();
- 
+  const [showTextInput, setShowTextInput] = useState(false);
+
+  const handleValueChange = value => {
+    onValueChange(value);
+    setShowTextInput(value === 'Other');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-    
-      <View style={[styles.pickerContainer,{borderColor: theme.borderColor,}]} >
-        <Picker
-          selectedValue={selectedValue}
-          onValueChange={onValueChange}>
+
+      <View style={[styles.pickerContainer, {borderColor: theme.borderColor}]}>
+        <Picker selectedValue={selectedValue} onValueChange={handleValueChange}>
           <Picker.Item label={`Select ${label}`} value="" />
           {options.map(option => (
             <Picker.Item key={option} label={option} value={option} />
           ))}
         </Picker>
       </View>
+
+      {/* Conditional rendering of TextInput */}
+      {showTextInput && (
+        <TextInput
+          style={[styles.textInput, {borderColor: theme.borderColor}]}
+          placeholder={`Enter ${label}`}
+        />
+      )}
     </View>
   );
 };
@@ -37,6 +48,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     overflow: 'hidden',
+  },
+  textInput: {
+    marginTop: 8,
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 16,
   },
 });
 
