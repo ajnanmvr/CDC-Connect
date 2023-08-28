@@ -1,57 +1,80 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import InputField from '../components/InputField';
-import Button from '../components/Button';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../components/AppContainer';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../AppContainer';
+import Button from '../components/Button';
+import InputField from '../components/InputField';
+import Link from '../components/Link';
+import Screen from '../components/Screen';
+import Title from '../components/Title';
+import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = ({route,navigation}: LoginProps) => {
-  const {name} = route.params;
+const LoginScreen = ({navigation}: LoginProps) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const handleLogin = () => {
     // Implement login logic here
   };
-  const theme = useTheme(); // Get the current theme
+  const theme = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Log In : {name}</Text>
-      <InputField
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
-        secureTextEntry={false}
-      />
-      <InputField
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-      <Button title="Log In" onPress={handleLogin} />
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-    </View>
+    <Screen>
+      <View style={styles.container}>
+        <Image style={styles.avatar} source={require('../media/avatar.png')} />
+        <Title>Log In</Title>
+
+        <InputField
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+          secureTextEntry={false}
+          multiline={false}
+          maxLength={10}
+          keyboardType="number-pad" 
+          style
+        />
+        <InputField
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+          maxLength={undefined}
+          keyboardType="default"
+          multiline={false}
+          style
+        />
+        <Button title="Log In" onPress={handleLogin} />
+        <TouchableOpacity onPress={() => navigation.replace('SignUp')}>
+          <Text style={styles.signUpLink}>
+            Don't you have an account? <Link>Sign Up</Link>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     justifyContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  avatar: {
+    height: 110,
+    width: 110,
+  },
+  signUpLink: {
+    marginTop: 20,
   },
 });
 

@@ -4,7 +4,7 @@ import { ThemeProvider } from './hooks/ThemeProvider';
 import { lightTheme, darkTheme } from './styles/themes';
 import { useColorScheme } from 'react-native'; // Import this for system theme detection
 
-import AppContainer from './components/AppContainer'; // Replace this with your app's main container
+import AppContainer from './AppContainer'; // Replace this with your app's main container
 
 const App = () => {
   const colorScheme = useColorScheme(); // Get the system's color scheme (light or dark)
