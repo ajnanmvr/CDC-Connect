@@ -6,7 +6,6 @@ import InputField from "../components/InputField"
 import Button from "../components/Button"
 import { useNavigation } from "@react-navigation/native"
 import { useTheme } from "../hooks/ThemeProvider" // Import the theme hook
-import Screen from "../components/Screen"
 import Title from "../components/Title"
 
 const SendMessageScreen = ({ navigation }) => {

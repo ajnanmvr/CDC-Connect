@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import Button from "../components/Button"
 import InputField from "../components/InputField"
 import Link from "../components/Link"
-import Screen from "../components/Screen"
 import Title from "../components/Title"
 
 const SignUpScreen = ({ navigation }) => {

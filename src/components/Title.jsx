@@ -11,7 +11,6 @@ const Title = ({children}) => {
 
 const styles = StyleSheet.create({
   title: {
-    marginTop:60,
     fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 20,

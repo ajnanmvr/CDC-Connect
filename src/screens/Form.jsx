@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import InputField from '../components/InputField';
 import Title from '../components/Title';
 
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
-import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
+import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
 const AcademicStages = [
   'LKG',
@@ -68,97 +63,93 @@ const Form = () => {
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-        <Title>Personal Information</Title>
+      <Title>Personal Information</Title>
 
-        <View style={styles.input}>
-          <Text style={styles.label}>Name</Text>
-          <InputField
-            value={formData.name}
-            onChangeText={value => handleInputChange('name', value)}
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Contact Number</Text>
-          <InputField
-            value={formData.contactNumber}
-            onChangeText={value => handleInputChange('contactNumber', value)}
-          />
-        </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Name</Text>
+        <InputField
+          value={formData.name}
+          onChangeText={value => handleInputChange('name', value)}
+        />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Contact Number</Text>
+        <InputField
+          value={formData.contactNumber}
+          onChangeText={value => handleInputChange('contactNumber', value)}
+        />
+      </View>
 
-        <View style={styles.input}>
-          <Text style={styles.label}>Age</Text>
-          <InputField
-            value={formData.age}
-            onChangeText={value => handleInputChange('age', value)}
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Mobile Number</Text>
-          <InputField
-            value={formData.mobileNumber}
-            onChangeText={value => handleInputChange('mobileNumber', value)}
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Marital Status</Text>
-          <InputField
-            value={formData.maritalStatus}
-            onChangeText={value => handleInputChange('maritalStatus', value)}
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Educational Qualification</Text>
-          <InputField
-            value={formData.educationalQualification}
-            onChangeText={value =>
-              handleInputChange('educationalQualification', value)
-            }
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Institution of Study</Text>
-          <InputField
-            value={formData.institutionOfStudy}
-            onChangeText={value =>
-              handleInputChange('institutionOfStudy', value)
-            }
-          />
-        </View>
-        <View style={styles.input}>
-          <Text style={styles.label}>Religious Education</Text>
-          <InputField
-            value={formData.religiousEducation}
-            onChangeText={value =>
-              handleInputChange('religiousEducation', value)
-            }
-          />
-        </View>
-        <Dropdown
-          selectedValue={formData.gender}
-          onValueChange={value => handleInputChange('gender', value)}
-          label="Gender"
-          options={GenderOptions}
+      <View style={styles.input}>
+        <Text style={styles.label}>Age</Text>
+        <InputField
+          value={formData.age}
+          onChangeText={value => handleInputChange('age', value)}
+          keyboardType="numeric"
         />
-        <Dropdown
-          selectedValue={formData.bloodGroup}
-          onValueChange={value => handleInputChange('bloodGroup', value)}
-          label="Blood Group"
-          options={['A', 'B', 'AB', 'O']}
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Mobile Number</Text>
+        <InputField
+          value={formData.mobileNumber}
+          onChangeText={value => handleInputChange('mobileNumber', value)}
         />
-        <Dropdown
-          selectedValue={formData.academicStage}
-          onValueChange={value => handleInputChange('academicStage', value)}
-          label="Academic Stage"
-          options={AcademicStages}
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Marital Status</Text>
+        <InputField
+          value={formData.maritalStatus}
+          onChangeText={value => handleInputChange('maritalStatus', value)}
         />
-        <Dropdown
-          selectedValue={formData.jobType}
-          onValueChange={value => handleInputChange('jobType', value)}
-          label="Job Type"
-          options={['Government Service', 'Private Sector', 'Daily Wage']}
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Educational Qualification</Text>
+        <InputField
+          value={formData.educationalQualification}
+          onChangeText={value =>
+            handleInputChange('educationalQualification', value)
+          }
         />
-        <Button title="Submit" onPress={handleSubmit} />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Institution of Study</Text>
+        <InputField
+          value={formData.institutionOfStudy}
+          onChangeText={value => handleInputChange('institutionOfStudy', value)}
+        />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.label}>Religious Education</Text>
+        <InputField
+          value={formData.religiousEducation}
+          onChangeText={value => handleInputChange('religiousEducation', value)}
+        />
+      </View>
+      <Dropdown
+        selectedValue={formData.gender}
+        onValueChange={value => handleInputChange('gender', value)}
+        label="Gender"
+        options={GenderOptions}
+      />
+      <Dropdown
+        selectedValue={formData.bloodGroup}
+        onValueChange={value => handleInputChange('bloodGroup', value)}
+        label="Blood Group"
+        options={['A', 'B', 'AB', 'O']}
+      />
+      <Dropdown
+        selectedValue={formData.academicStage}
+        onValueChange={value => handleInputChange('academicStage', value)}
+        label="Academic Stage"
+        options={AcademicStages}
+      />
+      <Dropdown
+        selectedValue={formData.jobType}
+        onValueChange={value => handleInputChange('jobType', value)}
+        label="Job Type"
+        options={['Government Service', 'Private Sector', 'Daily Wage']}
+      />
+      <Button title="Submit" onPress={handleSubmit} />
     </ScrollView>
   );
 };

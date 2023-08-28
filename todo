@@ -16,5 +16,13 @@ Send Message
 
 form>>
 marital status --- dropdown
+    MARRIED, unmarried, widow/er
+bg p/n
 educational qua. ??
+    1-10,hs,d,pg, phd
 religius education ---dropdown
+    Dars, Arabic Collage, Madrasa
+institution
+    govt, aided, self finance, institute of national importance, center university , other
+job type
+    list under each sector
