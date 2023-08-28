@@ -14,8 +14,8 @@ export default function Home({navigation}: HomeProps) {
         onPress={() => navigation.navigate('Login')}
       />
       <Button
-        title={'Go to NewMessage'}
-        onPress={() => navigation.navigate('NewMessage')}
+        title={'Send Message'}
+        onPress={() => navigation.navigate('SendMessage')}
       />
       <Button
         title={'Go to OTPInput'}

@@ -9,6 +9,7 @@ const InputField = ({
   maxLength,
   secureTextEntry,
   keyboardType,
+  multiline,
   style,
 }) => {
   const theme = useTheme(); // Get the current theme
@@ -21,6 +22,7 @@ const InputField = ({
       secureTextEntry={secureTextEntry}
       maxLength={maxLength}
       keyboardType={keyboardType}
+      multiline={multiline}
       style={[
         styles.input,
         { borderColor: theme.borderColor },

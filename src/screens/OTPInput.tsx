@@ -27,20 +27,21 @@ const OTPInputScreen = ({ navigation }: OTPInputProps) => {
   return (
     <Screen>
       <View style={styles.container}>
-        <Title>Verify OTP</Title>
+        <Title>Enter OTP</Title>
         <Text style={styles.description}>
           An OTP has been sent to your registered phone number. Please enter the 4-digit OTP below.
         </Text>
         <InputField
-          placeholder="Enter OTP"
+          placeholder="Enter Here"
+          multiline={false}
           value={otp}
           onChangeText={setOTP}
           secureTextEntry={false}
           maxLength={4} // Set the maximum length of the input to 4 characters
           keyboardType="number-pad" // Show a number keypad for input
-          style={{fontSize:20}}
+          style={{fontSize:25,textAlign:"center",width:'50px'}}
         />
-        <Button title="Verify OTP" onPress={handleVerifyOTP} />
+        <Button title="Verify Now" onPress={handleVerifyOTP} />
         <TouchableOpacity>
           <Text style={styles.resendLink}>
             Didn't receive the OTP? <Link>Resend OTP</Link>

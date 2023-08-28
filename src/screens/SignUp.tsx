@@ -35,30 +35,50 @@ const SignUpScreen = ({ navigation }: SignUpProps) => {
           value={name}
           onChangeText={setName}
           secureTextEntry={false}
+          maxLength={undefined}
+          keyboardType="default"
+          multiline={false}
+          style
         />
         <InputField
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
           secureTextEntry={false}
+          maxLength={undefined}
+          keyboardType="default"
+          multiline={false}
+          style
         />
         <InputField
           placeholder="Phone Number"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
           secureTextEntry={false}
+          maxLength={10}
+          keyboardType="number-pad" 
+          multiline={false}
+          style
         />
         <InputField
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
+          maxLength={undefined}
+          keyboardType="default"
+          multiline={false}
+          style
         />
         <InputField
           placeholder="Confirm Password"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry={true}
+          maxLength={undefined}
+          multiline={false}
+          keyboardType="default"
+          style
         />
         <Button title="Sign Up" onPress={handleSignUp} />
         <TouchableOpacity onPress={() => navigation.replace('Login')}>
