@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  Button,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import InputField from '../components/InputField';
+import Screen from '../components/Screen';
+import Title from '../components/Title';
 
+import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 import {Picker} from '@react-native-picker/picker';
 
 const AcademicStages = [
@@ -27,32 +29,27 @@ const AcademicStages = [
   'Class 11',
   'Class 12',
   'Undergraduate',
-  "Master's",
+  'Postgraduate',
   'Doctorate',
 ];
 
-const GenderOptions = ['male', 'female'];
+const GenderOptions = ['Male', 'Female'];
 
 const Form = () => {
+  const theme = useTheme();
+
   const [formData, setFormData] = useState({
     name: '',
-    mahallu: '',
-    district: '',
     academicStage: '',
-    headOfTheFamily: '',
-    houseNumber: '',
     contactNumber: '',
-    areaCode: '',
-    numberOfFamilyMembers: 0,
     gender: 'male',
-    dob: new Date().toISOString().split('T')[0],
-    relationWithHead: '',
+    age: '',
     mobileNumber: '',
-    materialEducation: '',
     maritalStatus: '',
     educationalQualification: '',
     institutionOfStudy: '',
     religiousEducation: '',
+    materialEducation: '',
     jobDetails: '',
     health: '',
     bloodGroup: '',
@@ -61,8 +58,6 @@ const Form = () => {
       privateSector: false,
       dailyWage: false,
     },
-    suggestions: '',
-    remarks: '',
   });
 
   const handleInputChange = (field, value) => {
@@ -78,157 +73,161 @@ const Form = () => {
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Personal Information</Text>
+      <Screen>
+        <Title>Personal Information</Title>
 
-      <View style={styles.input}>
-        <Text style={styles.label}>Name</Text>
-        <InputField
-          value={formData.name}
-          onChangeText={value => handleInputChange('name', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Contact Number</Text>
-        <InputField
-          value={formData.contactNumber}
-          onChangeText={value => handleInputChange('contactNumber', value)}
-        />
-      </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Name</Text>
+          <InputField
+            value={formData.name}
+            onChangeText={value => handleInputChange('name', value)}
+          />
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Contact Number</Text>
+          <InputField
+            value={formData.contactNumber}
+            onChangeText={value => handleInputChange('contactNumber', value)}
+          />
+        </View>
 
-      <View style={styles.input}>
-        <Text style={styles.label}>Date of Birth</Text>
-        <InputField
-          value={formData.dob}
-          onChangeText={value => handleInputChange('dob', value)}
-          keyboardType="numeric"
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Mobile Number</Text>
-        <InputField
-          value={formData.mobileNumber}
-          onChangeText={value => handleInputChange('mobileNumber', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Marital Status</Text>
-        <InputField
-          value={formData.maritalStatus}
-          onChangeText={value => handleInputChange('maritalStatus', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Educational Qualification</Text>
-        <InputField
-          value={formData.educationalQualification}
-          onChangeText={value =>
-            handleInputChange('educationalQualification', value)
-          }
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Institution of Study</Text>
-        <InputField
-          value={formData.institutionOfStudy}
-          onChangeText={value => handleInputChange('institutionOfStudy', value)}
-        />
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Religious Education</Text>
-        <InputField
-          value={formData.religiousEducation}
-          onChangeText={value => handleInputChange('religiousEducation', value)}
-        />
-      </View>
-      {/* Dropdown for Blood Group */}
-      <View style={styles.input}>
-        <Text style={styles.label}>Gender</Text>
-        <View
-          style={{
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: '#bdc3c7',
-            overflow: 'hidden',
-          }}>
-          <Picker
-            selectedValue={formData.gender}
-            onValueChange={value => handleInputChange('gender', value)}>
-            <Picker.Item label="Select Gender" value="" />
-            {GenderOptions.map(gender => (
-              <Picker.Item key={gender} label={gender} value={gender} />
-            ))}
-          </Picker>
+        <View style={styles.input}>
+          <Text style={styles.label}>Age</Text>
+          <InputField
+            value={formData.age}
+            onChangeText={value => handleInputChange('age', value)}
+            keyboardType="numeric"
+          />
         </View>
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Blood Group</Text>
-        <View
-          style={{
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: '#bdc3c7',
-            overflow: 'hidden',
-          }}>
-          <Picker
-            selectedValue={formData.bloodGroup}
-            onValueChange={value => handleInputChange('bloodGroup', value)}>
-            <Picker.Item label="Select Blood Group" value="" />
-            <Picker.Item label="A" value="A" />
-            <Picker.Item label="B" value="B" />
-            <Picker.Item label="AB" value="AB" />
-            <Picker.Item label="O" value="O" />
-          </Picker>
+        <View style={styles.input}>
+          <Text style={styles.label}>Mobile Number</Text>
+          <InputField
+            value={formData.mobileNumber}
+            onChangeText={value => handleInputChange('mobileNumber', value)}
+          />
         </View>
-      </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Academic Stage</Text>
-        <View
-          style={{
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: '#bdc3c7',
-            overflow: 'hidden',
-          }}>
-          <Picker
-            selectedValue={formData.academicStage}
-            onValueChange={value => handleInputChange('academicStage', value)}>
-            <Picker.Item label="Select Academic Stage" value="" />
-            {AcademicStages.map(stage => (
-              <Picker.Item key={stage} label={stage} value={stage} />
-            ))}
-          </Picker>
+        <View style={styles.input}>
+          <Text style={styles.label}>Marital Status</Text>
+          <InputField
+            value={formData.maritalStatus}
+            onChangeText={value => handleInputChange('maritalStatus', value)}
+          />
         </View>
-      </View>
-      {/* Dropdown for Job Type */}
-      <View style={styles.input}>
-        <Text style={styles.label}>Job Type</Text>
-        <View
-          style={{
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: '#bdc3c7',
-            overflow: 'hidden',
-          }}>
-          <Picker
-            selectedValue={formData.jobType}
-            onValueChange={value => handleInputChange('jobType', value)}>
-            <Picker.Item label="Select Job Type" value="" />
-            <Picker.Item label="Government Service" value="govtService" />
-            <Picker.Item label="Private Sector" value="privateSector" />
-            <Picker.Item label="Daily Wage" value="dailyWage" />
-          </Picker>
+        <View style={styles.input}>
+          <Text style={styles.label}>Educational Qualification</Text>
+          <InputField
+            value={formData.educationalQualification}
+            onChangeText={value =>
+              handleInputChange('educationalQualification', value)
+            }
+          />
         </View>
-      </View>
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.submitButtonText}>Submit</Text>
-      </TouchableOpacity>
+        <View style={styles.input}>
+          <Text style={styles.label}>Institution of Study</Text>
+          <InputField
+            value={formData.institutionOfStudy}
+            onChangeText={value =>
+              handleInputChange('institutionOfStudy', value)
+            }
+          />
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Religious Education</Text>
+          <InputField
+            value={formData.religiousEducation}
+            onChangeText={value =>
+              handleInputChange('religiousEducation', value)
+            }
+          />
+        </View>
+        {/* Dropdown for Blood Group */}
+        <View style={styles.input}>
+          <Text style={styles.label}>Gender</Text>
+          <View
+            style={{
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: theme.borderColor,
+              overflow: 'hidden',
+            }}>
+            <Picker
+              selectedValue={formData.gender}
+              onValueChange={value => handleInputChange('gender', value)}>
+              <Picker.Item label="Select Gender" value="" />
+              {GenderOptions.map(gender => (
+                <Picker.Item key={gender} label={gender} value={gender} />
+              ))}
+            </Picker>
+          </View>
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Blood Group</Text>
+          <View
+            style={{
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: theme.borderColor,
+              overflow: 'hidden',
+            }}>
+            <Picker
+              selectedValue={formData.bloodGroup}
+              onValueChange={value => handleInputChange('bloodGroup', value)}>
+              <Picker.Item label="Select Blood Group" value="" />
+              <Picker.Item label="A" value="A" />
+              <Picker.Item label="B" value="B" />
+              <Picker.Item label="AB" value="AB" />
+              <Picker.Item label="O" value="O" />
+            </Picker>
+          </View>
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Academic Stage</Text>
+          <View
+            style={{
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: theme.borderColor,
+              overflow: 'hidden',
+            }}>
+            <Picker
+              selectedValue={formData.academicStage}
+              onValueChange={value =>
+                handleInputChange('academicStage', value)
+              }>
+              <Picker.Item label="Select Academic Stage" value="" />
+              {AcademicStages.map(stage => (
+                <Picker.Item key={stage} label={stage} value={stage} />
+              ))}
+            </Picker>
+          </View>
+        </View>
+        <View style={styles.input}>
+          <Text style={styles.label}>Job Type</Text>
+          <View
+            style={{
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: theme.borderColor,
+              overflow: 'hidden',
+            }}>
+            <Picker
+              selectedValue={formData.jobType}
+              onValueChange={value => handleInputChange('jobType', value)}>
+              <Picker.Item label="Select Job Type" value="" />
+              <Picker.Item label="Government Service" value="govtService" />
+              <Picker.Item label="Private Sector" value="privateSector" />
+              <Picker.Item label="Daily Wage" value="dailyWage" />
+            </Picker>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+          <Text style={styles.submitButtonText}>Submit</Text>
+        </TouchableOpacity>
+      </Screen>
     </ScrollView>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    padding: 24,
-  },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
