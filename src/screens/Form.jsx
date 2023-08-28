@@ -1,19 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  View,
-  Text,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
+  Text,
+  View
 } from 'react-native';
 import InputField from '../components/InputField';
 import Screen from '../components/Screen';
 import Title from '../components/Title';
 
-import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
-import {Picker} from '@react-native-picker/picker';
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
+import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
 
 const AcademicStages = [
   'LKG',
@@ -55,11 +53,7 @@ const Form = () => {
     jobDetails: '',
     health: '',
     bloodGroup: '',
-    jobType: {
-      govtService: false,
-      privateSector: false,
-      dailyWage: false,
-    },
+    jobType: '',
   });
 
   const handleInputChange = (field, value) => {

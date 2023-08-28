@@ -6,7 +6,6 @@ import InputField from "../components/InputField"
 import Link from "../components/Link"
 import Screen from "../components/Screen"
 import Title from "../components/Title"
-import { useTheme } from "../hooks/ThemeProvider" // Import the theme hook
 
 const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState("")
@@ -19,7 +18,6 @@ const SignUpScreen = ({ navigation }) => {
     // Implement sign-up logic here
   }
 
-  const theme = useTheme()
 
   return (
     <Screen>
