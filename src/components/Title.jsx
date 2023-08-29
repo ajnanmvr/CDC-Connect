@@ -1,12 +1,7 @@
 import {StyleSheet, Text} from 'react-native';
-import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
 const Title = ({children}) => {
-  const theme = useTheme(); // Get the current theme
-
-  return (
-    <Text style={[{color: theme.titleColor}, styles.title]}>{children}</Text>
-  );
+  return <Text style={[styles.title]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({

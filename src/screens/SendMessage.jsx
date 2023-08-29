@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { StyleSheet, View } from "react-native"
-// ... (other imports)
-
 import { useNavigation } from "@react-navigation/native"
 import Button from "../components/Button"
 import InputField from "../components/InputField"
 import Title from "../components/Title"
+
 
 const SendMessageScreen = ({ navigation }) => {
   const [recipients, setRecipients] = useState("")
@@ -30,7 +29,6 @@ const SendMessageScreen = ({ navigation }) => {
           value={message}
           onChangeText={setMessage}
           secureTextEntry={false}
-          // Apply the style to control the message input
           style={styles.messageInput}
           multiline
         />

@@ -1,34 +1,68 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import {
+  Appearance,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+} from 'react-native';
+import Tile from '../Tile';
+import {darkTheme, lightTheme} from '../../styles/themes';
+import {useAppearance} from '../../contexts/AppearenceContext';
 
-const LatestEntriesComponent = ({ entries }) => {
+const LatestEntriesComponent = ({entries}) => {
+  const appearance = useAppearance();
+  const isDarkMode = appearance === 'dark';
+
   return (
-    <View style={styles.latestEntriesContainer}>
-      <Text style={styles.latestEntriesHeader}>Latest Entries</Text>
+    <Tile>
+      <Text
+        style={[
+          styles.latestEntriesHeader,
+          {color: isDarkMode ? darkTheme. textColor : lightTheme.textColor},
+        ]}>
+        Latest Entries
+      </Text>
       <FlatList
         data={entries}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <TouchableOpacity style={styles.entryItem}>
-            <Text style={styles.entryTitle}>{item.title}</Text>
-            <Text style={styles.entryDetails}>{item.date}</Text>
+            <Text
+              style={[
+                styles.entryTitle,
+                {
+                  color: isDarkMode
+                    ? darkTheme.textColor
+                    : lightTheme.textColor,
+                },
+              ]}>
+              {item.title}
+            </Text>
+            <Text
+              style={[
+                styles.entryDetails,
+                {
+                  color: isDarkMode
+                    ? darkTheme.textColor
+                    : lightTheme.textColor,
+                },
+              ]}>
+              {item.date}
+            </Text>
           </TouchableOpacity>
         )}
       />
-      <TouchableOpacity style={styles.viewAllButton} onPress={() => console.log('View all entries')}>
+      <TouchableOpacity
+        style={styles.viewAllButton}
+        onPress={() => console.log('View all entries')}>
         <Text style={styles.viewAllButtonText}>View All Entries</Text>
       </TouchableOpacity>
-    </View>
+    </Tile>
   );
 };
 
 const styles = StyleSheet.create({
-  latestEntriesContainer: {
-    backgroundColor: '#F4F4F4',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 20,
-  },
   latestEntriesHeader: {
     fontSize: 20,
     fontWeight: 'bold',

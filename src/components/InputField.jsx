@@ -1,6 +1,5 @@
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-import { useTheme } from '../hooks/ThemeProvider'; // Import the theme hook
+import {TextInput, StyleSheet} from 'react-native';
 
 const InputField = ({
   placeholder,
@@ -12,8 +11,6 @@ const InputField = ({
   multiline,
   style,
 }) => {
-  const theme = useTheme(); // Get the current theme
-
   return (
     <TextInput
       placeholder={placeholder}
@@ -23,11 +20,7 @@ const InputField = ({
       maxLength={maxLength}
       keyboardType={keyboardType}
       multiline={multiline}
-      style={[
-        styles.input,
-        { borderColor: theme.borderColor },
-        style,
-      ]}
+      style={[styles.input, style]}
     />
   );
 };

@@ -1,46 +1,135 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useAppearance} from '../../contexts/AppearenceContext';
+import {useUser} from '../../contexts/UserContext';
+import {darkTheme, lightTheme} from '../../styles/themes';
+import Axios from '../../utils/Axios';
+import Tile from '../Tile';
 
-const UserDetailsComponent = ({ area }) => {
-  return (
-    <View style={styles.detailsContainer}>
-      <View style={styles.detailsHeader}>
-        <Text style={styles.detailsHeaderText}>Your Area</Text>
-      </View>
-      <View style={styles.detailsContent}>
-        <Text style={styles.detailsText}>{area}</Text>
-        <Text style={styles.extraDetails}>Check out the latest updates and entries in your area!</Text>
-      </View>
+const UserDetailsComponent = ({area}) => {
+  const {user} = useUser();
+  const appearance = useAppearance();
+  const isDarkMode = appearance === 'dark';
+  const [mahalluDetails, setMahalluDetails] = useState(null);
+
+  const getMahallu = async () => {
+    try {
+      let {data} = await Axios.get(`/mahallu/details/${user.mahallu}`);
+      console.log('hellow r');
+      console.log(data);
+      setMahalluDetails(data);
+      console.log(mahalluDetails);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  console.log(mahalluDetails);
+
+  const renderCard = (title, value) => (
+    <View style={styles(isDarkMode).card}>
+      <Text style={styles(isDarkMode).cardTitle}>{title}</Text>
+      <Text style={styles(isDarkMode).cardValue}>{value}</Text>
     </View>
+  );
+
+  const renderGridItem = ({item}) => (
+    <View style={styles(isDarkMode).gridItem}>
+      {renderCard(item.title, item.value)}
+    </View>
+  );
+
+  const detailsData = [
+    {title: 'Total Entries', value: mahalluDetails?.totalEntries},
+    {title: 'Male', value: mahalluDetails?.maleCount},
+    {title: 'Female', value: mahalluDetails?.femaleCount},
+    {title: 'Female', value: mahalluDetails?.femaleCount},
+    {title: 'Female', value: mahalluDetails?.femaleCount},
+    {title: 'Female', value: mahalluDetails?.femaleCount},
+    // Add more details here            
+  ];
+  useEffect(() => {
+    getMahallu();
+  }, []);
+
+  return (
+    <Tile>
+      <View style={styles(isDarkMode).detailsHeader}>
+        <Text style={styles(isDarkMode).detailsHeaderText}>Your Area</Text>
+      </View>
+      <View style={styles(isDarkMode).cardContainer}>
+        <View style={styles(isDarkMode).card}>
+          <Text style={styles(isDarkMode).detailsText}>{area}</Text>
+        </View>
+        {mahalluDetails && (
+          <FlatList
+            data={detailsData}
+            renderItem={renderGridItem}
+            numColumns={2}
+            contentContainerStyle={styles(isDarkMode).gridContainer}
+          />
+        )}
+      </View>
+      <Text style={styles(isDarkMode).extraDetails}>
+        Check out the latest updates and entries in your area!
+      </Text>
+    </Tile>
   );
 };
 
-const styles = StyleSheet.create({
-  detailsContainer: {
-    backgroundColor: '#F1F1F1',
-    padding: 20,
-    borderRadius: 10,
-    marginVertical: 20,
-  },
-  detailsHeader: {
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
-    paddingBottom: 10,
-    marginBottom: 10,
-  },
-  detailsHeaderText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  detailsContent: {},
-  detailsText: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  extraDetails: {
-    fontSize: 14,
-    color: '#888',
-  },
-});
+const styles = isDarkMode =>
+  StyleSheet.create({
+    detailsHeader: {
+      borderBottomWidth: 1,
+      borderColor: '#ccc',
+      paddingBottom: 10,
+      marginBottom: 10,
+    },
+    detailsHeaderText: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+    },
+    cardContainer: {
+      borderRadius: 10,
+      padding: 15,
+    },
+    card: {
+      backgroundColor: isDarkMode
+        ? darkTheme.secondaryColor
+        : lightTheme.primaryColor,
+      borderRadius: 20,
+      padding: 20,
+      marginBottom: 10,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    gridContainer: {
+      justifyContent: 'space-between',
+      marginTop: 10,
+    },
+    gridItem: {
+      flex: 1,
+      marginHorizontal: 5,
+    },
+    cardTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+      color: '#fff',
+    },
+    cardValue: {
+      fontSize: 14,
+      color: '#fff',
+    },
+    detailsText: {
+      fontSize: 16,
+      marginBottom: 10,
+    },
+    extraDetails: {
+      fontSize: 14,
+      color: '#888',
+    },
+  });
 
 export default UserDetailsComponent;

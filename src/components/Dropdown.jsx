@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
 
 const Dropdown = ({selectedValue, onValueChange, label, options}) => {
-  const theme = useTheme();
   const [showTextInput, setShowTextInput] = useState(false);
 
   const handleValueChange = value => {
@@ -16,7 +14,7 @@ const Dropdown = ({selectedValue, onValueChange, label, options}) => {
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
 
-      <View style={[styles.pickerContainer, {borderColor: theme.borderColor}]}>
+      <View style={styles.pickerContainer}>
         <Picker selectedValue={selectedValue} onValueChange={handleValueChange}>
           <Picker.Item label={`Select ${label}`} value="" />
           {options.map(option => (
