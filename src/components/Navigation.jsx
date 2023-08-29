@@ -8,6 +8,7 @@ import OTPInput from '../screens/OTPInput'; // Import your OTP input  component
 import SignUp from '../screens/SignUp'; // Import your sign-up  component
 import Form from '../screens/Form'; // Import your sign-up  component
 import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
+import HomeScreen from './HomeScreen/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ const Navigation = () => {
         }}>
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={HomeScreen}
           options={{
             headerShown: false,
           }}

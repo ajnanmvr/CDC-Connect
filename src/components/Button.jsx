@@ -1,13 +1,14 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
+import {PRIMARY_COLOR} from '../utils/consts';
 
-const Button = ({title, onPress}) => {
+const Button = ({title, onPress, backgroundColor}) => {
   const theme = useTheme(); // Get the current theme
 
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor: theme.buttonColor}]}
+      style={[styles.button, {backgroundColor: backgroundColor}]}
       onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
