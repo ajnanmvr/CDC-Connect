@@ -1,8 +1,8 @@
 // App.jsx
 import React from 'react';
-import { ThemeProvider } from './hooks/ThemeProvider';
-import { lightTheme, darkTheme } from './styles/themes';
-import { SafeAreaView, useColorScheme, StatusBar } from 'react-native';
+import {ThemeProvider} from './hooks/ThemeProvider';
+import {lightTheme, darkTheme} from './styles/themes';
+import {SafeAreaView, useColorScheme, StatusBar} from 'react-native';
 import Navigation from './components/Navigation';
 
 const App = () => {
@@ -12,8 +12,12 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar backgroundColor={theme.backgroundColor} barStyle={statusBarStyle} />
-      <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar
+        backgroundColor={theme.backgroundColor}
+        barStyle={statusBarStyle}
+        animated={true}
+      />
+      <SafeAreaView style={{flex: 1}}>
         <Navigation />
       </SafeAreaView>
     </ThemeProvider>

@@ -6,13 +6,11 @@ import Title from '../components/Title';
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
 
-const GenderOptions = ['Male', 'Female'];
-
 const Form = () => {
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
-    gender: 'male',
+    gender: '',
     age: '',
     mobileNumber: '',
     maritalStatus: '',
@@ -101,7 +99,7 @@ const Form = () => {
         selectedValue={formData.gender}
         onValueChange={value => handleInputChange('gender', value)}
         label="Gender"
-        options={GenderOptions}
+        options={['Male', 'Female']}
       />
       <Dropdown
         selectedValue={formData.bloodGroup}
