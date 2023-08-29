@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { PRIMARY_COLOR } from '../../utils/consts';
 
 const WelcomeUser = ({ username }) => {
   return (
@@ -13,7 +12,6 @@ const WelcomeUser = ({ username }) => {
 
 const styles = StyleSheet.create({
   welcomeContainer: {
-    backgroundColor: PRIMARY_COLOR,
     paddingVertical: 20,
     paddingHorizontal: 30,
     borderBottomLeftRadius: 20,

@@ -1,25 +1,31 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import WelcomeUserComponent from '../components/HomeScreen/WelcomeUser';
+import UserDetailsComponent from '../components/HomeScreen/UserDetails';
+import LatestEntriesComponent from '../components/HomeScreen/LatestEntries';
 import Button from '../components/Button';
-import {View} from 'react-native';
-export default function Home({navigation}) {
+
+const HomeScreen = () => {
+  const entries = [
+    { title: 'Janish Nehyan' },
+    { title: 'Muhammed Ajnan P' },
+    { title: 'Muhammed Ali' },
+  ];
+
   return (
-    <View>
-      <Button
-        title={'Go to Login'}
-        onPress={() => navigation.navigate('Login')}
-      />
-      <Button
-        title={'Send Message'}
-        onPress={() => navigation.navigate('SendMessage')}
-      />
-      <Button
-        title={'Go to OTPInput'}
-        onPress={() => navigation.navigate('OTPInput')}
-      />
-      <Button
-        title={'Go to Form'}
-        onPress={() => navigation.navigate('Form')}
-      />
+    <View style={styles.container}>
+      <WelcomeUserComponent username="Muhammed Ali" />
+      <UserDetailsComponent area="MALAPPURAM EAST" />
+      <LatestEntriesComponent entries={entries} />
+      <Button title="New Entry" onPress={() => console.log('Create new entry')} />
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default HomeScreen;

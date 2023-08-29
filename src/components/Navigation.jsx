@@ -1,14 +1,13 @@
 import React from 'react';
+import Home from '../screens/Home'; 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../screens/Home'; // Import your OTP input  component
 import Login from '../screens/Login'; // Import your login  component
 import SendMessage from '../screens/SendMessage'; // Import your OTP input  component
 import OTPInput from '../screens/OTPInput'; // Import your OTP input  component
 import SignUp from '../screens/SignUp'; // Import your sign-up  component
 import Form from '../screens/Form'; // Import your sign-up  component
 import {useTheme} from '../hooks/ThemeProvider'; // Import the theme hook
-import HomeScreen from './HomeScreen/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +26,7 @@ const Navigation = () => {
         }}>
         <Stack.Screen
           name="Home"
-          component={HomeScreen}
+          component={Home}
           options={{
             headerShown: false,
           }}

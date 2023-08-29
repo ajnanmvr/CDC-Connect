@@ -1,2 +1,0 @@
-const PRIMARY_COLOR = '#5B9A8B';
-export {PRIMARY_COLOR};
