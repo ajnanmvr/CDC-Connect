@@ -10,6 +10,7 @@ import Form from '../screens/Form'; // Import your sign-up  component
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import {useUser} from '../contexts/UserContext';
+import OverView from '../screens/OverView';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,6 +74,7 @@ const Navigation = () => {
           }}
         />
         <Stack.Screen name="SendMessage" component={SendMessage} />
+        <Stack.Screen name="Overview" component={OverView} />
         <Stack.Screen name="Form" component={Form} />
       </Stack.Navigator>
     </NavigationContainer>

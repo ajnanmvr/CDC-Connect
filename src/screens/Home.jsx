@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
-import WelcomeUserComponent from '../components/HomeScreen/WelcomeUser';
-import UserDetailsComponent from '../components/HomeScreen/UserDetails';
-import LatestEntriesComponent from '../components/HomeScreen/LatestEntries';
+import {ScrollView, StyleSheet} from 'react-native';
 import Button from '../components/Button';
+import LatestEntriesComponent from '../components/HomeScreen/LatestEntries';
+import UserDetailsComponent from '../components/HomeScreen/UserDetails';
+import WelcomeUserComponent from '../components/HomeScreen/WelcomeUser';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = ({navigate}) => {
+  const navigation = useNavigation();
   const entries = [
     {title: 'Janish Nehyan', date: '22-01-2023'},
     {title: 'Muhammed Ajnan P', date: '20-04-2023'},
@@ -17,14 +19,7 @@ const HomeScreen = ({navigate}) => {
       <WelcomeUserComponent username="Muhammed Ali" />
       <UserDetailsComponent area="MALAPPURAM EAST" />
       <LatestEntriesComponent entries={entries} />
-      <Button
-        title="New Entry"
-        onPress={() => console.log('Create new entry')}
-      />
-      <Button
-        title="New Entry"
-        onPress={() => console.log('Create new entry')}
-      />
+      <Button title="New Entry" onPress={() => navigation.navigate('Form')} />
     </ScrollView>
   );
 };

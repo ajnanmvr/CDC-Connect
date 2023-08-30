@@ -5,8 +5,13 @@ import Title from '../components/Title';
 
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
+import {useAppearance} from '../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../styles/themes';
 
 const Form = () => {
+  const appearance = useAppearance();
+  const isDarkMode = appearance === 'dark';
+
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -35,31 +40,34 @@ const Form = () => {
     console.log('Submitted:', formData);
   };
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles(isDarkMode).container}>
       <Title>Personal Information</Title>
 
-      <View style={styles.input}>
-        <Text style={styles.label}>Name</Text>
+      <View style={styles(isDarkMode).input}>
+        <Text style={styles(isDarkMode).label}>Name</Text>
         <InputField
           value={formData.name}
           onChangeText={value => handleInputChange('name', value)}
+          style={styles(isDarkMode).inputField}
         />
       </View>
-      <View style={styles.input}>
-        <Text style={styles.label}>Contact Number</Text>
+      <View style={styles(isDarkMode).input}>
+        <Text style={styles(isDarkMode).label}>Contact Number</Text>
         <InputField
           value={formData.contactNumber}
           onChangeText={value => handleInputChange('contactNumber', value)}
           keyboardType="numeric"
+          style={styles(isDarkMode).inputField}
         />
       </View>
 
-      <View style={styles.input}>
-        <Text style={styles.label}>Age</Text>
+      <View style={styles(isDarkMode).input}>
+        <Text style={styles(isDarkMode).label}>Age</Text>
         <InputField
           value={formData.age}
           onChangeText={value => handleInputChange('age', value)}
           keyboardType="numeric"
+          style={styles(isDarkMode).inputField}
         />
       </View>
 
@@ -118,18 +126,27 @@ const Form = () => {
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    marginVertical: 10,
-  },
-});
+const styles = isDarkMode =>
+  StyleSheet.create({
+    heading: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 16,
+    },
+    label: {
+      fontSize: 16,
+      marginBottom: 8,
+      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+    },
+    input: {
+      marginVertical: 10,
+    },
+    inputField: {
+      borderWidth: 1,
+      borderColor: isDarkMode ? darkTheme.borderColor : lightTheme.borderColor,
+      padding: 10,
+      borderRadius: 10,
+      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+    },
+  });
 export default Form;

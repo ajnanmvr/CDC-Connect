@@ -6,6 +6,7 @@ import { AppearanceProvider, useAppearance } from './contexts/AppearenceContext'
 import { UserProvider } from './contexts/UserContext';
 import { darkTheme, lightTheme } from './styles/themes';
 
+
 const App = () => {
   const statusBarStyle = isDarkMode ? 'light-content' : 'dark-content';
   const appearance = useAppearance();

@@ -1,16 +1,14 @@
 import React from 'react';
 import {
-  Appearance,
-  Text,
-  TouchableOpacity,
-  FlatList,
   StyleSheet,
+  Text,
+  TouchableOpacity
 } from 'react-native';
+import { useAppearance } from '../../contexts/AppearenceContext';
+import { darkTheme, lightTheme } from '../../styles/themes';
 import Tile from '../Tile';
-import {darkTheme, lightTheme} from '../../styles/themes';
-import {useAppearance} from '../../contexts/AppearenceContext';
 
-const LatestEntriesComponent = ({entries}) => {
+const LatestEntriesComponent = ({ entries }) => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
 
@@ -19,43 +17,39 @@ const LatestEntriesComponent = ({entries}) => {
       <Text
         style={[
           styles.latestEntriesHeader,
-          {color: isDarkMode ? darkTheme. textColor : lightTheme.textColor},
-        ]}>
+          { color: isDarkMode ? darkTheme.textColor : lightTheme.textColor },
+        ]}
+      >
         Latest Entries
       </Text>
-      <FlatList
-        data={entries}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <TouchableOpacity style={styles.entryItem}>
-            <Text
-              style={[
-                styles.entryTitle,
-                {
-                  color: isDarkMode
-                    ? darkTheme.textColor
-                    : lightTheme.textColor,
-                },
-              ]}>
-              {item.title}
-            </Text>
-            <Text
-              style={[
-                styles.entryDetails,
-                {
-                  color: isDarkMode
-                    ? darkTheme.textColor
-                    : lightTheme.textColor,
-                },
-              ]}>
-              {item.date}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
+      {entries.map((item, index) => (
+        <TouchableOpacity key={index} style={styles.entryItem}>
+          <Text
+            style={[
+              styles.entryTitle,
+              {
+                color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+              },
+            ]}
+          >
+            {item.title}
+          </Text>
+          <Text
+            style={[
+              styles.entryDetails,
+              {
+                color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+              },
+            ]}
+          >
+            {item.date}
+          </Text>
+        </TouchableOpacity>
+      ))}
       <TouchableOpacity
         style={styles.viewAllButton}
-        onPress={() => console.log('View all entries')}>
+        onPress={() => console.log('View all entries')}
+      >
         <Text style={styles.viewAllButtonText}>View All Entries</Text>
       </TouchableOpacity>
     </Tile>
