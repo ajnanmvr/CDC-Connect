@@ -11,6 +11,8 @@ import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import {useUser} from '../contexts/UserContext';
 import OverView from '../screens/OverView';
+import Entries from '../screens/Entries';
+import FilteredData from '../screens/FilteredData';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +42,6 @@ const Navigation = () => {
             padding: 20,
           },
         }}>
-          
         {user ? (
           <Stack.Screen
             name="Home"
@@ -76,6 +77,8 @@ const Navigation = () => {
         <Stack.Screen name="SendMessage" component={SendMessage} />
         <Stack.Screen name="Overview" component={OverView} />
         <Stack.Screen name="Form" component={Form} />
+        <Stack.Screen name="ُEntries" component={Entries} />
+        <Stack.Screen name="ُFilteredData" component={FilteredData} />
       </Stack.Navigator>
     </NavigationContainer>
   );

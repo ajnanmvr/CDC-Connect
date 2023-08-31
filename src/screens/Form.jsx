@@ -35,7 +35,9 @@ const Form = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  console.log(formData);
+
+  const handleSubmit =async () => {
     // Handle form submission here
     console.log('Submitted:', formData);
   };
