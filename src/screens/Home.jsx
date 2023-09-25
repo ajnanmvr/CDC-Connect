@@ -16,7 +16,7 @@ const HomeScreen = ({navigate}) => {
 
   return (
     <ScrollView style={styles.container}>
-      <WelcomeUserComponent username="Muhammed Ali" />
+      <WelcomeUserComponent  />
       <UserDetailsComponent area="MALAPPURAM EAST" />
       <LatestEntriesComponent entries={entries} />
       <Button title="New Entry" onPress={() => navigation.navigate('Form')} />

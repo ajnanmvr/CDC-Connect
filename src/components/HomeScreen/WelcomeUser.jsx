@@ -1,21 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useAppearance} from '../../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../../styles/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 
-const WelcomeUser = ({username}) => {
+const WelcomeUser = () => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
   const [userData, setUserData] = useState(null);
+  const navigation = useNavigation();
 
   const getUserData = async () => {
     try {
       const userDataString = await AsyncStorage.getItem('userData');
       if (userDataString) {
         const userData = JSON.parse(userDataString);
-        // Now you can access user data properties like userData.name, userData.email, etc.
-        console.log('User Data:', userData);
         setUserData(userData);
       } else {
         console.log('User data not found in AsyncStorage.');
@@ -29,7 +29,8 @@ const WelcomeUser = ({username}) => {
     getUserData();
   }, []);
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => navigation.navigate('UserProfile', {user: userData})}
       style={[
         styles.welcomeContainer,
         {
@@ -57,7 +58,7 @@ const WelcomeUser = ({username}) => {
         {userData?.name}
       </Text>
       <Text style={styles.subtitle}>Welcome to our Data Entry App</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

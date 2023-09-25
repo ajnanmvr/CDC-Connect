@@ -13,6 +13,7 @@ import {useUser} from '../contexts/UserContext';
 import OverView from '../screens/OverView';
 import Entries from '../screens/Entries';
 import FilteredData from '../screens/FilteredData';
+import UserProfile from '../screens/UserProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,6 +75,7 @@ const Navigation = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="SendMessage" component={SendMessage} />
         <Stack.Screen name="Overview" component={OverView} />
         <Stack.Screen name="Form" component={Form} />
