@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   Alert,
   ScrollView,
   StyleSheet,
@@ -20,6 +21,7 @@ const SelectedEntry = ({route}) => {
   const [relatedData, setRelatedData] = useState([]);
   const isDarkMode = appearance === 'dark';
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const theme = isDarkMode ? darkTheme : lightTheme;
   // Add this function inside your component
@@ -37,12 +39,15 @@ const SelectedEntry = ({route}) => {
   };
 
   const getEntry = async () => {
+    setLoading(true);
     try {
       let {data} = await Axios.get(`/entry/${entryId}`);
       setData(data.data);
       setRelatedData(data.relatedData);
+      setLoading(false);
     } catch (error) {
       console.log(error.response);
+      setLoading(false);
     }
   };
   const deleteEntry = async id => {
@@ -79,7 +84,9 @@ const SelectedEntry = ({route}) => {
   return (
     <ScrollView>
       <Tile>
-        {data ? (
+        {loading ? (
+          <ActivityIndicator />
+        ) : data ? (
           <>
             <Text
               style={[styles(isDarkMode).userName, {color: theme.textColor}]}>
