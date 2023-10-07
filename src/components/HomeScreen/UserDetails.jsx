@@ -42,7 +42,6 @@ const UserDetailsComponent = ({area}) => {
   useEffect(() => {
     getMahallu();
   }, []);
-  console.log(user);
   return (
     <Tile>
       <View style={styles(isDarkMode).detailsHeader}>
