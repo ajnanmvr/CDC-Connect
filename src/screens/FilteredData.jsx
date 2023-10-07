@@ -1,10 +1,17 @@
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Axios from '../utils/Axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUser} from '../contexts/UserContext';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
+import {useNavigation} from '@react-navigation/native';
 
 const FilteredData = ({route}) => {
   const {query, title} = route.params;
@@ -13,14 +20,15 @@ const FilteredData = ({route}) => {
   const [loading, setLoading] = useState(false);
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
+  const navigation = useNavigation();
 
   const getData = async () => {
     try {
       let apiQuery;
       if (query) {
-        apiQuery = `/entry?mahallu=${user.mahallu}&${query}`;
+        apiQuery = `/entry?mahallu=${user.mahallu?._id}&${query}`;
       } else {
-        apiQuery = `/entry?mahallu=${user.mahallu}`;
+        apiQuery = `/entry?mahallu=${user.mahallu?._id}`;
       }
       setLoading(true);
       let token = await AsyncStorage.getItem('authToken');
@@ -73,7 +81,12 @@ const FilteredData = ({route}) => {
       </View>
       {!loading ? (
         filteredData.map((entry, index) => (
-          <View key={index} style={styles(isDarkMode).dataRow}>
+          <TouchableOpacity
+            key={index}
+            style={styles(isDarkMode).dataRow}
+            onPress={() => {
+              navigation.navigate('ُSelectedEntry', {entryId: entry._id});
+            }}>
             <Text
               style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
               {entry.name}
@@ -84,9 +97,9 @@ const FilteredData = ({route}) => {
             </Text>
             <Text
               style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
-              {entry.jobType.govtService ? 'Govt Service' : 'Private'}
+              {entry?.jobType?.govtService ? 'Govt Service' : 'Private'}
             </Text>
-          </View>
+          </TouchableOpacity>
         ))
       ) : (
         <ActivityIndicator />

@@ -1,20 +1,25 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import InputField from '../components/InputField';
-import Title from '../components/Title';
-
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
 import Dropdown from '../components/Dropdown';
+import InputField from '../components/InputField';
+import Title from '../components/Title';
 import {useAppearance} from '../contexts/AppearenceContext';
+import {useUser} from '../contexts/UserContext';
 import {darkTheme, lightTheme} from '../styles/themes';
+import Axios from '../utils/Axios';
+import {useNavigation} from '@react-navigation/native';
 
-const Form = () => {
+const Form = ({route}) => {
+  const formNumber = route?.params?.formNumber;
   const appearance = useAppearance();
+  const navigation = useNavigation();
   const isDarkMode = appearance === 'dark';
-
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const {user} = useUser();
+  const initialValue = {
     name: '',
-    contactNumber: '',
     gender: '',
     age: '',
     mobileNumber: '',
@@ -26,7 +31,12 @@ const Form = () => {
     health: '',
     bloodGroup: '',
     jobType: '',
-  });
+    dob: '',
+    houseNumber: '',
+    mahallu: '',
+    district: '',
+  };
+  const [formData, setFormData] = useState(initialValue);
 
   const handleInputChange = (field, value) => {
     setFormData(prevState => ({
@@ -35,18 +45,71 @@ const Form = () => {
     }));
   };
 
-  console.log(formData);
+  const handleSubmit = async () => {
+    const requiredFields = [
+      'name',
+      'gender',
+      'age',
+      'mobileNumber',
+      'maritalStatus',
+      'dob',
+      // 'houseNumber',
+    ];
 
-  const handleSubmit =async () => {
-    // Handle form submission here
-    console.log('Submitted:', formData);
+    const newErrors = {};
+    requiredFields.forEach(field => {
+      if (!formData[field].trim()) {
+        newErrors[field] = 'required';
+      }
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      let response = await Axios.post('/entry', {
+        ...formData,
+        mahallu: user.mahallu,
+        district: user.district,
+        formNumber: formNumber ? formNumber : null,
+      });
+      setFormData(initialValue);
+      setLoading(false);
+      Alert.alert('Success', 'Form submitted successfully', [
+        {
+          text: 'OK',
+          onPress: () => {
+            // Navigate to the home screen and trigger a reload
+            navigation.navigate('Home', {reload: true});
+          },
+        },
+      ]);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.response.data.errors);
+      Alert.alert('Error', 'Something went wrong while submitting the form');
+    }
   };
   return (
     <ScrollView contentContainerStyle={styles(isDarkMode).container}>
       <Title>Personal Information</Title>
+      {formNumber && (
+        <Text style={styles(isDarkMode).formNumber}>-{formNumber}-</Text>
+      )}
 
       <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>Name</Text>
+        <Text style={styles(isDarkMode).label}>
+          Name <Text style={styles(isDarkMode).star}>*</Text>
+          {errors.name && (
+            <Text style={styles(isDarkMode).error}>
+              {' '}
+              {'  '} ({errors.name})
+            </Text>
+          )}
+        </Text>
         <InputField
           value={formData.name}
           onChangeText={value => handleInputChange('name', value)}
@@ -54,17 +117,33 @@ const Form = () => {
         />
       </View>
       <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>Contact Number</Text>
+        <Text style={styles(isDarkMode).label}>
+          Contact Number <Text style={styles(isDarkMode).star}>*</Text>
+          {errors.mobileNumber && (
+            <Text style={styles(isDarkMode).error}>
+              {' '}
+              {'  '} ({errors.mobileNumber})
+            </Text>
+          )}
+        </Text>
         <InputField
-          value={formData.contactNumber}
-          onChangeText={value => handleInputChange('contactNumber', value)}
+          value={formData.mobileNumber}
+          onChangeText={value => handleInputChange('mobileNumber', value)}
           keyboardType="numeric"
           style={styles(isDarkMode).inputField}
         />
       </View>
 
       <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>Age</Text>
+        <Text style={styles(isDarkMode).label}>
+          Age <Text style={styles(isDarkMode).star}>*</Text>
+          {errors.age && (
+            <Text style={styles(isDarkMode).error}>
+              {' '}
+              {'  '} ({errors.age})
+            </Text>
+          )}
+        </Text>
         <InputField
           value={formData.age}
           onChangeText={value => handleInputChange('age', value)}
@@ -72,12 +151,73 @@ const Form = () => {
           style={styles(isDarkMode).inputField}
         />
       </View>
+      <View style={styles(isDarkMode).input}>
+        <Text style={styles(isDarkMode).label}>
+          Date Of Birth <Text style={styles(isDarkMode).star}>*</Text>
+          {errors.dob && (
+            <Text style={styles(isDarkMode).error}>
+              {' '}
+              {'  '} ({errors.dob})
+            </Text>
+          )}
+        </Text>
+        <InputField
+          value={formData.dob}
+          onChangeText={value => handleInputChange('dob', value)}
+          style={styles(isDarkMode).inputField}
+          placeholder={'DD-MM-YYYY'}
+        />
+      </View>
+      {/* <View style={styles(isDarkMode).input}>
+        <Text style={styles(isDarkMode).label}>
+          House Number <Text style={styles(isDarkMode).star}>*</Text>
+          {errors.houseNumber && (
+            <Text style={styles(isDarkMode).error}>
+              {' '}
+              {'  '} ({errors.houseNumber})
+            </Text>
+          )}
+        </Text>
+        <InputField
+          value={formData.houseNumber}
+          onChangeText={value => handleInputChange('houseNumber', value)}
+          style={styles(isDarkMode).inputField}
+        />
+      </View> */}
 
       <Dropdown
         selectedValue={formData.maritalStatus}
         onValueChange={value => handleInputChange('maritalStatus', value)}
         label="Marital Status"
         options={['Married', 'Unmarried', 'Widow/er']}
+        error={
+          <>
+            <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.maritalStatus && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.maritalStatus})
+              </Text>
+            )}
+          </>
+        }
+      />
+      <Dropdown
+        selectedValue={formData.gender}
+        onValueChange={value => handleInputChange('gender', value)}
+        label="Gender"
+        options={['male', 'female']}
+        error={
+          <>
+            <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.gender && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.gender})
+              </Text>
+            )}
+          </>
+        }
       />
       <Dropdown
         selectedValue={formData.materialEducation}
@@ -105,12 +245,7 @@ const Form = () => {
         label="Religious Education"
         options={['Dars', 'Arabic Collage', 'Madrasa']}
       />
-      <Dropdown
-        selectedValue={formData.gender}
-        onValueChange={value => handleInputChange('gender', value)}
-        label="Gender"
-        options={['Male', 'Female']}
-      />
+
       <Dropdown
         selectedValue={formData.bloodGroup}
         onValueChange={value => handleInputChange('bloodGroup', value)}
@@ -124,7 +259,11 @@ const Form = () => {
         label="Job Type"
         options={['Government Service', 'Private Sector', 'Daily Wage']}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      {loading ? (
+        <Button title="loading..." onPress={() => {}} />
+      ) : (
+        <Button title="Submit" onPress={handleSubmit} />
+      )}
     </ScrollView>
   );
 };
@@ -149,6 +288,20 @@ const styles = isDarkMode =>
       padding: 10,
       borderRadius: 10,
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+    },
+    star: {
+      color: 'red',
+    },
+    error: {
+      color: 'red',
+      textTransform: 'capitalize',
+      marginLeft: 4,
+      fontSize: 13,
+    },
+    formNumber: {
+      color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
+      textAlign: 'center',
+      fontWeight: 'bold',
     },
   });
 export default Form;

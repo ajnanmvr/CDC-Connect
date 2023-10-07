@@ -10,7 +10,7 @@ const OverView = ({route}) => {
 
   const Card = ({title, value, query}) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ُFilteredData', {query,title})}
+      onPress={() => navigation.navigate('ُFilteredData', {query, title})}
       style={styles(isDarkMode).card}>
       <Text style={styles(isDarkMode).cardTitle}>{title}</Text>
       <Text style={styles(isDarkMode).cardValue}>{value}</Text>
@@ -43,14 +43,20 @@ const OverView = ({route}) => {
             value={mahalluData.dailyWageCount}
             query={'jobType.dailyWage=true'}
           />
-          {Object.keys(mahalluData.academicStages).map((stage, index) => (
-            <Card
-              key={index}
-              title={stage}
-              value={mahalluData.academicStages[stage]}
-              query={`academicStage=${encodeURIComponent(stage)}`}
-            />
-          ))}
+          {Object.keys(mahalluData.academicStages).map((stage, index) => {
+            const value = mahalluData.academicStages[stage];
+            if (stage !== 'null') {
+              return (
+                <Card
+                  key={index}
+                  title={stage}
+                  value={value}
+                  query={`academicStage=${encodeURIComponent(stage)}`}
+                />
+              );
+            }
+            return null; // Skip rendering when the key is "null"
+          })}
         </View>
       )}
     </View>

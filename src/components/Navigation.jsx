@@ -14,6 +14,7 @@ import OverView from '../screens/OverView';
 import Entries from '../screens/Entries';
 import FilteredData from '../screens/FilteredData';
 import UserProfile from '../screens/UserProfile';
+import SelectedEntry from '../screens/SelectedEntry';
 
 const Stack = createNativeStackNavigator();
 
@@ -81,6 +82,7 @@ const Navigation = () => {
         <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="ُEntries" component={Entries} />
         <Stack.Screen name="ُFilteredData" component={FilteredData} />
+        <Stack.Screen name="ُSelectedEntry" component={SelectedEntry} />
       </Stack.Navigator>
     </NavigationContainer>
   );

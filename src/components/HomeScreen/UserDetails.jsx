@@ -24,7 +24,7 @@ const UserDetailsComponent = ({area}) => {
   const getMahallu = async () => {
     setLoading(true);
     try {
-      let {data} = await Axios.get(`/mahallu/details/${user.mahallu}`);
+      let {data} = await Axios.get(`/mahallu/details/${user?.mahallu?._id}`);
       setMahalluDetails(data);
       setLoading(false);
     } catch (error) {
@@ -42,7 +42,7 @@ const UserDetailsComponent = ({area}) => {
   useEffect(() => {
     getMahallu();
   }, []);
-
+  console.log(user);
   return (
     <Tile>
       <View style={styles(isDarkMode).detailsHeader}>
@@ -50,39 +50,55 @@ const UserDetailsComponent = ({area}) => {
       </View>
       <View style={styles(isDarkMode).cardContainer}>
         <View style={styles(isDarkMode).card}>
-          <Text style={styles(isDarkMode).detailsText}>{area}</Text>
+          <Text style={styles(isDarkMode).detailsText}>
+            {user?.mahallu?.name}
+          </Text>
         </View>
-        {!loading && mahalluDetails ? (
-          <View style={styles(isDarkMode).gridContainer}>
-            <Card title={'Total Entries'} value={mahalluDetails.totalEntries} />
-            <Card title={'Male'} value={mahalluDetails.maleCount} />
-            <Card title={'Female'} value={mahalluDetails.femaleCount} />
-            <Card
-              title={'Govt Serivce'}
-              value={mahalluDetails.govtServiceCount}
-            />
-            <Card title={'Daily Wage'} value={mahalluDetails.dailyWageCount} />
-          </View>
+        {!loading ? (
+          <>
+            {mahalluDetails && (
+              <View style={styles(isDarkMode).gridContainer}>
+                <Card
+                  title={'Total Entries'}
+                  value={mahalluDetails.totalEntries}
+                />
+                <Card title={'Male'} value={mahalluDetails.maleCount} />
+                <Card title={'Female'} value={mahalluDetails.femaleCount} />
+                <Card
+                  title={'Govt Serivce'}
+                  value={mahalluDetails.govtServiceCount}
+                />
+                <Card
+                  title={'Daily Wage'}
+                  value={mahalluDetails.dailyWageCount}
+                />
+              </View>
+            )}
+          </>
         ) : (
           <ActivityIndicator />
         )}
       </View>
-      <Text style={styles(isDarkMode).extraDetails}>
-        Check out the latest updates and entries in your area!
-      </Text>
-      <TouchableOpacity
-        style={styles(isDarkMode).viewAllButton}
-        onPress={() => {
-          // Navigate to OverViewPage and pass the mahalluDetails
-          navigation.navigate('Overview', {
-            mahalluData: mahalluDetails,
-            isDarkMode,
-          });
-        }}>
-        <Text style={styles(isDarkMode).viewAllButtonText}>
-          View All Entries
-        </Text>
-      </TouchableOpacity>
+      {mahalluDetails && (
+        <>
+          <Text style={styles(isDarkMode).extraDetails}>
+            Check out the latest updates and entries in your area!
+          </Text>
+          <TouchableOpacity
+            style={styles(isDarkMode).viewAllButton}
+            onPress={() => {
+              // Navigate to OverViewPage and pass the mahalluDetails
+              navigation.navigate('Overview', {
+                mahalluData: mahalluDetails,
+                isDarkMode,
+              });
+            }}>
+            <Text style={styles(isDarkMode).viewAllButtonText}>
+              View All Entries
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
     </Tile>
   );
 };

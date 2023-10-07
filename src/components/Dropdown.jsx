@@ -4,7 +4,7 @@ import {Picker} from '@react-native-picker/picker';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 
-const Dropdown = ({selectedValue, onValueChange, label, options}) => {
+const Dropdown = ({selectedValue, onValueChange, label, options, error}) => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
 
@@ -17,7 +17,7 @@ const Dropdown = ({selectedValue, onValueChange, label, options}) => {
 
   return (
     <View style={styles(isDarkMode).container}>
-      <Text style={styles(isDarkMode).label}>{label}</Text>
+      <Text style={styles(isDarkMode).label}>{label} {error}  </Text>
 
       <View style={styles(isDarkMode).pickerContainer}>
         <Picker selectedValue={selectedValue} onValueChange={handleValueChange}>

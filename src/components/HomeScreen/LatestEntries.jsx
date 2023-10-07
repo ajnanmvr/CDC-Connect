@@ -1,46 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
-import {useAppearance} from '../../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../../styles/themes';
+import { useAppearance } from '../../contexts/AppearenceContext';
+import { darkTheme, lightTheme } from '../../styles/themes';
 import Tile from '../Tile';
-import Axios from '../../utils/Axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import moment from 'moment';
-import {useNavigation} from '@react-navigation/native';
 
-const LatestEntriesComponent = () => {
+const LatestEntriesComponent = ({data, loading}) => {
   const navigation = useNavigation();
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState([]);
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      let token = await AsyncStorage.getItem('authToken');
-      let response = await Axios.get('/entry/home/data', {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setLoading(false);
-      setData(response.data.data);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+  const navigateToEntryDetails = entryId => {
+    navigation.navigate('ُSelectedEntry', {entryId}); // Pass the entry ID as a parameter
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <Tile>
       <Text
@@ -53,7 +29,9 @@ const LatestEntriesComponent = () => {
 
       {!loading ? (
         data?.slice(0, 3).map((item, index) => (
-          <TouchableOpacity key={index} style={styles.entryItem}>
+          <TouchableOpacity onPress={()=>{
+            navigateToEntryDetails(item._id)
+          }} key={index} style={styles.entryItem}>
             <Text
               style={[
                 styles.entryTitle,
@@ -74,7 +52,8 @@ const LatestEntriesComponent = () => {
                     : lightTheme.textColor,
                 },
               ]}>
-              {moment(item.createdAt).format('DD-MM-YYYY')}
+              {/* {moment(item.createdAt).format('DD-MM-YYYY')} */}
+              {item.formNumber}
             </Text>
           </TouchableOpacity>
         ))
