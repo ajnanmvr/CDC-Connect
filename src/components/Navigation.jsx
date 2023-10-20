@@ -81,7 +81,7 @@ const Navigation = () => {
         <Stack.Screen name="Overview" component={OverView} />
         <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="ُEntries" component={Entries} />
-        <Stack.Screen name="ُFilteredData" component={FilteredData} />
+        <Stack.Screen name="FilteredData" component={FilteredData} />
         <Stack.Screen name="ُSelectedEntry" component={SelectedEntry} />
       </Stack.Navigator>
     </NavigationContainer>

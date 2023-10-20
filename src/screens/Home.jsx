@@ -46,7 +46,7 @@ const HomeScreen = ({route}) => {
   }, []);
   const GridView = () => {
     const data = [
-      {id: '1', iconName: 'heart', text: 'Card 1'},
+      {id: '1', iconName: 'circle-thin', text: 'Card 1'},
       {id: '2', iconName: 'star', text: 'Card 2'},
       {id: '3', iconName: 'smile-o', text: 'Card 3'},
       {id: '5', iconName: 'bell', text: 'Card 4'},
@@ -60,7 +60,7 @@ const HomeScreen = ({route}) => {
       <View style={styles.row}>
         {data.map((item, index) => (
           <View key={item.id} style={styles.cardContainer}>
-            <IconCard iconName={item.iconName} text={item.text} />
+            <IconCard iconName={item.iconName} text={item.text} title={"Male"} />
           </View>
         ))}
       </View>
@@ -71,9 +71,9 @@ const HomeScreen = ({route}) => {
   return (
     <ScrollView style={styles.container}>
       <WelcomeUserComponent />
-      <UserDetailsComponent area="MALAPPURAM EAST" />
+      <UserDetailsComponent/>
       <LatestEntriesComponent loading={loading} data={data} />
-      <GridView />
+      {/* <GridView /> */}
       <Button title="New Entry" onPress={() => navigation.navigate('Form')} />
     </ScrollView>
   );

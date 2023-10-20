@@ -13,7 +13,7 @@ import Axios from '../../utils/Axios';
 import Tile from '../Tile';
 import {useNavigation} from '@react-navigation/native';
 
-const UserDetailsComponent = ({area}) => {
+const UserDetailsComponent = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const {user} = useUser();
@@ -63,14 +63,32 @@ const UserDetailsComponent = ({area}) => {
                 />
                 <Card title={'Male'} value={mahalluDetails.maleCount} />
                 <Card title={'Female'} value={mahalluDetails.femaleCount} />
+                <Card title={'Married'} value={mahalluDetails.marriedCount} />
                 <Card
-                  title={'Govt Serivce'}
-                  value={mahalluDetails.govtServiceCount}
+                  title={'Unmarried'}
+                  value={mahalluDetails.unmarriedCount}
+                />
+                <Card title={'Widow'} value={mahalluDetails.widowCount} />
+                <Card title={'Science'} value={mahalluDetails.scienceCount} />
+                <Card
+                  title={'Humanities'}
+                  value={mahalluDetails.humanitiesCount}
+                />
+                <Card title={'Commerce'} value={mahalluDetails.commerceCount} />
+                <Card
+                  title={'Government Service'}
+                  value={mahalluDetails.governmentServiceCount}
+                />
+                <Card
+                  title={'Private Sector'}
+                  value={mahalluDetails.privateSectorCount}
                 />
                 <Card
                   title={'Daily Wage'}
                   value={mahalluDetails.dailyWageCount}
                 />
+                <Card title={'Doctor'} value={mahalluDetails.doctorCount} />
+                <Card title={'Teacher'} value={mahalluDetails.teacherCount} />
               </View>
             )}
           </>

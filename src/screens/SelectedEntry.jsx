@@ -22,7 +22,7 @@ const SelectedEntry = ({route}) => {
   const isDarkMode = appearance === 'dark';
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  console.log(data);
   const theme = isDarkMode ? darkTheme : lightTheme;
   // Add this function inside your component
   const getJobTypeLabel = jobType => {
@@ -128,6 +128,13 @@ const SelectedEntry = ({route}) => {
               {data.materialEducation}
             </Text>
             <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+              Subject
+            </Text>
+            <Text
+              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              {data.educationalSubject ? data.educationalSubject : 'N/A'}
+            </Text>
+            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
               Blood Group
             </Text>
             <Text
@@ -141,13 +148,41 @@ const SelectedEntry = ({route}) => {
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.jobDetails ? data.jobDetails : 'N/A'}
             </Text>
+            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+              Profession
+            </Text>
+            <Text
+              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              {data.profession ? data.profession : 'N/A'}
+            </Text>
+            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+              Religious Education
+            </Text>
+            <Text
+              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              {data.religiousEducation ? data.religiousEducation : 'N/A'}
+            </Text>
+            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+              Govt Job Type
+            </Text>
+            <Text
+              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              {data.govtType ? data.govtType : 'N/A'}
+            </Text>
+            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+              Abroad
+            </Text>
+            <Text
+              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              {data.abroad ? data.abroad : 'N/A'}
+            </Text>
             {/* <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
               House Number
             </Text>
             <Text style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.houseNumber}
             </Text> */}
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+            {/* <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
               House Ownership
             </Text>
             <Text
@@ -155,7 +190,7 @@ const SelectedEntry = ({route}) => {
               {data.houseOwnership && data.houseOwnership.own
                 ? 'Own'
                 : 'Not Own'}
-            </Text>
+            </Text> */}
             <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
               Job Type
             </Text>
@@ -168,9 +203,7 @@ const SelectedEntry = ({route}) => {
             </Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
-              {data.govtAllowance && data.govtAllowance.pention
-                ? 'Pension'
-                : 'No Pension'}
+              {data.govtAllowance ?data.govtAllowance : 'No Pension'}
             </Text>
             {relatedData.length > 1 && <Title>House Members</Title>}
             {relatedData

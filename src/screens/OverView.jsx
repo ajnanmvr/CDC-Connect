@@ -1,17 +1,19 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {darkTheme, lightTheme} from '../styles/themes';
-import {useNavigation} from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { darkTheme, lightTheme } from '../styles/themes';
+import { useNavigation } from '@react-navigation/native';
 
-const OverView = ({route}) => {
-  const {mahalluData, isDarkMode} = route.params; // Access the passed data
-  console.log(mahalluData.academicStages);
+const OverView = ({ route }) => {
+  const { mahalluData, isDarkMode } = route.params; // Access the passed data
+  console.log(mahalluData);
+
   const navigation = useNavigation();
 
-  const Card = ({title, value, query}) => (
+  const Card = ({ title, value, query }) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ُFilteredData', {query, title})}
-      style={styles(isDarkMode).card}>
+      onPress={() => navigation.navigate('FilteredData', { query, title })}
+      style={styles(isDarkMode).card}
+    >
       <Text style={styles(isDarkMode).cardTitle}>{title}</Text>
       <Text style={styles(isDarkMode).cardValue}>{value}</Text>
     </TouchableOpacity>
@@ -21,43 +23,22 @@ const OverView = ({route}) => {
     <View>
       <Text style={styles(isDarkMode).title}>OverView</Text>
       {mahalluData && (
-        <View style={styles(isDarkMode).gridContainer}>
+        <ScrollView style={styles(isDarkMode).gridContainer}>
           <Card title={'Total Entries'} value={mahalluData.totalEntries} />
-          <Card
-            title={'Male'}
-            value={mahalluData.maleCount}
-            query={'gender=male'}
-          />
-          <Card
-            title={'Female'}
-            value={mahalluData.femaleCount}
-            query={'gender=female'}
-          />
-          <Card
-            title={'Govt Serivce'}
-            value={mahalluData.govtServiceCount}
-            query={'jobType.govtService=true'}
-          />
-          <Card
-            title={'Daily Wage'}
-            value={mahalluData.dailyWageCount}
-            query={'jobType.dailyWage=true'}
-          />
-          {Object.keys(mahalluData.academicStages).map((stage, index) => {
-            const value = mahalluData.academicStages[stage];
-            if (stage !== 'null') {
-              return (
-                <Card
-                  key={index}
-                  title={stage}
-                  value={value}
-                  query={`academicStage=${encodeURIComponent(stage)}`}
-                />
-              );
-            }
-            return null; // Skip rendering when the key is "null"
-          })}
-        </View>
+          <Card title={'Male'} value={mahalluData.maleCount} query={'gender=male'} />
+          <Card title={'Female'} value={mahalluData.femaleCount} query={'gender=female'} />
+          <Card title={'Married'} value={mahalluData.marriedCount} query={'maritalStatus=Married'} />
+          <Card title={'Unmarried'} value={mahalluData.unmarriedCount} query={'maritalStatus=Unmarried'} />
+          <Card title={'Widow'} value={mahalluData.widowCount} query={'maritalStatus=Widow/er'} />
+          <Card title={'Science'} value={mahalluData.scienceCount} query={'educationalSubject=Science'} />
+          <Card title={'Humanities'} value={mahalluData.humanitiesCount} query={'educationalSubject=Humanities'} />
+          <Card title={'Commerce'} value={mahalluData.commerceCount} query={'educationalSubject=Commerce'} />
+          <Card title={'Government Service'} value={mahalluData.govtServiceCount} query={'jobType=Government Service'} />
+          <Card title={'Private Sector'} value={mahalluData.privateSectorCount} query={'jobType=Private Sector'} />
+          <Card title={'Daily Wage'} value={mahalluData.dailyWageCount} query={'jobType=Daily Wage'} />
+          <Card title={'Doctor'} value={mahalluData.doctorCount} query={'profession=Doctor'} />
+          <Card title={'Teacher'} value={mahalluData.teacherCount} query={'profession=Teacher'} />
+        </ScrollView>
       )}
     </View>
   );
@@ -91,6 +72,9 @@ const styles = isDarkMode =>
     cardValue: {
       fontSize: 14,
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+    },
+    gridContainer: {
+      // Add your styles here
     },
   });
 

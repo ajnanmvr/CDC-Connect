@@ -43,7 +43,7 @@ const Form = ({route}) => {
   };
 
   const [formData, setFormData] = useState(initialValue);
-  console.log(formData);
+  // console.log(formData);
 
   const handleInputChange = (field, value) => {
     setFormData(prevState => ({

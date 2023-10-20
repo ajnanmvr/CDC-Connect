@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-const IconCard = ({ iconName, text }) => {
+import { StyleSheet, Text, View } from 'react-native';
+const IconCard = ({iconName, text, title}) => {
   return (
     <View style={styles.card}>
       <View style={styles.iconContainer}>
-        <Icon name={iconName} size={50} color="white" />
+     
       </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>{title}</Text>
+      </View>
+
       <View style={styles.textContainer}>
         <Text style={styles.text}>{text}</Text>
       </View>
@@ -29,6 +31,11 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: 'center',
+  },
+  title: {
+    color: 'white',
+    fontSize: 25,
+    fontWeight: 'bold',
   },
   text: {
     color: 'white',
