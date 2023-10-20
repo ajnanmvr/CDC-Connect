@@ -35,8 +35,15 @@ const Form = ({route}) => {
     houseNumber: '',
     mahallu: '',
     district: '',
+    educationalSubject: '',
+    govtType: '',
+    profession: '',
+    abroad: '',
+    health: '',
   };
+
   const [formData, setFormData] = useState(initialValue);
+  console.log(formData);
 
   const handleInputChange = (field, value) => {
     setFormData(prevState => ({
@@ -190,17 +197,6 @@ const Form = ({route}) => {
         onValueChange={value => handleInputChange('maritalStatus', value)}
         label="Marital Status"
         options={['Married', 'Unmarried', 'Widow/er']}
-        error={
-          <>
-            <Text style={styles(isDarkMode).star}>*</Text>
-            {errors.maritalStatus && (
-              <Text style={styles(isDarkMode).error}>
-                {' '}
-                {'  '} ({errors.maritalStatus})
-              </Text>
-            )}
-          </>
-        }
       />
       <Dropdown
         selectedValue={formData.gender}
@@ -223,8 +219,29 @@ const Form = ({route}) => {
         selectedValue={formData.materialEducation}
         onValueChange={value => handleInputChange('materialEducation', value)}
         label="Material Education"
-        options={['Primary', 'Secondary', 'Predegree', 'Degree', 'PG', 'Phd']}
+        options={[
+          'Primary',
+          'Secondary',
+          '10th',
+          'Plus One',
+          'Plus Two',
+          'Predegree',
+          'Degree',
+          'PG',
+          'Phd',
+        ]}
       />
+      {formData?.materialEducation === 'Plus One' ||
+      formData?.materialEducation === 'Plus Two' ? (
+        <Dropdown
+          selectedValue={formData.educationalSubject}
+          onValueChange={value =>
+            handleInputChange('educationalSubject', value)
+          }
+          label="Subject"
+          options={['Science', 'Humanities', 'Commerce']}
+        />
+      ) : null}
 
       <Dropdown
         selectedValue={formData.institutionOfStudy}
@@ -236,6 +253,7 @@ const Form = ({route}) => {
           'Self Finance',
           'Institute of National Importance',
           'Centeral University',
+          'Abroad',
           'Other',
         ]}
       />
@@ -257,7 +275,45 @@ const Form = ({route}) => {
         selectedValue={formData.jobType}
         onValueChange={value => handleInputChange('jobType', value)}
         label="Job Type"
-        options={['Government Service', 'Private Sector', 'Daily Wage']}
+        options={['Government Service', 'Private Sector', 'Daily Wage', 'Gulf']}
+      />
+      {formData.jobType === 'Government Service' && (
+        <Dropdown
+          selectedValue={formData.govtType}
+          onValueChange={value => handleInputChange('govtType', value)}
+          label="Govt Service Type"
+          options={['Gazatted', 'Grade A', 'Grade A']}
+        />
+      )}
+      <Dropdown
+        selectedValue={formData.profession}
+        onValueChange={value => handleInputChange('profession', value)}
+        label="Profession"
+        options={[
+          'Doctor',
+          'Nurse',
+          'Scientist',
+          'Teacher',
+          'Self Employee',
+          'Police',
+          'Airforce',
+          'Driver',
+          'Gulf',
+          'Agriculture',
+          'Kooli',
+        ]}
+      />
+      <Dropdown
+        selectedValue={formData.abroad}
+        onValueChange={value => handleInputChange('abroad', value)}
+        label="Abroad"
+        options={['Saudi', 'Europe', 'NRK']}
+      />
+      <Dropdown
+        selectedValue={formData.health}
+        onValueChange={value => handleInputChange('health', value)}
+        label="Health"
+        options={['Nithya Rogikal', 'Kidney', 'Cancer']}
       />
       {loading ? (
         <Button title="loading..." onPress={() => {}} />
