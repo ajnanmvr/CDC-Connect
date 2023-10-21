@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const OverView = ({ route }) => {
   const { mahalluData, isDarkMode } = route.params; // Access the passed data
-  console.log(mahalluData);
 
   const navigation = useNavigation();
 

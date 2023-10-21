@@ -1,45 +1,56 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-const IconCard = ({iconName, text, title}) => {
-  return (
-    <View style={styles.card}>
-      <View style={styles.iconContainer}>
-     
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>{title}</Text>
-      </View>
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>{text}</Text>
+const IconCard = ({icon, title, value, query}) => {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('FilteredData', {query, title})}
+      style={styles.card}>
+      <View style={styles.imageContainer}>
+        <Image source={icon} style={styles.image} />
       </View>
-    </View>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.count}>({value})</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#5C8374', // Light Green background color
-    padding: 20,
+    width: 200,
+    height: 160,
     borderRadius: 10,
-    alignItems: 'center',
+    overflow: 'hidden',
     justifyContent: 'center',
-    margin: 10,
-  },
-  iconContainer: {
-    marginBottom: 20,
-  },
-  textContainer: {
     alignItems: 'center',
+    backgroundColor: '#F1F6F9',
+    padding: 24,
+    margin: 4,
+  },
+  imageContainer: {
+    backgroundColor: '#fff', // set background color for the image container
+    borderRadius: 50, // round the border
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 40,
+    // make the image perfectly round
   },
   title: {
-    color: 'white',
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-  text: {
-    color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  count: {
+    fontSize: 14,
+    color: '#000',
   },
 });
 

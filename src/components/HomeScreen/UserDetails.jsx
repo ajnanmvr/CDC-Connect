@@ -1,20 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
+  ScrollView,
   StyleSheet,
-  TouchableOpacity,
   Text,
   View,
-  ActivityIndicator,
 } from 'react-native';
 import {useAppearance} from '../../contexts/AppearenceContext';
 import {useUser} from '../../contexts/UserContext';
 import {darkTheme, lightTheme} from '../../styles/themes';
 import Axios from '../../utils/Axios';
-import Tile from '../Tile';
-import {useNavigation} from '@react-navigation/native';
+import IconCard from '../IconCard';
+import LatestEntriesComponent from './LatestEntries';
 
-const UserDetailsComponent = () => {
-  const navigation = useNavigation();
+const UserDetailsComponent = ({isLoading, entries}) => {
   const [loading, setLoading] = useState(false);
   const {user} = useUser();
   const appearance = useAppearance();
@@ -32,18 +31,96 @@ const UserDetailsComponent = () => {
       console.log(error.response.data);
     }
   };
+  const data1 = [
+    {
+      icon: require('../../media/icons/list.png'),
+      title: 'Entries',
+      value: mahalluDetails?.totalEntries,
+    },
+    {
+      icon: require('../../media/icons/male-user.png'),
+      query: 'gender=male',
+      title: 'Male',
+      value: mahalluDetails?.maleCount,
+    },
+    {
+      icon: require('../../media/icons/woman-avatar.png'),
+      title: 'Female',
+      value: mahalluDetails?.femaleCount,
+      query: 'gender=female',
+    },
+  ];
+  const data2 = [
+    // {
+    //   title: 'Married',
+    //   value: mahalluDetails?.marriedCount,
+    //   query: 'maritalStatus=Married',
+    // },
+    // {
+    //   title: 'Unmarried',
+    //   value: mahalluDetails?.unmarriedCount,
+    //   query: 'maritalStatus=Unmarried',
+    // },
+    // {
+    //   title: 'Widow',
+    //   value: mahalluDetails?.widowCount,
+    //   query: 'maritalStatus=Widow/er',
+    // },
+    {
+      title: 'Science',
+      icon: require('../../media/icons/flask.png'),
+      value: mahalluDetails?.scienceCount,
+      query: 'educationalSubject=Science',
+    },
+    {
+      title: 'Humanities',
+      value: mahalluDetails?.humanitiesCount,
+      query: 'educationalSubject=Humanities',
+      icon: require('../../media/icons/humanity.png'),
+    },
+    {
+      title: 'Commerce',
+      value: mahalluDetails?.commerceCount,
+      query: 'educationalSubject=Commerce',
+      icon: require('../../media/icons/computer.png'),
+    },
+  ];
+  const data3 = [
+    {
+      title: 'Government Service',
+      value: mahalluDetails?.govtServiceCount,
+      query: 'jobType=Government Service',
+      icon: require('../../media/icons/development.png'),
+    },
+    // {
+    //   title: 'Private Sector',
+    //   value: mahalluDetails?.privateSectorCount,
+    //   query: 'jobType=Private Sector',
+    // },
+    // {
+    //   title: 'Daily Wage',
+    //   value: mahalluDetails?.dailyWageCount,
+    //   query: 'jobType=Daily Wage',
+    // },
+    {
+      title: 'Doctor',
+      value: mahalluDetails?.doctorCount,
+      query: 'profession=Doctor',
+      icon: require('../../media/icons/doctor.png'),
+    },
+    {
+      title: 'Teacher',
+      value: mahalluDetails?.teacherCount,
+      query: 'profession=Teacher',
+      icon: require('../../media/icons/teacher.png'),
+    },
+  ];
 
-  const Card = ({title, value}) => (
-    <View style={styles(isDarkMode).card}>
-      <Text style={styles(isDarkMode).cardTitle}>{title}</Text>
-      <Text style={styles(isDarkMode).cardValue}>{value}</Text>
-    </View>
-  );
   useEffect(() => {
     getMahallu();
   }, []);
   return (
-    <Tile>
+    <View>
       <View style={styles(isDarkMode).detailsHeader}>
         <Text style={styles(isDarkMode).detailsHeaderText}>Your Area</Text>
       </View>
@@ -57,38 +134,50 @@ const UserDetailsComponent = () => {
           <>
             {mahalluDetails && (
               <View style={styles(isDarkMode).gridContainer}>
-                <Card
-                  title={'Total Entries'}
-                  value={mahalluDetails.totalEntries}
-                />
-                <Card title={'Male'} value={mahalluDetails.maleCount} />
-                <Card title={'Female'} value={mahalluDetails.femaleCount} />
-                <Card title={'Married'} value={mahalluDetails.marriedCount} />
-                <Card
-                  title={'Unmarried'}
-                  value={mahalluDetails.unmarriedCount}
-                />
-                <Card title={'Widow'} value={mahalluDetails.widowCount} />
-                <Card title={'Science'} value={mahalluDetails.scienceCount} />
-                <Card
-                  title={'Humanities'}
-                  value={mahalluDetails.humanitiesCount}
-                />
-                <Card title={'Commerce'} value={mahalluDetails.commerceCount} />
-                <Card
-                  title={'Government Service'}
-                  value={mahalluDetails.governmentServiceCount}
-                />
-                <Card
-                  title={'Private Sector'}
-                  value={mahalluDetails.privateSectorCount}
-                />
-                <Card
-                  title={'Daily Wage'}
-                  value={mahalluDetails.dailyWageCount}
-                />
-                <Card title={'Doctor'} value={mahalluDetails.doctorCount} />
-                <Card title={'Teacher'} value={mahalluDetails.teacherCount} />
+                <Text style={styles(isDarkMode).cardHead}>Details </Text>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+                  {data1.map((item, index) => (
+                    <View key={index} style={styles.cardContainer}>
+                      <IconCard
+                        title={item.title}
+                        icon={item.icon}
+                        value={item.value}
+                        query={item.query}
+                      />
+                    </View>
+                  ))}
+                </ScrollView>
+                <LatestEntriesComponent data={entries} loading={isLoading} />
+                <Text style={styles(isDarkMode).cardHead}>
+                  Educational Status
+                </Text>
+
+                <ScrollView horizontal={true}showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+                  {data2.map((item, index) => (
+                    <View key={index} style={styles.cardContainer}>
+                      <IconCard
+                        title={item.title}
+                        icon={item.icon}
+                        value={item.value}
+                        query={item.query}
+                      />
+                    </View>
+                  ))}
+                </ScrollView>
+                <Text style={styles(isDarkMode).cardHead}>Job Details</Text>
+
+                <ScrollView horizontal={true}showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+                  {data3.map((item, index) => (
+                    <View key={index} style={styles.cardContainer}>
+                      <IconCard
+                        title={item.title}
+                        icon={item.icon}
+                        value={item.value}
+                        query={item.query}
+                      />
+                    </View>
+                  ))}
+                </ScrollView>
               </View>
             )}
           </>
@@ -96,27 +185,7 @@ const UserDetailsComponent = () => {
           <ActivityIndicator />
         )}
       </View>
-      {mahalluDetails && (
-        <>
-          <Text style={styles(isDarkMode).extraDetails}>
-            Check out the latest updates and entries in your area!
-          </Text>
-          <TouchableOpacity
-            style={styles(isDarkMode).viewAllButton}
-            onPress={() => {
-              // Navigate to OverViewPage and pass the mahalluDetails
-              navigation.navigate('Overview', {
-                mahalluData: mahalluDetails,
-                isDarkMode,
-              });
-            }}>
-            <Text style={styles(isDarkMode).viewAllButtonText}>
-              View All Entries
-            </Text>
-          </TouchableOpacity>
-        </>
-      )}
-    </Tile>
+    </View>
   );
 };
 
@@ -131,6 +200,7 @@ const styles = isDarkMode =>
     detailsHeaderText: {
       fontSize: 18,
       fontWeight: 'bold',
+      marginVertical:10,
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
     },
     cardContainer: {
@@ -154,6 +224,12 @@ const styles = isDarkMode =>
     },
     gridItem: {
       flex: 1,
+    },
+    cardHead: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginVertical: 10,
+      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
     },
     cardTitle: {
       fontSize: 16,
@@ -181,6 +257,12 @@ const styles = isDarkMode =>
     viewAllButtonText: {
       color: '#3498db',
       fontSize: 14,
+    },
+    scrollView: {
+      height: 200, // Adjust the height as per your requirement
+    },
+    cardContainer: {
+      margin: 12,
     },
   });
 

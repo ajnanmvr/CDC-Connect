@@ -57,7 +57,7 @@ const WelcomeUser = () => {
         ]}>
         {userData?.name}
       </Text>
-      <Text style={styles.subtitle}>Welcome to our Data Entry App</Text>
+      <Text style={styles.subtitle}>Welcome to CDC Connect</Text>
     </TouchableOpacity>
   );
 };
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    color:"white"
   },
 });
 

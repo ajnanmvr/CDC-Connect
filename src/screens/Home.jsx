@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import Button from '../components/Button';
-import LatestEntriesComponent from '../components/HomeScreen/LatestEntries';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import UserDetailsComponent from '../components/HomeScreen/UserDetails';
 import WelcomeUserComponent from '../components/HomeScreen/WelcomeUser';
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Axios from '../utils/Axios';
 import IconCard from '../components/IconCard';
+import RoundFloatingButton from '../components/RoundFloatingButton';
+import Axios from '../utils/Axios';
 
 const HomeScreen = ({route}) => {
   const {reload} = route.params || {};
@@ -46,36 +45,43 @@ const HomeScreen = ({route}) => {
   }, []);
   const GridView = () => {
     const data = [
-      {id: '1', iconName: 'circle-thin', text: 'Card 1'},
-      {id: '2', iconName: 'star', text: 'Card 2'},
-      {id: '3', iconName: 'smile-o', text: 'Card 3'},
-      {id: '5', iconName: 'bell', text: 'Card 4'},
-      {id: '6', iconName: 'bell', text: 'Card 4'},
-      {id: '7', iconName: 'bell', text: 'Card 4'},
+      {id: '1', iconName: require(`../media/icons/list.png`), text: 'Card 1'},
+      {
+        id: '2',
+        iconName: require(`../media/icons/male-user.png`),
+        text: 'Card 1',
+      },
+      {
+        id: '3',
+        iconName: require(`../media/icons/woman-avatar.png`),
+        text: 'Card 1',
+      },
+
       // Add more objects as needed
     ];
 
     return (
-      <View style={styles.container1}>
-      <View style={styles.row}>
+      <ScrollView horizontal={true} style={styles.scrollView}>
         {data.map((item, index) => (
           <View key={item.id} style={styles.cardContainer}>
-            <IconCard iconName={item.iconName} text={item.text} title={"Male"} />
+            <IconCard title={item.text} icon={item.iconName} />
           </View>
         ))}
-      </View>
-    </View>
+      </ScrollView>
     );
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <WelcomeUserComponent />
-      <UserDetailsComponent/>
-      <LatestEntriesComponent loading={loading} data={data} />
-      {/* <GridView /> */}
-      <Button title="New Entry" onPress={() => navigation.navigate('Form')} />
-    </ScrollView>
+    <>
+      <ScrollView style={styles.container}>
+        <WelcomeUserComponent />
+        <UserDetailsComponent isLoading={loading} entries={data} />
+      </ScrollView>
+      <RoundFloatingButton
+        onPress={() => navigation.navigate('Form')}
+        icon={require('../media/icons/edit.png')}
+      />
+    </>
   );
 };
 
@@ -89,15 +95,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  scrollView: {
+    height: 200, // Adjust the height as per your requirement
+  },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    width: '100%',
   },
   cardContainer: {
-    width: '45%', // Adjust as needed to fit two cards in a row
-    marginVertical: 10,
+    margin: 12,
   },
 });
 

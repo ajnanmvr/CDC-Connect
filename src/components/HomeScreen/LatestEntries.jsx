@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   viewAllButton: {
-    alignSelf: 'flex-end',
     marginTop: 10,
   },
   viewAllButtonText: {
     color: '#3498db',
     fontSize: 14,
+    textAlign:"center"
   },
 });
 
