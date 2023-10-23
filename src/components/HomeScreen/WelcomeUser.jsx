@@ -5,7 +5,7 @@ import {darkTheme, lightTheme} from '../../styles/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
-const WelcomeUser = () => {
+const WelcomeUser = ({mahallu}) => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
   const [userData, setUserData] = useState(null);
@@ -35,29 +35,21 @@ const WelcomeUser = () => {
         styles.welcomeContainer,
         {
           backgroundColor: isDarkMode
-            ? darkTheme.primaryColor
-            : lightTheme.primaryColor,
+            ? darkTheme.backgroundColor
+            : lightTheme.backgroundColor,
         },
       ]}>
+      <Text style={styles.mahallu}>{mahallu}</Text>
+
       <Text
         style={[
           styles.welcomeText,
           {
-            color: isDarkMode ? darkTheme.textColor : lightTheme.grayText,
+            color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
           },
         ]}>
-        Hello,
+        Good Day, {userData?.name}!
       </Text>
-      <Text
-        style={[
-          styles.welcomeText,
-          {
-            color: isDarkMode ? darkTheme.textColor : lightTheme.grayText,
-          },
-        ]}>
-        {userData?.name}
-      </Text>
-      <Text style={styles.subtitle}>Welcome to CDC Connect</Text>
     </TouchableOpacity>
   );
 };
@@ -65,17 +57,17 @@ const WelcomeUser = () => {
 const styles = StyleSheet.create({
   welcomeContainer: {
     paddingVertical: 20,
-    paddingHorizontal: 30,
-    borderRadius: 20,
+    paddingHorizontal: 20,
   },
   welcomeText: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
   },
-  subtitle: {
-    fontSize: 16,
-    color:"white"
+  mahallu: {
+    fontSize: 14,
+    textTransform:'lowercase',
+    textTransform:"capitalize"
   },
 });
 

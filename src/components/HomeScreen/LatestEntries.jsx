@@ -1,13 +1,15 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
+  Image,
 } from 'react-native';
-import { useAppearance } from '../../contexts/AppearenceContext';
-import { darkTheme, lightTheme } from '../../styles/themes';
+import {useAppearance} from '../../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../../styles/themes';
 import Tile from '../Tile';
 
 const LatestEntriesComponent = ({data, loading}) => {
@@ -19,19 +21,33 @@ const LatestEntriesComponent = ({data, loading}) => {
   };
   return (
     <Tile>
-      <Text
-        style={[
-          styles.latestEntriesHeader,
-          {color: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
-        ]}>
-        Latest Entries
-      </Text>
+      <TouchableOpacity
+        style={styles.viewAllButton}
+        onPress={() => navigation.navigate('ُEntries', {entries: data})}>
+        <View style={styles.container}>
+          <Text
+            style={[
+              styles.latestEntriesHeader,
+              {color: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
+            ]}>
+            Latest Entries
+          </Text>
+
+          <Image
+            source={require('../../media/icons/right.png')}
+            style={styles.imageStyle}
+          />
+        </View>
+      </TouchableOpacity>
 
       {!loading ? (
-        data?.slice(0, 3).map((item, index) => (
-          <TouchableOpacity onPress={()=>{
-            navigateToEntryDetails(item._id)
-          }} key={index} style={styles.entryItem}>
+        data?.slice(0, 5).map((item, index) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigateToEntryDetails(item._id);
+            }}
+            key={index}
+            style={styles.entryItem}>
             <Text
               style={[
                 styles.entryTitle,
@@ -48,11 +64,10 @@ const LatestEntriesComponent = ({data, loading}) => {
                 styles.entryDetails,
                 {
                   color: isDarkMode
-                    ? darkTheme.textColor
-                    : lightTheme.textColor,
+                    ? darkTheme.backgroundColor
+                    : lightTheme.backgroundColor,
                 },
               ]}>
-              {/* {moment(item.createdAt).format('DD-MM-YYYY')} */}
               {item.formNumber}
             </Text>
           </TouchableOpacity>
@@ -70,32 +85,45 @@ const LatestEntriesComponent = ({data, loading}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+    marginBottom: 10,
+  },
   latestEntriesHeader: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  imageStyle: {width: 11, height: 20, marginRight: 10},
   entryItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderColor: '#E0E0E0',
   },
   entryTitle: {
-    fontSize: 16,
+    fontSize: 14,
   },
   entryDetails: {
-    color: '#888',
+    fontSize: 12,
+    backgroundColor: '#067869',
+    fontWeight: '500',
+    color: 'white',
+    padding: 5,
+    borderRadius: 6,
   },
   viewAllButton: {
     marginTop: 10,
   },
   viewAllButtonText: {
-    color: '#3498db',
+    color: '#067869',
     fontSize: 14,
-    textAlign:"center"
+    textAlign: 'center',
   },
 });
 

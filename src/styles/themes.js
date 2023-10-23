@@ -4,7 +4,7 @@ export const lightTheme = {
   textColor: '#000000',
   titleColor: 'black',
   borderColor: '#ccc',
-  primaryColor: '#5C8374',
+  primaryColor: '#067869',
   secondaryColor: '#FFA500', // New secondary color
   buttonColor: '#007AFF',
   linkColor: '#007AFF',
@@ -17,7 +17,7 @@ export const darkTheme = {
   textColor: '#ffffff',
   titleColor: '#ffffff',
   borderColor: '#555555',
-  primaryColor: '#5B9A8B',
+  primaryColor: '#067869',
   secondaryColor: '#040D12', // New secondary color
   buttonColor: '#007AFF',
   linkColor: '#007AFF',

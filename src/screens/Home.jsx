@@ -3,7 +3,6 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import UserDetailsComponent from '../components/HomeScreen/UserDetails';
-import WelcomeUserComponent from '../components/HomeScreen/WelcomeUser';
 import IconCard from '../components/IconCard';
 import RoundFloatingButton from '../components/RoundFloatingButton';
 import Axios from '../utils/Axios';
@@ -61,7 +60,7 @@ const HomeScreen = ({route}) => {
     ];
 
     return (
-      <ScrollView horizontal={true} style={styles.scrollView}>
+      <ScrollView horizontal={true} style={styles.scrollView} >
         {data.map((item, index) => (
           <View key={item.id} style={styles.cardContainer}>
             <IconCard title={item.text} icon={item.iconName} />
@@ -74,7 +73,6 @@ const HomeScreen = ({route}) => {
   return (
     <>
       <ScrollView style={styles.container}>
-        <WelcomeUserComponent />
         <UserDetailsComponent isLoading={loading} entries={data} />
       </ScrollView>
       <RoundFloatingButton

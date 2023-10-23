@@ -17,7 +17,7 @@ const App = () => {
       <UserProvider>
         <StatusBar
           backgroundColor={
-            isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor
+            isDarkMode ? darkTheme.backgroundColor : lightTheme.backgroundColor
           }
           barStyle={statusBarStyle}
           animated={true}

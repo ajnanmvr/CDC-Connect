@@ -9,6 +9,7 @@ import {
 import {useAppearance} from '../../contexts/AppearenceContext';
 import {useUser} from '../../contexts/UserContext';
 import {darkTheme, lightTheme} from '../../styles/themes';
+import WelcomeUserComponent from './WelcomeUser';
 import Axios from '../../utils/Axios';
 import IconCard from '../IconCard';
 import LatestEntriesComponent from './LatestEntries';
@@ -87,7 +88,7 @@ const UserDetailsComponent = ({isLoading, entries}) => {
   ];
   const data3 = [
     {
-      title: 'Government Service',
+      title: 'Govt. Service',
       value: mahalluDetails?.govtServiceCount,
       query: 'jobType=Government Service',
       icon: require('../../media/icons/development.png'),
@@ -121,21 +122,17 @@ const UserDetailsComponent = ({isLoading, entries}) => {
   }, []);
   return (
     <View>
-      <View style={styles(isDarkMode).detailsHeader}>
-        <Text style={styles(isDarkMode).detailsHeaderText}>Your Area</Text>
-      </View>
+      <WelcomeUserComponent mahallu={user?.mahallu?.name} />
+
       <View style={styles(isDarkMode).cardContainer}>
-        <View style={styles(isDarkMode).card}>
-          <Text style={styles(isDarkMode).detailsText}>
-            {user?.mahallu?.name}
-          </Text>
-        </View>
         {!loading ? (
           <>
             {mahalluDetails && (
-              <View style={styles(isDarkMode).gridContainer}>
-                <Text style={styles(isDarkMode).cardHead}>Details </Text>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+              <View>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.scrollView}>
                   {data1.map((item, index) => (
                     <View key={index} style={styles.cardContainer}>
                       <IconCard
@@ -148,11 +145,22 @@ const UserDetailsComponent = ({isLoading, entries}) => {
                   ))}
                 </ScrollView>
                 <LatestEntriesComponent data={entries} loading={isLoading} />
-                <Text style={styles(isDarkMode).cardHead}>
+                <Text
+                  style={[
+                    styles(isDarkMode).cardHead,
+                    {
+                      color: isDarkMode
+                        ? darkTheme.textColor
+                        : lightTheme.textColor,
+                    },
+                  ]}>
                   Educational Status
                 </Text>
 
-                <ScrollView horizontal={true}showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.scrollView}>
                   {data2.map((item, index) => (
                     <View key={index} style={styles.cardContainer}>
                       <IconCard
@@ -164,9 +172,22 @@ const UserDetailsComponent = ({isLoading, entries}) => {
                     </View>
                   ))}
                 </ScrollView>
-                <Text style={styles(isDarkMode).cardHead}>Job Details</Text>
+                <Text
+                  style={[
+                    styles(isDarkMode).cardHead,
+                    {
+                      color: isDarkMode
+                        ? darkTheme.textColor
+                        : lightTheme.textColor,
+                    },
+                  ]}>
+                  Job Details
+                </Text>
 
-                <ScrollView horizontal={true}showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  style={styles.scrollView}>
                   {data3.map((item, index) => (
                     <View key={index} style={styles.cardContainer}>
                       <IconCard
@@ -191,78 +212,12 @@ const UserDetailsComponent = ({isLoading, entries}) => {
 
 const styles = isDarkMode =>
   StyleSheet.create({
-    detailsHeader: {
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
-      paddingBottom: 10,
-      marginBottom: 10,
-    },
-    detailsHeaderText: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginVertical:10,
-      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-    },
-    cardContainer: {
-      borderRadius: 10,
-      padding: 15,
-    },
-    card: {
-      borderBottomWidth: 1,
-      borderColor: '#E0E0E0',
-      borderRadius: 20,
-      padding: 20,
-      marginBottom: 3,
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    gridContainer: {
-      justifyContent: 'space-between',
-      marginTop: 3,
-    },
-    gridItem: {
-      flex: 1,
-    },
     cardHead: {
       fontSize: 16,
-      fontWeight: 'bold',
-      marginVertical: 10,
-      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-    },
-    cardTitle: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      marginBottom: 5,
-      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-    },
-    cardValue: {
-      fontSize: 14,
-      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-    },
-    detailsText: {
-      fontSize: 16,
-      marginBottom: 10,
-      color: isDarkMode ? darkTheme.titleColor : lightTheme.titleColor,
-    },
-    extraDetails: {
-      fontSize: 14,
-      color: '#888',
-    },
-    viewAllButton: {
-      alignSelf: 'flex-end',
+      fontWeight: '700',
+      marginLeft: 14,
       marginTop: 10,
-    },
-    viewAllButtonText: {
-      color: '#3498db',
-      fontSize: 14,
-    },
-    scrollView: {
-      height: 200, // Adjust the height as per your requirement
-    },
-    cardContainer: {
-      margin: 12,
+      marginBottom: 2,
     },
   });
 

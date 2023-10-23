@@ -10,7 +10,7 @@ const Tile = ({children}) => {
     <View
       style={[
         styles.container,
-        {backgroundColor: isDarkMode ? '#333' : '#F1F6F9'},
+        {backgroundColor: isDarkMode ? '#333' : '#F8FAFA'},
       ]}>
       {children}
     </View>
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     marginTop: 20,
+    marginBottom:15
   },
 });
 
