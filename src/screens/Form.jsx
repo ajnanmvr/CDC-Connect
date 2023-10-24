@@ -39,7 +39,9 @@ const Form = ({route}) => {
     govtType: '',
     profession: '',
     abroad: '',
+    pension: '',
     health: '',
+    degree: '',
   };
 
   const [formData, setFormData] = useState(initialValue);
@@ -58,9 +60,7 @@ const Form = ({route}) => {
       'gender',
       'age',
       'mobileNumber',
-      'maritalStatus',
       'dob',
-      // 'houseNumber',
     ];
 
     const newErrors = {};
@@ -69,7 +69,7 @@ const Form = ({route}) => {
         newErrors[field] = 'required';
       }
     });
-
+    console.log(newErrors);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -95,6 +95,7 @@ const Form = ({route}) => {
         },
       ]);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       console.log(error.response.data.errors);
       Alert.alert('Error', 'Something went wrong while submitting the form');
@@ -106,7 +107,7 @@ const Form = ({route}) => {
         <Title>Personal Information</Title>
         {formNumber && (
           <Text style={styles(isDarkMode).formNumberContainer}>
-            Form Number{" : "} 
+            Form Number{' : '}
             <Text style={styles(isDarkMode).formNumber}>{formNumber}</Text>
           </Text>
         )}
@@ -126,7 +127,6 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('name', value)}
             style={styles(isDarkMode).inputField}
             placeholder="Full Name"
-
           />
         </View>
         <View style={styles(isDarkMode).input}>
@@ -148,7 +148,7 @@ const Form = ({route}) => {
           />
         </View>
 
-        {/* <View style={styles(isDarkMode).input}>
+        <View style={styles(isDarkMode).input}>
           <Text style={styles(isDarkMode).label}>
             Age <Text style={styles(isDarkMode).star}>*</Text>
             {errors.age && (
@@ -163,10 +163,9 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('age', value)}
             keyboardType="numeric"
             style={styles(isDarkMode).inputField}
-            placeholder={'DD-MM-YYYY'}
-
+            // placeholder={'DD-MM-YYYY'}
           />
-        </View> */}
+        </View>
         <View style={styles(isDarkMode).input}>
           <Text style={styles(isDarkMode).label}>
             Date Of Birth <Text style={styles(isDarkMode).star}>*</Text>
@@ -232,7 +231,6 @@ const Form = ({route}) => {
             'Primary',
             'Secondary',
             '10th',
-            'Plus One',
             'Plus Two',
             'Predegree',
             'Degree',
@@ -240,8 +238,7 @@ const Form = ({route}) => {
             'Phd',
           ]}
         />
-        {formData?.materialEducation === 'Plus One' ||
-        formData?.materialEducation === 'Plus Two' ? (
+        {formData?.materialEducation === 'Plus Two' ? (
           <Dropdown
             selectedValue={formData.educationalSubject}
             onValueChange={value =>
@@ -314,24 +311,83 @@ const Form = ({route}) => {
             'Teacher',
             'Self Employee',
             'Police',
-            'Airforce',
+            'Indian Force',
             'Driver',
             'Gulf',
             'Agriculture',
             'Kooli',
+            'Central Govt',
+          ]}
+        />
+        <Dropdown
+          selectedValue={formData.pension}
+          onValueChange={value => handleInputChange('pension', value)}
+          label="Pension"
+          options={[
+            'Widow Pension',
+            'Agricultural Pension',
+            'Govt Retired Pension',
+            'Other',
+          ]}
+        />
+        <Dropdown
+          selectedValue={formData.degree}
+          onValueChange={value => handleInputChange('degree', value)}
+          label="Degree"
+          options={[
+            'Computer Science',
+            'Mechanical Engineering',
+            'Electrical Engineering',
+            'Civil Engineering',
+            'Aerospace Engineering',
+            'Chemical Engineering',
+            'Biomedical Engineering',
+            'Industrial Engineering',
+            'Environmental Engineering',
+          ]}
+        />
+        <Dropdown
+          selectedValue={formData.scholarships}
+          onValueChange={value => handleInputChange('scholarships', value)}
+          label="Scholarships"
+          options={[
+            'INSPIRE Scholarship',
+            'National Talent Search Examination (NTSE)',
+            'Kishore Vaigyanik Protsahan Yojana (KVPY)',
+            'Maulana Azad National Fellowship for Minority Students',
+            'Dr APJ Abdul Kalam Global Skills Scholarship',
+            'GIIS Global Citizen Scholarship',
+            'Vidyadhan Scholarship',
+            "HDFC Bank Parivartan's ECS Scholarship",
+            'CLP India Scholarship Scheme',
+            'SJE Scholarship',
+            'MP Scholarship Portal',
           ]}
         />
         <Dropdown
           selectedValue={formData.abroad}
           onValueChange={value => handleInputChange('abroad', value)}
           label="Abroad"
-          options={['Saudi', 'Europe', 'NRK']}
+          options={[
+            'Saudi',
+            'Europe',
+            'NRK',
+            'American Continent',
+            'UAE',
+            'African Continent',
+          ]}
         />
         <Dropdown
           selectedValue={formData.health}
           onValueChange={value => handleInputChange('health', value)}
           label="Health"
-          options={['Nithya Rogikal', 'Kidney', 'Cancer']}
+          options={[
+            'Diabetes',
+            'Hypertension',
+            'Kidney Disease',
+            'Cancer',
+            'Healthy',
+          ]}
         />
         {loading ? (
           <Button title="loading..." onPress={() => {}} />
@@ -377,7 +433,7 @@ const styles = isDarkMode =>
     formNumberContainer: {
       textAlign: 'center',
       padding: 7,
-      marginTop:-15
+      marginTop: -15,
     },
     formNumber: {
       color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
