@@ -103,7 +103,7 @@ const Form = ({route}) => {
   return (
     <ScrollView contentContainerStyle={styles(isDarkMode).container}>
       <View style={styles.container}>
-        <Title>Personal Information</Title>
+        <Title>Survey Form</Title>
         {formNumber && (
           <Text style={styles(isDarkMode).formNumberContainer}>
             Form Number{' : '}
@@ -162,7 +162,7 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('age', value)}
             keyboardType="numeric"
             style={styles(isDarkMode).inputField}
-            // placeholder={'DD-MM-YYYY'}
+            placeholder={'Age'}
           />
         </View>
         <View style={styles(isDarkMode).input}>
@@ -255,7 +255,7 @@ const Form = ({route}) => {
           }
           label="Institution Of Study"
           options={[
-            'Government',
+            'Govt.',
             'Aided',
             'Self Finance',
             'Institute of National Importance',
@@ -285,13 +285,13 @@ const Form = ({route}) => {
           onValueChange={value => handleInputChange('jobType', value)}
           label="Job Type"
           options={[
-            'Government Service',
+            'Govt. Service',
             'Private Sector',
             'Daily Wage',
             'Gulf',
           ]}
         />
-        {formData.jobType === 'Government Service' && (
+        {formData.jobType === 'Govt. Service' && (
           <Dropdown
             selectedValue={formData.govtType}
             onValueChange={value => handleInputChange('govtType', value)}

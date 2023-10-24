@@ -22,7 +22,9 @@ const Entries = ({route}) => {
           textAlign: 'center',
           marginTop: -20,
           marginBottom: 15,
-          color: darkTheme.primaryColor,
+          color: isDarkMode
+          ? darkTheme.primaryColor
+          : lightTheme.primaryColor,
           fontWeight: 'bold',
         }}>
         {entries.length} Data Found

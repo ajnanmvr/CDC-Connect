@@ -90,7 +90,7 @@ const UserDetailsComponent = ({isLoading, entries}) => {
     {
       title: 'Govt. Service',
       value: mahalluDetails?.govtServiceCount,
-      query: 'jobType=Government Service',
+      query: 'jobType=Govt. Service',
       icon: require('../../media/icons/development.png'),
     },
     // {
