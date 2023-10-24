@@ -282,31 +282,10 @@ const SelectedEntry = ({route}) => {
             {relatedData.length > 1 && (
               <FamilyDetails data={relatedData} entryId={entryId} />
             )}
-            {/* {relatedData
-              .filter(item => item._id !== entryId) // Exclude the entry with matching entryId
-              .map((item, key) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('ُSelectedEntry', {entryId: item._id}); // Pass the entry ID as a parameter
-                  }}
-                  style={styles(isDarkMode).relatedCard}
-                  key={key}>
-                  <Text style={styles(isDarkMode).relatedText}>
-                    {item.name}
-                  </Text>
-                </TouchableOpacity>
-
-              ))} */}
           </>
         ) : (
           <Text style={styles(isDarkMode).notFound}>Data Not Found</Text>
         )}
-        {/* <Button
-          title="Add Members"
-          onPress={() =>
-            navigation.navigate('Form', {formNumber: data.formNumber})
-          }
-        /> */}
         <Text
           onPress={() =>
             navigation.navigate('Form', {formNumber: data.formNumber})
@@ -314,9 +293,9 @@ const SelectedEntry = ({route}) => {
           style={[
             styles(isDarkMode).details,
             {
-              borderColor: '#067869',
+              borderColor: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
               borderWidth: 0.5,
-              color: '#067869',
+              color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
               marginTop: 7,
               padding: 9,
               textAlign: 'center',
@@ -325,7 +304,6 @@ const SelectedEntry = ({route}) => {
           + Add Members
         </Text>
         <View style={styles(isDarkMode).backbar}>
-          {/* <Button title="Back" onPress={() => navigation.goBack()} /> */}
           <Text
             onPress={() => {
               navigation.goBack();
@@ -333,9 +311,9 @@ const SelectedEntry = ({route}) => {
             style={[
               styles(isDarkMode).details,
               {
-                borderColor: '#067869',
+                borderColor: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
                 borderWidth: 0.5,
-                color: '#067869',
+                color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
                 width: '49.1%',
                 padding: 9,
                 textAlign: 'center',
