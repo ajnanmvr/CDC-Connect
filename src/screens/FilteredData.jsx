@@ -128,14 +128,13 @@ const styles = isDarkMode =>
       borderRadius: 8,
       overflow: 'hidden',
     },
-    
+
     headerRow: {
       flexDirection: 'row',
-      backgroundColor: isDarkMode
-        ? darkTheme.primaryColor
-        : lightTheme.primaryColor,
-        borderBottomWidth: 1,
-        borderColor: '#ccc',
+      backgroundColor: lightTheme.primaryColor,
+
+      borderBottomWidth: 1,
+      borderColor: '#ccc',
     },
     dataRow: {
       flexDirection: 'row',
@@ -152,10 +151,10 @@ const styles = isDarkMode =>
       flex: 1,
       padding: 10,
       textTransform: 'lowercase',
-        textAlign:"center",
-        textTransform: 'capitalize',
+      textAlign: 'center',
+      textTransform: 'capitalize',
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
     },
-    nameCell: {width: 100}
+    nameCell: {width: 100},
   });
 export default FilteredData;

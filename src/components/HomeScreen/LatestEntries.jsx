@@ -76,7 +76,12 @@ const LatestEntriesComponent = ({data, loading}) => {
       <TouchableOpacity
         style={styles.viewAllButton}
         onPress={() => navigation.navigate('ُEntries', {entries: data})}>
-        <Text style={styles.viewAllButtonText}>View All Entries</Text>
+        <Text style={[styles.viewAllButtonText,{color: isDarkMode
+                    ? darkTheme.primaryColor
+                    : lightTheme.primaryColor,borderColor: isDarkMode
+                    ? darkTheme.primaryColor
+                    : lightTheme.primaryColor,
+                }]}>View All Entries</Text>
       </TouchableOpacity>
     </Tile>
   );
@@ -119,13 +124,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   viewAllButtonText: {
-    color: '#067869',
     fontSize: 14,
     textAlign: 'center',
     fontWeight: 'bold',
     borderWidth: 1,
     padding: 10,
-    borderColor: '#067869',
     borderRadius: 25,
     marginTop:3
   },

@@ -17,7 +17,7 @@ export const darkTheme = {
   textColor: '#ffffff',
   titleColor: '#ffffff',
   borderColor: '#555555',
-  primaryColor: '#067869',
+  primaryColor: '#05BCA3',
   secondaryColor: '#040D12', // New secondary color
   buttonColor: '#007AFF',
   linkColor: '#007AFF',
