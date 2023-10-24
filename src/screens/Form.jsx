@@ -41,7 +41,7 @@ const Form = ({route}) => {
     abroad: null,
     pension: null,
     health: null,
-    degree: null,
+    degreeTopic: null,
   };
 
   const [formData, setFormData] = useState(initialValue);
@@ -54,13 +54,7 @@ const Form = ({route}) => {
   };
 
   const handleSubmit = async () => {
-    const requiredFields = [
-      'name',
-      'gender',
-      'age',
-      'mobileNumber',
-      'dob',
-    ];
+    const requiredFields = ['name', 'gender', 'age', 'mobileNumber', 'dob'];
 
     const newErrors = {};
     requiredFields.forEach(field => {
@@ -247,6 +241,22 @@ const Form = ({route}) => {
             options={['Science', 'Humanities', 'Commerce']}
           />
         ) : null}
+        {formData?.materialEducation === 'Degree' ? (
+          <Dropdown
+            selectedValue={formData.degreeTopic}
+            onValueChange={value =>
+              handleInputChange('degreeTopic', value)
+            }
+            label="Degree Topic"
+            options={['Engineering',
+            'MBBS',
+            'Scientist',
+            'B. Sc',
+            'B. com',
+            'BBA',
+            'BA']}
+          />
+        ) : null}
 
         <Dropdown
           selectedValue={formData.institutionOfStudy}
@@ -284,12 +294,7 @@ const Form = ({route}) => {
           selectedValue={formData.jobType}
           onValueChange={value => handleInputChange('jobType', value)}
           label="Job Type"
-          options={[
-            'Govt. Service',
-            'Private Sector',
-            'Daily Wage',
-            'Gulf',
-          ]}
+          options={['Govt. Service', 'Private Sector', 'Daily Wage', 'Gulf']}
         />
         {formData.jobType === 'Govt. Service' && (
           <Dropdown
@@ -323,44 +328,28 @@ const Form = ({route}) => {
           onValueChange={value => handleInputChange('pension', value)}
           label="Pension"
           options={[
-            'Widow Pension',
-            'Agricultural Pension',
-            'Govt Retired Pension',
-            'Other',
+            'Agricultural Labour Pension',
+            'Indira Gandhi National Old Age Pension',
+            'Indira Gandhi National Disability Pension Scheme',
+            'Pension for the Unmarried Women above 50 years',
           ]}
         />
-        <Dropdown
-          selectedValue={formData.degree}
-          onValueChange={value => handleInputChange('degree', value)}
-          label="Degree"
-          options={[
-            'Computer Science',
-            'Mechanical Engineering',
-            'Electrical Engineering',
-            'Civil Engineering',
-            'Aerospace Engineering',
-            'Chemical Engineering',
-            'Biomedical Engineering',
-            'Industrial Engineering',
-            'Environmental Engineering',
-          ]}
-        />
+       
         <Dropdown
           selectedValue={formData.scholarships}
           onValueChange={value => handleInputChange('scholarships', value)}
           label="Scholarships"
           options={[
-            'INSPIRE Scholarship',
-            'National Talent Search Examination (NTSE)',
-            'Kishore Vaigyanik Protsahan Yojana (KVPY)',
-            'Maulana Azad National Fellowship for Minority Students',
-            'Dr APJ Abdul Kalam Global Skills Scholarship',
-            'GIIS Global Citizen Scholarship',
-            'Vidyadhan Scholarship',
-            "HDFC Bank Parivartan's ECS Scholarship",
-            'CLP India Scholarship Scheme',
-            'SJE Scholarship',
-            'MP Scholarship Portal',
+            'E-GRANTS',
+            'HIGHER EDUCATION SCHOLARSHIP',
+            'CENTRAL SECTOR SCHOLARSHIP',
+            'SUVARNA JUBILEE MERIT SCHOLARSHIP',
+            'C.H. MUHAMMED KOYA MUSLIM GIRLS SCHOLARSHIP',
+            'POST METRIC SCHOLARSHIP',
+            'SNEHAPOORVAM SCHOLARSHIP',
+            'LSS Scholarship',
+            'USS Scholarship',
+            'Other',
           ]}
         />
         <Dropdown
