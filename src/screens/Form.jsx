@@ -102,80 +102,84 @@ const Form = ({route}) => {
   };
   return (
     <ScrollView contentContainerStyle={styles(isDarkMode).container}>
-      <Title>Personal Information</Title>
-      {formNumber && (
-        <Text style={styles(isDarkMode).formNumber}>-{formNumber}-</Text>
-      )}
+      <View style={styles.container}>
+        <Title>Personal Information</Title>
+        {formNumber && (
+          <Text style={styles(isDarkMode).formNumberContainer}>
+            Form Number{" : "} 
+            <Text style={styles(isDarkMode).formNumber}>{formNumber}</Text>
+          </Text>
+        )}
 
-      <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>
-          Name <Text style={styles(isDarkMode).star}>*</Text>
-          {errors.name && (
-            <Text style={styles(isDarkMode).error}>
-              {' '}
-              {'  '} ({errors.name})
-            </Text>
-          )}
-        </Text>
-        <InputField
-          value={formData.name}
-          onChangeText={value => handleInputChange('name', value)}
-          style={styles(isDarkMode).inputField}
-        />
-      </View>
-      <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>
-          Contact Number <Text style={styles(isDarkMode).star}>*</Text>
-          {errors.mobileNumber && (
-            <Text style={styles(isDarkMode).error}>
-              {' '}
-              {'  '} ({errors.mobileNumber})
-            </Text>
-          )}
-        </Text>
-        <InputField
-          value={formData.mobileNumber}
-          onChangeText={value => handleInputChange('mobileNumber', value)}
-          keyboardType="numeric"
-          style={styles(isDarkMode).inputField}
-        />
-      </View>
+        <View style={styles(isDarkMode).input}>
+          <Text style={styles(isDarkMode).label}>
+            Name <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.name && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.name})
+              </Text>
+            )}
+          </Text>
+          <InputField
+            value={formData.name}
+            onChangeText={value => handleInputChange('name', value)}
+            style={styles(isDarkMode).inputField}
+          />
+        </View>
+        <View style={styles(isDarkMode).input}>
+          <Text style={styles(isDarkMode).label}>
+            Contact Number <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.mobileNumber && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.mobileNumber})
+              </Text>
+            )}
+          </Text>
+          <InputField
+            value={formData.mobileNumber}
+            onChangeText={value => handleInputChange('mobileNumber', value)}
+            keyboardType="numeric"
+            style={styles(isDarkMode).inputField}
+          />
+        </View>
 
-      <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>
-          Age <Text style={styles(isDarkMode).star}>*</Text>
-          {errors.age && (
-            <Text style={styles(isDarkMode).error}>
-              {' '}
-              {'  '} ({errors.age})
-            </Text>
-          )}
-        </Text>
-        <InputField
-          value={formData.age}
-          onChangeText={value => handleInputChange('age', value)}
-          keyboardType="numeric"
-          style={styles(isDarkMode).inputField}
-        />
-      </View>
-      <View style={styles(isDarkMode).input}>
-        <Text style={styles(isDarkMode).label}>
-          Date Of Birth <Text style={styles(isDarkMode).star}>*</Text>
-          {errors.dob && (
-            <Text style={styles(isDarkMode).error}>
-              {' '}
-              {'  '} ({errors.dob})
-            </Text>
-          )}
-        </Text>
-        <InputField
-          value={formData.dob}
-          onChangeText={value => handleInputChange('dob', value)}
-          style={styles(isDarkMode).inputField}
-          placeholder={'DD-MM-YYYY'}
-        />
-      </View>
-      {/* <View style={styles(isDarkMode).input}>
+        <View style={styles(isDarkMode).input}>
+          <Text style={styles(isDarkMode).label}>
+            Age <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.age && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.age})
+              </Text>
+            )}
+          </Text>
+          <InputField
+            value={formData.age}
+            onChangeText={value => handleInputChange('age', value)}
+            keyboardType="numeric"
+            style={styles(isDarkMode).inputField}
+          />
+        </View>
+        <View style={styles(isDarkMode).input}>
+          <Text style={styles(isDarkMode).label}>
+            Date Of Birth <Text style={styles(isDarkMode).star}>*</Text>
+            {errors.dob && (
+              <Text style={styles(isDarkMode).error}>
+                {' '}
+                {'  '} ({errors.dob})
+              </Text>
+            )}
+          </Text>
+          <InputField
+            value={formData.dob}
+            onChangeText={value => handleInputChange('dob', value)}
+            style={styles(isDarkMode).inputField}
+            placeholder={'DD-MM-YYYY'}
+          />
+        </View>
+        {/* <View style={styles(isDarkMode).input}>
         <Text style={styles(isDarkMode).label}>
           House Number <Text style={styles(isDarkMode).star}>*</Text>
           {errors.houseNumber && (
@@ -192,139 +196,150 @@ const Form = ({route}) => {
         />
       </View> */}
 
-      <Dropdown
-        selectedValue={formData.maritalStatus}
-        onValueChange={value => handleInputChange('maritalStatus', value)}
-        label="Marital Status"
-        options={['Married', 'Unmarried', 'Widow/er']}
-      />
-      <Dropdown
-        selectedValue={formData.gender}
-        onValueChange={value => handleInputChange('gender', value)}
-        label="Gender"
-        options={['male', 'female']}
-        error={
-          <>
-            <Text style={styles(isDarkMode).star}>*</Text>
-            {errors.gender && (
-              <Text style={styles(isDarkMode).error}>
-                {' '}
-                {'  '} ({errors.gender})
-              </Text>
-            )}
-          </>
-        }
-      />
-      <Dropdown
-        selectedValue={formData.materialEducation}
-        onValueChange={value => handleInputChange('materialEducation', value)}
-        label="Material Education"
-        options={[
-          'Primary',
-          'Secondary',
-          '10th',
-          'Plus One',
-          'Plus Two',
-          'Predegree',
-          'Degree',
-          'PG',
-          'Phd',
-        ]}
-      />
-      {formData?.materialEducation === 'Plus One' ||
-      formData?.materialEducation === 'Plus Two' ? (
         <Dropdown
-          selectedValue={formData.educationalSubject}
-          onValueChange={value =>
-            handleInputChange('educationalSubject', value)
+          selectedValue={formData.maritalStatus}
+          onValueChange={value => handleInputChange('maritalStatus', value)}
+          label="Marital Status"
+          options={['Married', 'Unmarried', 'Widow/er']}
+        />
+        <Dropdown
+          selectedValue={formData.gender}
+          onValueChange={value => handleInputChange('gender', value)}
+          label="Gender"
+          options={['male', 'female']}
+          error={
+            <>
+              <Text style={styles(isDarkMode).star}>*</Text>
+              {errors.gender && (
+                <Text style={styles(isDarkMode).error}>
+                  {' '}
+                  {'  '} ({errors.gender})
+                </Text>
+              )}
+            </>
           }
-          label="Subject"
-          options={['Science', 'Humanities', 'Commerce']}
         />
-      ) : null}
-
-      <Dropdown
-        selectedValue={formData.institutionOfStudy}
-        onValueChange={value => handleInputChange('institutionOfStudy', value)}
-        label="Institution Of Study"
-        options={[
-          'Government',
-          'Aided',
-          'Self Finance',
-          'Institute of National Importance',
-          'Centeral University',
-          'Abroad',
-          'Other',
-        ]}
-      />
-      <Dropdown
-        selectedValue={formData.religiousEducation}
-        onValueChange={value => handleInputChange('religiousEducation', value)}
-        label="Religious Education"
-        options={['Dars', 'Arabic Collage', 'Madrasa']}
-      />
-
-      <Dropdown
-        selectedValue={formData.bloodGroup}
-        onValueChange={value => handleInputChange('bloodGroup', value)}
-        label="Blood Group"
-        options={['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']}
-      />
-
-      <Dropdown
-        selectedValue={formData.jobType}
-        onValueChange={value => handleInputChange('jobType', value)}
-        label="Job Type"
-        options={['Government Service', 'Private Sector', 'Daily Wage', 'Gulf']}
-      />
-      {formData.jobType === 'Government Service' && (
         <Dropdown
-          selectedValue={formData.govtType}
-          onValueChange={value => handleInputChange('govtType', value)}
-          label="Govt Service Type"
-          options={['Gazatted', 'Grade A', 'Grade A']}
+          selectedValue={formData.materialEducation}
+          onValueChange={value => handleInputChange('materialEducation', value)}
+          label="Material Education"
+          options={[
+            'Primary',
+            'Secondary',
+            '10th',
+            'Plus One',
+            'Plus Two',
+            'Predegree',
+            'Degree',
+            'PG',
+            'Phd',
+          ]}
         />
-      )}
-      <Dropdown
-        selectedValue={formData.profession}
-        onValueChange={value => handleInputChange('profession', value)}
-        label="Profession"
-        options={[
-          'Doctor',
-          'Nurse',
-          'Scientist',
-          'Teacher',
-          'Self Employee',
-          'Police',
-          'Airforce',
-          'Driver',
-          'Gulf',
-          'Agriculture',
-          'Kooli',
-        ]}
-      />
-      <Dropdown
-        selectedValue={formData.abroad}
-        onValueChange={value => handleInputChange('abroad', value)}
-        label="Abroad"
-        options={['Saudi', 'Europe', 'NRK']}
-      />
-      <Dropdown
-        selectedValue={formData.health}
-        onValueChange={value => handleInputChange('health', value)}
-        label="Health"
-        options={['Nithya Rogikal', 'Kidney', 'Cancer']}
-      />
-      {loading ? (
-        <Button title="loading..." onPress={() => {}} />
-      ) : (
-        <Button title="Submit" onPress={handleSubmit} />
-      )}
+        {formData?.materialEducation === 'Plus One' ||
+        formData?.materialEducation === 'Plus Two' ? (
+          <Dropdown
+            selectedValue={formData.educationalSubject}
+            onValueChange={value =>
+              handleInputChange('educationalSubject', value)
+            }
+            label="Subject"
+            options={['Science', 'Humanities', 'Commerce']}
+          />
+        ) : null}
+
+        <Dropdown
+          selectedValue={formData.institutionOfStudy}
+          onValueChange={value =>
+            handleInputChange('institutionOfStudy', value)
+          }
+          label="Institution Of Study"
+          options={[
+            'Government',
+            'Aided',
+            'Self Finance',
+            'Institute of National Importance',
+            'Centeral University',
+            'Abroad',
+            'Other',
+          ]}
+        />
+        <Dropdown
+          selectedValue={formData.religiousEducation}
+          onValueChange={value =>
+            handleInputChange('religiousEducation', value)
+          }
+          label="Religious Education"
+          options={['Dars', 'Arabic Collage', 'Madrasa']}
+        />
+
+        <Dropdown
+          selectedValue={formData.bloodGroup}
+          onValueChange={value => handleInputChange('bloodGroup', value)}
+          label="Blood Group"
+          options={['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']}
+        />
+
+        <Dropdown
+          selectedValue={formData.jobType}
+          onValueChange={value => handleInputChange('jobType', value)}
+          label="Job Type"
+          options={[
+            'Government Service',
+            'Private Sector',
+            'Daily Wage',
+            'Gulf',
+          ]}
+        />
+        {formData.jobType === 'Government Service' && (
+          <Dropdown
+            selectedValue={formData.govtType}
+            onValueChange={value => handleInputChange('govtType', value)}
+            label="Govt Service Type"
+            options={['Gazatted', 'Grade A', 'Grade A']}
+          />
+        )}
+        <Dropdown
+          selectedValue={formData.profession}
+          onValueChange={value => handleInputChange('profession', value)}
+          label="Profession"
+          options={[
+            'Doctor',
+            'Nurse',
+            'Scientist',
+            'Teacher',
+            'Self Employee',
+            'Police',
+            'Airforce',
+            'Driver',
+            'Gulf',
+            'Agriculture',
+            'Kooli',
+          ]}
+        />
+        <Dropdown
+          selectedValue={formData.abroad}
+          onValueChange={value => handleInputChange('abroad', value)}
+          label="Abroad"
+          options={['Saudi', 'Europe', 'NRK']}
+        />
+        <Dropdown
+          selectedValue={formData.health}
+          onValueChange={value => handleInputChange('health', value)}
+          label="Health"
+          options={['Nithya Rogikal', 'Kidney', 'Cancer']}
+        />
+        {loading ? (
+          <Button title="loading..." onPress={() => {}} />
+        ) : (
+          <Button title="Submit" onPress={handleSubmit} />
+        )}
+      </View>
     </ScrollView>
   );
 };
 const styles = isDarkMode =>
   StyleSheet.create({
+    container: {padding: 20},
     heading: {
       fontSize: 24,
       fontWeight: 'bold',
@@ -354,10 +369,14 @@ const styles = isDarkMode =>
       marginLeft: 4,
       fontSize: 13,
     },
+    formNumberContainer: {
+      textAlign: 'center',
+      padding: 7,
+      marginTop:-15
+    },
     formNumber: {
       color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
-      textAlign: 'center',
-      fontWeight: 'bold',
+      fontWeight: '500',
     },
   });
 export default Form;

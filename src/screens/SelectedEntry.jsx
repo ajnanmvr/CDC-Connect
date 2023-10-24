@@ -234,19 +234,20 @@ const styles = isDarkMode =>
     details: {
       fontSize: 18,
       marginBottom: 10,
-      fontWeight: 'bold',
+      fontWeight: '500',
+      paddingHorizontal:12,
       borderWidth: 1,
       borderColor: '#067869',
       borderRadius: 10,
       padding: 7,
     },
     relatedCard: {
-      padding: 15,
-      backgroundColor: isDarkMode
-        ? darkTheme.backgroundColor
-        : lightTheme.backgroundColor,
-      marginVertical: 3,
-      borderRadius: 20,
+      fontSize: 12,
+      borderColor: '#067869',
+      borderWidth:1,
+      fontWeight: '500',
+      padding: 5,
+      borderRadius: 6,
     },
     relatedText: {
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,

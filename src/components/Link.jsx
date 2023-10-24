@@ -10,6 +10,7 @@ const Link = ({children}) => {
 const styles = StyleSheet.create({
   link: {
     fontWeight: 'bold',
+    color:"#067869"
   },
 });
 export default Link;

@@ -5,6 +5,7 @@ import Axios from '../utils/Axios';
 import Title from '../components/Title';
 import {useUser} from '../contexts/UserContext';
 import Button from '../components/Button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UserProfile = () => {
   const {params} = useRoute();
@@ -16,6 +17,7 @@ const UserProfile = () => {
       let response = await Axios.post('/user/logout');
       alert('Logged out successfully');
       setUser(null);
+      await AsyncStorage.clear()
       navigation.navigate('Login');
     } catch (error) {
       alert('something went wrong');

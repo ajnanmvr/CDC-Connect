@@ -1,10 +1,10 @@
 import moment from 'moment';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import Tile from '../components/Tile';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import {useNavigation} from '@react-navigation/native';
+import Title from '../components/Title';
 
 const Entries = ({route}) => {
   const {entries} = route.params;
@@ -16,25 +16,23 @@ const Entries = ({route}) => {
     navigation.navigate('ُSelectedEntry', {entryId}); // Pass the entry ID as a parameter
   };
   return (
-    <Tile>
-      <Text
-        style={[
-          styles.latestEntriesHeader,
-          {color: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
-        ]}>
-        Latest Entries ({entries.length})
-      </Text>
+    <View style={styles.container}>
+      <Title>Latest Entries ({entries.length})</Title>
 
       {entries.map((item, index) => (
-        <TouchableOpacity
-          onPress={() => navigateToEntryDetails(item._id)}
+          <TouchableOpacity
+          onPress={() => {
+            navigateToEntryDetails(item._id);
+          }}
           key={index}
           style={styles.entryItem}>
           <Text
             style={[
               styles.entryTitle,
               {
-                color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+                color: isDarkMode
+                  ? darkTheme.textColor
+                  : lightTheme.textColor,
               },
             ]}>
             {item.name}
@@ -43,19 +41,21 @@ const Entries = ({route}) => {
             style={[
               styles.entryDetails,
               {
-                color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+                color: isDarkMode
+                  ? darkTheme.backgroundColor
+                  : lightTheme.backgroundColor,
               },
             ]}>
-            {/* {moment(item.createdAt).format('DD-MM-YYYY')} */}
             {item.formNumber}
           </Text>
         </TouchableOpacity>
       ))}
-    </Tile>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container:{padding:20},
   latestEntriesHeader: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -66,24 +66,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderColor: '#E0E0E0',
   },
   entryTitle: {
-    fontSize: 16,
-  },
-  entryDetails: {
-    color: '#888',
-  },
-  viewAllButton: {
-    alignSelf: 'flex-end',
-    marginTop: 10,
-  },
-  viewAllButtonText: {
-    color: '#3498db',
     fontSize: 14,
   },
+  entryDetails: {
+    fontSize: 12,
+    backgroundColor: '#067869',
+    fontWeight: '500',
+    color: 'white',
+    padding: 5,
+    borderRadius: 6,
+  },
+
 });
 
 export default Entries;
