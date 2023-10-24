@@ -51,9 +51,17 @@ const FilteredData = ({route}) => {
   }, []);
   return (
     <View style={styles(isDarkMode).container}>
-      <Title>
-        All {title} ({filteredData.length})
-      </Title>
+      <Title>All {title}</Title>
+      <Text
+        style={{
+          textAlign: 'center',
+          marginTop: -20,
+          marginBottom: 15,
+          color: darkTheme.primaryColor,
+          fontWeight: 'bold',
+        }}>
+        {filteredData.length} Data Found
+      </Text>
       <View style={styles(isDarkMode).table}>
         <View style={styles(isDarkMode).headerRow}>
           <Text
@@ -123,7 +131,7 @@ const styles = isDarkMode =>
       margin: 20,
     },
     table: {
-      borderWidth: 1,
+      borderWidth: 0.25,
       borderColor: '#ccc',
       borderRadius: 8,
       overflow: 'hidden',
@@ -132,8 +140,6 @@ const styles = isDarkMode =>
     headerRow: {
       flexDirection: 'row',
       backgroundColor: lightTheme.primaryColor,
-
-      borderBottomWidth: 1,
       borderColor: '#ccc',
     },
     dataRow: {

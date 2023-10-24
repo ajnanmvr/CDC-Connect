@@ -16,7 +16,17 @@ const Entries = ({route}) => {
   };
   return (
     <View style={styles.container}>
-      <Title>Latest Entries ({entries.length})</Title>
+      <Title>Latest Entries </Title>
+      <Text
+        style={{
+          textAlign: 'center',
+          marginTop: -20,
+          marginBottom: 15,
+          color: darkTheme.primaryColor,
+          fontWeight: 'bold',
+        }}>
+        {entries.length} Data Found
+      </Text>
 
       {entries.map((item, index) => (
         <TouchableOpacity
