@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -6,13 +6,13 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useAppearance} from '../../contexts/AppearenceContext';
-import {useUser} from '../../contexts/UserContext';
-import {darkTheme, lightTheme} from '../../styles/themes';
-import WelcomeUserComponent from './WelcomeUser';
+import { useAppearance } from '../../contexts/AppearenceContext';
+import { useUser } from '../../contexts/UserContext';
+import { darkTheme, lightTheme } from '../../styles/themes';
 import Axios from '../../utils/Axios';
 import IconCard from '../IconCard';
 import LatestEntriesComponent from './LatestEntries';
+import WelcomeUserComponent from './WelcomeUser';
 
 const UserDetailsComponent = ({isLoading, entries}) => {
   const [loading, setLoading] = useState(false);
@@ -121,7 +121,7 @@ const UserDetailsComponent = ({isLoading, entries}) => {
     getMahallu();
   }, []);
   return (
-    <View style={{marginBottom:35}}>
+    <View style={{marginBottom: 35}}>
       <WelcomeUserComponent mahallu={user?.mahallu?.name} />
 
       <View style={styles(isDarkMode).cardContainer}>

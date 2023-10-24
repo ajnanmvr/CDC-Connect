@@ -15,12 +15,18 @@ const IconCard = ({icon, title, value, query}) => {
         style={[styles.card, {flex: 1}]}>
         <View>
           <Text style={styles.title}>View Data of</Text>
-          <Text style={[styles.title, {fontWeight: '800',fontSize:20,marginTop:-5}]}>{title}</Text>
+          <Text
+            style={[
+              styles.title,
+              {fontWeight: '800', fontSize: 20, marginTop: -5},
+            ]}>
+            {title}
+          </Text>
           {value ? (
-        <Text style={styles.count}>{value} Data Found</Text>
-      ) : (
-        <Text style={styles.count}>No Data Found</Text>
-      )}
+            <Text style={styles.count}>{value} Data Found</Text>
+          ) : (
+            <Text style={styles.count}>No Data Found</Text>
+          )}
         </View>
         <View style={styles.imageContainer}>
           <Image source={icon} style={styles.image} />
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
   count: {
     fontSize: 11,
     color: 'white',
-    marginTop:20,
+    marginTop: 20,
   },
 });
 

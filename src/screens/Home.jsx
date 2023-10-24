@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import UserDetailsComponent from '../components/HomeScreen/UserDetails';
 import IconCard from '../components/IconCard';
 import RoundFloatingButton from '../components/RoundFloatingButton';
@@ -60,7 +60,7 @@ const HomeScreen = ({route}) => {
     ];
 
     return (
-      <ScrollView horizontal={true} style={styles.scrollView} >
+      <ScrollView horizontal={true} style={styles.scrollView}>
         {data.map((item, index) => (
           <View key={item.id} style={styles.cardContainer}>
             <IconCard title={item.text} icon={item.iconName} />
@@ -77,7 +77,7 @@ const HomeScreen = ({route}) => {
       </ScrollView>
       <RoundFloatingButton
         onPress={() => navigation.navigate('Form')}
-        icon={"+"}
+        icon={'+'}
       />
     </>
   );
@@ -86,7 +86,7 @@ const HomeScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding:20,
+    padding: 20,
   },
   container1: {
     flex: 1,

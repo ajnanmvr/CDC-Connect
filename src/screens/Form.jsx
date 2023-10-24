@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
@@ -8,7 +9,6 @@ import {useAppearance} from '../contexts/AppearenceContext';
 import {useUser} from '../contexts/UserContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import Axios from '../utils/Axios';
-import {useNavigation} from '@react-navigation/native';
 
 const Form = ({route}) => {
   const formNumber = route?.params?.formNumber;
@@ -105,7 +105,7 @@ const Form = ({route}) => {
         <Title>Personal Information</Title>
         {formNumber && (
           <Text style={styles(isDarkMode).formNumberContainer}>
-            Form Number{" : "} 
+            Form Number{' : '}
             <Text style={styles(isDarkMode).formNumber}>{formNumber}</Text>
           </Text>
         )}
@@ -125,7 +125,6 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('name', value)}
             style={styles(isDarkMode).inputField}
             placeholder="Full Name"
-
           />
         </View>
         <View style={styles(isDarkMode).input}>
@@ -376,7 +375,7 @@ const styles = isDarkMode =>
     formNumberContainer: {
       textAlign: 'center',
       padding: 7,
-      marginTop:-15
+      marginTop: -15,
     },
     formNumber: {
       color: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,

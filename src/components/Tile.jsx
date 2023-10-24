@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
 
 const Tile = ({children}) => {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     marginTop: 20,
-    marginBottom:15
+    marginBottom: 15,
   },
 });
 

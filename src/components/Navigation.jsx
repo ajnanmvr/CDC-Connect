@@ -1,29 +1,36 @@
-import React from 'react';
-import Home from '../screens/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Login from '../screens/Login'; // Import your login  component
-import SendMessage from '../screens/SendMessage'; // Import your OTP input  component
-import OTPInput from '../screens/OTPInput'; // Import your OTP input  component
-import SignUp from '../screens/SignUp'; // Import your sign-up  component
-import Form from '../screens/Form'; // Import your sign-up  component
+import React from 'react';
+import {StatusBar} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../styles/themes';
 import {useUser} from '../contexts/UserContext';
-import OverView from '../screens/OverView';
 import Entries from '../screens/Entries';
 import FilteredData from '../screens/FilteredData';
-import UserProfile from '../screens/UserProfile';
+import Form from '../screens/Form'; // Import your sign-up  component
+import Home from '../screens/Home';
+import Login from '../screens/Login'; // Import your login  component
+import OTPInput from '../screens/OTPInput'; // Import your OTP input  component
+import OverView from '../screens/OverView';
 import SelectedEntry from '../screens/SelectedEntry';
+import SendMessage from '../screens/SendMessage'; // Import your OTP input  component
+import SignUp from '../screens/SignUp'; // Import your sign-up  component
+import UserProfile from '../screens/UserProfile';
+import {darkTheme, lightTheme} from '../styles/themes';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
+  const statusBarStyle = isDarkMode ? 'light-content' : 'dark-content';
   const {user} = useUser();
   return (
     <NavigationContainer>
+      <StatusBar
+        backgroundColor={isDarkMode ? 'black' : 'white'}
+        barStyle={statusBarStyle}
+        animated={true}
+      />
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{

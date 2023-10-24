@@ -6,15 +6,13 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  View,
 } from 'react-native';
-import FamilyDetails from '../components/FamilyDetails'
+import FamilyDetails from '../components/FamilyDetails';
 import Title from '../components/Title';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import Axios from '../utils/Axios';
-import {View} from 'react-native';
-import Button from '../components/Button';
 const SelectedEntry = ({route}) => {
   const {entryId} = route.params;
   const navigation = useNavigation();
@@ -44,7 +42,7 @@ const SelectedEntry = ({route}) => {
       let {data} = await Axios.get(`/entry/${entryId}`);
       setData(data.data);
       setRelatedData(data.relatedData);
-      
+
       setLoading(false);
     } catch (error) {
       console.log(error.response);
@@ -281,7 +279,9 @@ const SelectedEntry = ({route}) => {
               ]}>
               {data.govtAllowance ? data.govtAllowance : 'No Pension'}
             </Text>
-            {relatedData.length > 1 && <FamilyDetails data={relatedData} entryId={entryId}/>}
+            {relatedData.length > 1 && (
+              <FamilyDetails data={relatedData} entryId={entryId} />
+            )}
             {/* {relatedData
               .filter(item => item._id !== entryId) // Exclude the entry with matching entryId
               .map((item, key) => (
@@ -297,7 +297,6 @@ const SelectedEntry = ({route}) => {
                 </TouchableOpacity>
 
               ))} */}
-
           </>
         ) : (
           <Text style={styles(isDarkMode).notFound}>Data Not Found</Text>
@@ -323,7 +322,7 @@ const SelectedEntry = ({route}) => {
               textAlign: 'center',
             },
           ]}>
-         + Add Members
+          + Add Members
         </Text>
         <View style={styles(isDarkMode).backbar}>
           {/* <Button title="Back" onPress={() => navigation.goBack()} /> */}
