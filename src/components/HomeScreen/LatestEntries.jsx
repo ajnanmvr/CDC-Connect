@@ -124,6 +124,12 @@ const styles = StyleSheet.create({
     color: '#067869',
     fontSize: 14,
     textAlign: 'center',
+    fontWeight: 'bold',
+    borderWidth: 1,
+    padding: 10,
+    borderColor: '#067869',
+    borderRadius: 25,
+    marginTop:3
   },
 });
 

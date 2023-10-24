@@ -1,6 +1,7 @@
 import React from 'react';
 import {TextInput, StyleSheet} from 'react-native';
-
+import {useAppearance} from '../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../styles/themes';
 const InputField = ({
   placeholder,
   value,
@@ -11,6 +12,8 @@ const InputField = ({
   multiline,
   style,
 }) => {
+  const appearance = useAppearance();
+  const isDarkMode = appearance === 'dark';
   return (
     <TextInput
       placeholder={placeholder}
@@ -20,7 +23,9 @@ const InputField = ({
       maxLength={maxLength}
       keyboardType={keyboardType}
       multiline={multiline}
-      style={[styles.input, style]}
+      style={[styles.input,style, {borderColor: isDarkMode
+        ? darkTheme.textColor
+        : lightTheme.textColor}]}
     />
   );
 };

@@ -1,26 +1,29 @@
 import React from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { useAppearance } from '../contexts/AppearenceContext';
-import { darkTheme, lightTheme } from '../styles/themes';
+import {TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
+import {useAppearance} from '../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../styles/themes';
+import LinearGradient from 'react-native-linear-gradient';
 
-const RoundFloatingButton = ({ onPress,icon }) => {
+const RoundFloatingButton = ({onPress, icon}) => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
 
   return (
-    <TouchableOpacity
-      style={[
-        styles.button,
-        {
-          backgroundColor: isDarkMode ? darkTheme.primaryColor : lightTheme.primaryColor,
-        },
-      ]}
-      onPress={onPress}
-    >
-      <Image
-        source={icon}
-        style={styles.imageStyle}
-      />
+    <TouchableOpacity onPress={onPress}>
+      <LinearGradient
+        colors={['white', 'white']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}
+        style={[
+          styles.button,
+          {
+            backgroundColor: isDarkMode
+              ? darkTheme.primaryColor
+              : lightTheme.primaryColor,
+          },
+        ]}><Text style={styles.icon}>{icon}</Text>
+        {/* <Image source={icon} style={styles.imageStyle} /> */}
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
@@ -36,11 +39,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 8,
-  },
-  imageStyle: {
-    width: 30,
-    height: 30,
-  },
+    borderWidth:5,
+    borderColor:"#067869"
+  },icon:{
+    fontSize:45,
+    marginTop:-12
+    ,
+    color:"#067869"
+  }
+
 });
 
 export default RoundFloatingButton;

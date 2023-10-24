@@ -2,7 +2,9 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Axios from '../utils/Axios';
+import Title from '../components/Title';
 import {useUser} from '../contexts/UserContext';
+import Button from '../components/Button';
 
 const UserProfile = () => {
   const {params} = useRoute();
@@ -22,35 +24,43 @@ const UserProfile = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.profileContainer}>
-        <Text style={styles.label}>Name:</Text>
-        <Text style={styles.info}>{params.user.name}</Text>
+    <View style={styles.page}>
+      <Title>User Details</Title>
+      <View style={styles.container}>
+        <View style={styles.profileContainer}>
+          <Text style={styles.label}>Name:</Text>
+          <Text style={styles.info}>{params.user.name}</Text>
+        </View>
+        <View style={styles.profileContainer}>
+          <Text style={styles.label}>Email:</Text>
+          <Text style={styles.info}>{params.user.email}</Text>
+        </View>
+        <View style={styles.profileContainer}>
+          <Text style={styles.label}>Phone:</Text>
+          <Text style={styles.info}>{params.user.phoneNumber}</Text>
+        </View>
+        <View style={styles.profileContainer}>
+          <Text style={styles.label}>Address:</Text>
+          <Text style={styles.info}>{params.user.address}</Text>
+        </View>
+        <Button title="Logout" onPress={handleLogout}/>
+
       </View>
-      <View style={styles.profileContainer}>
-        <Text style={styles.label}>Email:</Text>
-        <Text style={styles.info}>{params.user.email}</Text>
-      </View>
-      <View style={styles.profileContainer}>
-        <Text style={styles.label}>Phone:</Text>
-        <Text style={styles.info}>{params.user.phoneNumber}</Text>
-      </View>
-      <View style={styles.profileContainer}>
-        <Text style={styles.label}>Address:</Text>
-        <Text style={styles.info}>{params.user.address}</Text>
-      </View>
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
+    justifyContent: 'center',
+    padding: 40,
+  },
+  container: {
+    borderWidth: 1,
+    borderColor: '#067869',
+    padding: 20,
+    borderRadius: 15,
   },
   profileContainer: {
     flexDirection: 'row',
@@ -66,18 +76,7 @@ const styles = StyleSheet.create({
     flex: 2,
     fontSize: 16,
   },
-  logoutButton: {
-    marginTop: 20,
-    backgroundColor: '#ff6347',
-    borderRadius: 5,
-    padding: 10,
-    alignItems: 'center',
-  },
-  logoutText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
+
 });
 
 export default UserProfile;

@@ -10,7 +10,7 @@ const Tile = ({children}) => {
     <View
       style={[
         styles.container,
-        {backgroundColor: isDarkMode ? '#333' : '#F8FAFA'},
+        {backgroundColor: isDarkMode ? '#1c1c1c' : '#F8FAFA'},
       ]}>
       {children}
     </View>

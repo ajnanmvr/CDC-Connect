@@ -30,18 +30,17 @@ const Navigation = () => {
         screenOptions={{
           headerShadowVisible: false,
           headerTintColor: isDarkMode
-            ? darkTheme.primaryColor
-            : lightTheme.primaryColor,
+            ? darkTheme.textColor
+            : lightTheme.textColor,
           headerStyle: {
             backgroundColor: isDarkMode
-              ? darkTheme.primaryColor
-              : lightTheme.primaryColor,
+              ? darkTheme.backgroundColor
+              : lightTheme.backgroundColor,
           },
           contentStyle: {
             backgroundColor: isDarkMode
               ? darkTheme.backgroundColor
               : lightTheme.backgroundColor,
-            padding: 20,
           },
         }}>
         {user ? (
@@ -76,7 +75,13 @@ const Navigation = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen
+          name="UserProfile"
+          component={UserProfile}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name="SendMessage" component={SendMessage} />
         <Stack.Screen name="Overview" component={OverView} />
         <Stack.Screen name="Form" component={Form} />

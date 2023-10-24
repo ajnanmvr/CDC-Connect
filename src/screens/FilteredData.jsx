@@ -12,6 +12,7 @@ import {useUser} from '../contexts/UserContext';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import {useNavigation} from '@react-navigation/native';
+import Title from '../components/Title';
 
 const FilteredData = ({route}) => {
   const {query, title} = route.params;
@@ -50,71 +51,82 @@ const FilteredData = ({route}) => {
   }, []);
   return (
     <View style={styles(isDarkMode).container}>
-      <Text style={styles(isDarkMode).title}>
-        {title} ({filteredData.length})
-      </Text>
-      <View style={styles(isDarkMode).headerRow}>
-        <Text
-          style={[
-            styles(isDarkMode).headerCell,
-            styles(isDarkMode).cell,
-            {color: 'white'},
-          ]}>
-          Name
-        </Text>
-        <Text
-          style={[
-            styles(isDarkMode).headerCell,
-            styles(isDarkMode).cell,
-            {color: 'white'},
-          ]}>
-          Gender
-        </Text>
-        <Text
-          style={[
-            styles(isDarkMode).headerCell,
-            styles(isDarkMode).cell,
-            {color: 'white'},
-          ]}>
-          Job Type
-        </Text>
+      <Title>
+        All {title} ({filteredData.length})
+      </Title>
+      <View style={styles(isDarkMode).table}>
+        <View style={styles(isDarkMode).headerRow}>
+          <Text
+            style={[
+              styles(isDarkMode).headerCell,
+              styles(isDarkMode).cell,
+              styles(isDarkMode).nameCell,
+
+              {color: 'white'},
+            ]}>
+            Name
+          </Text>
+          <Text
+            style={[
+              styles(isDarkMode).headerCell,
+              styles(isDarkMode).cell,
+              {color: 'white'},
+            ]}>
+            Gender
+          </Text>
+          <Text
+            style={[
+              styles(isDarkMode).headerCell,
+              styles(isDarkMode).cell,
+              {color: 'white'},
+            ]}>
+            Job Type
+          </Text>
+        </View>
+        {!loading ? (
+          filteredData.map((entry, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles(isDarkMode).dataRow}
+              onPress={() => {
+                navigation.navigate('ُSelectedEntry', {entryId: entry._id});
+              }}>
+              <Text
+                style={[
+                  styles(isDarkMode).dataCell,
+                  styles(isDarkMode).cell,
+                  styles(isDarkMode).nameCell,
+                ]}>
+                {entry.name}
+              </Text>
+              <Text
+                style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
+                {entry.gender}
+              </Text>
+              <Text
+                style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
+                {entry?.jobType?.govtService ? 'Govt Service' : 'Private'}
+              </Text>
+            </TouchableOpacity>
+          ))
+        ) : (
+          <ActivityIndicator />
+        )}
       </View>
-      {!loading ? (
-        filteredData.map((entry, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles(isDarkMode).dataRow}
-            onPress={() => {
-              navigation.navigate('ُSelectedEntry', {entryId: entry._id});
-            }}>
-            <Text
-              style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
-              {entry.name}
-            </Text>
-            <Text
-              style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
-              {entry.gender}
-            </Text>
-            <Text
-              style={[styles(isDarkMode).dataCell, styles(isDarkMode).cell]}>
-              {entry?.jobType?.govtService ? 'Govt Service' : 'Private'}
-            </Text>
-          </TouchableOpacity>
-        ))
-      ) : (
-        <ActivityIndicator />
-      )}
     </View>
   );
 };
 const styles = isDarkMode =>
   StyleSheet.create({
     container: {
+      overflow: 'hidden',
+      margin: 20,
+    },
+    table: {
       borderWidth: 1,
       borderColor: '#ccc',
       borderRadius: 8,
       overflow: 'hidden',
-      marginVertical: 10,
     },
     title: {
       fontSize: 30,
@@ -128,8 +140,8 @@ const styles = isDarkMode =>
       backgroundColor: isDarkMode
         ? darkTheme.primaryColor
         : lightTheme.primaryColor,
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
     },
     dataRow: {
       flexDirection: 'row',
@@ -145,8 +157,11 @@ const styles = isDarkMode =>
     cell: {
       flex: 1,
       padding: 10,
+      textTransform: 'lowercase',
+      textTransform: 'capitalize',
       textAlign: 'center',
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
     },
+    nameCell: {width: 100}
   });
 export default FilteredData;

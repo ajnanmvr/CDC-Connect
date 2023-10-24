@@ -99,9 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  darkContainer: {
-    backgroundColor: '#1e1e1e', // Set dark mode background color
+    padding:20
   },
   card: {
     backgroundColor: '#fff',

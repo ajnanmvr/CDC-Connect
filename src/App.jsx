@@ -4,20 +4,20 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import Navigation from './components/Navigation';
 import { AppearanceProvider, useAppearance } from './contexts/AppearenceContext';
 import { UserProvider } from './contexts/UserContext';
-import { darkTheme, lightTheme } from './styles/themes';
 
 
 const App = () => {
-  const statusBarStyle = isDarkMode ? 'light-content' : 'dark-content';
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
+  const statusBarStyle = isDarkMode ? 'light-content' : 'dark-content';
+  console.log(appearance);
 
   return (
     <AppearanceProvider>
       <UserProvider>
         <StatusBar
           backgroundColor={
-            isDarkMode ? darkTheme.backgroundColor : lightTheme.backgroundColor
+            isDarkMode ? "black" : "white"
           }
           barStyle={statusBarStyle}
           animated={true}

@@ -8,12 +8,12 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import Tile from '../components/Tile';
 import Title from '../components/Title';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import Axios from '../utils/Axios';
-
+import {View} from 'react-native';
+import Button from '../components/Button';
 const SelectedEntry = ({route}) => {
   const {entryId} = route.params;
   const navigation = useNavigation();
@@ -83,106 +83,79 @@ const SelectedEntry = ({route}) => {
 
   return (
     <ScrollView>
-      <Tile>
+      <View style={{padding: 20}}>
         {loading ? (
           <ActivityIndicator />
         ) : data ? (
           <>
-            <Text
-              style={[styles(isDarkMode).userName, {color: theme.textColor}]}>
-              {data.name}
-            </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Form Number
-            </Text>
+            <Title>{data.name}</Title>
+            <Text style={[styles(isDarkMode).label]}>Form Number</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
-              ({data.formNumber})
+              {data.formNumber}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Mobile Number
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Mobile Number</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.mobileNumber}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Gender
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Gender</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.gender}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Date Of Birth
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Date Of Birth</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.dob}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Education
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Education</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.materialEducation}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Subject
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Subject</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.educationalSubject ? data.educationalSubject : 'N/A'}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Blood Group
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Blood Group</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.bloodGroup}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Job Details
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Job Details</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.jobDetails ? data.jobDetails : 'N/A'}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Profession
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Profession</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.profession ? data.profession : 'N/A'}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Religious Education
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Religious Education</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.religiousEducation ? data.religiousEducation : 'N/A'}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Govt Job Type
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Govt Job Type</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.govtType ? data.govtType : 'N/A'}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Abroad
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Abroad</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.abroad ? data.abroad : 'N/A'}
             </Text>
-            {/* <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+            {/* <Text style={[styles(isDarkMode).label]}>
               House Number
             </Text>
             <Text style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {data.houseNumber}
             </Text> */}
-            {/* <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
+            {/* <Text style={[styles(isDarkMode).label]}>
               House Ownership
             </Text>
             <Text
@@ -191,19 +164,15 @@ const SelectedEntry = ({route}) => {
                 ? 'Own'
                 : 'Not Own'}
             </Text> */}
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Job Type
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Job Type</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
               {getJobTypeLabel(data.jobType)}
             </Text>
-            <Text style={[styles(isDarkMode).label, {color: theme.textColor}]}>
-              Government Allowance
-            </Text>
+            <Text style={[styles(isDarkMode).label]}>Government Allowance</Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor}]}>
-              {data.govtAllowance ?data.govtAllowance : 'No Pension'}
+              {data.govtAllowance ? data.govtAllowance : 'No Pension'}
             </Text>
             {relatedData.length > 1 && <Title>House Members</Title>}
             {relatedData
@@ -225,58 +194,40 @@ const SelectedEntry = ({route}) => {
           <Text style={styles(isDarkMode).notFound}>Data Not Found</Text>
         )}
 
-        <TouchableOpacity
-          style={[
-            styles(isDarkMode).goBackButton,
-            {backgroundColor: theme.primaryColor},
-          ]}
+        <Button
+          title="Add Members"
           onPress={() =>
             navigation.navigate('Form', {formNumber: data.formNumber})
-          }>
-          <Text style={[styles(isDarkMode).goBackButtonText, {color: 'white'}]}>
-            Add Members
+          }
+        />
+        <View style={styles(isDarkMode).backbar}>
+          {/* <Button title="Back" onPress={() => navigation.goBack()} /> */}
+          <Text
+            onPress={() => {
+              navigation.goBack()
+            }} style={[styles(isDarkMode).details,{color:"#067869",width:"49.1%",marginTop:7,padding:9,textAlign:"center"}]}>
+
+            Back
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles(isDarkMode).goBackButton,
-            {backgroundColor: theme.primaryColor},
-          ]}
-          onPress={() => navigation.goBack()}>
-          <Text style={[styles(isDarkMode).goBackButtonText, {color: 'black'}]}>
-            Go Back
+          <Text
+            onPress={() => {
+              deleteEntry(data._id);
+            }} style={[styles(isDarkMode).details,{borderColor:"#C70039",color:"#C70039",width:"49.1%",marginTop:7,padding:9,textAlign:"center"}]}>
+            Delete
           </Text>
-        </TouchableOpacity>
-        <Text
-          onPress={() => {
-            deleteEntry(data._id);
-          }}
-          style={{
-            color: '#C70039',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            marginTop: 10,
-          }}>
-          Delete
-        </Text>
-      </Tile>
+        </View>
+      </View>
     </ScrollView>
   );
 };
 
 const styles = isDarkMode =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+    backbar: {
+      flex: 1,flexDirection:"row",
+      justifyContent:"space-between"
     },
-    userName: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 10,
-      textTransform: 'uppercase',
-    },
+
     label: {
       fontSize: 15,
     },
@@ -284,6 +235,10 @@ const styles = isDarkMode =>
       fontSize: 18,
       marginBottom: 10,
       fontWeight: 'bold',
+      borderWidth: 1,
+      borderColor: '#067869',
+      borderRadius: 10,
+      padding: 7,
     },
     relatedCard: {
       padding: 15,

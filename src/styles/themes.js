@@ -12,8 +12,8 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  backgroundColor: '#1c1c1c',
-  secondaryBackgroundColor: '#333333', // New secondary background color
+  backgroundColor: 'black',
+  secondaryBackgroundColor: '#1c1c1c', // New secondary background color
   textColor: '#ffffff',
   titleColor: '#ffffff',
   borderColor: '#555555',

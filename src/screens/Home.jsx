@@ -77,7 +77,7 @@ const HomeScreen = ({route}) => {
       </ScrollView>
       <RoundFloatingButton
         onPress={() => navigation.navigate('Form')}
-        icon={require('../media/icons/edit.png')}
+        icon={"+"}
       />
     </>
   );
@@ -86,6 +86,7 @@ const HomeScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding:20,
   },
   container1: {
     flex: 1,

@@ -17,7 +17,6 @@ const Entries = ({route}) => {
   };
   return (
     <Tile>
-
       <Text
         style={[
           styles.latestEntriesHeader,
