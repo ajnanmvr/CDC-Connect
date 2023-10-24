@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
@@ -8,7 +9,6 @@ import {useAppearance} from '../contexts/AppearenceContext';
 import {useUser} from '../contexts/UserContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import Axios from '../utils/Axios';
-import {useNavigation} from '@react-navigation/native';
 
 const Form = ({route}) => {
   const formNumber = route?.params?.formNumber;
@@ -45,7 +45,6 @@ const Form = ({route}) => {
   };
 
   const [formData, setFormData] = useState(initialValue);
-  // console.log(formData);
 
   const handleInputChange = (field, value) => {
     setFormData(prevState => ({

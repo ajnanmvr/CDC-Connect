@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 
@@ -17,16 +17,24 @@ const Dropdown = ({selectedValue, onValueChange, label, options, error}) => {
 
   return (
     <View style={styles(isDarkMode).container}>
-      <Text style={styles(isDarkMode).label}>{label} {error} </Text>
+      <Text style={styles(isDarkMode).label}>
+        {label} {error}{' '}
+      </Text>
 
-      <View style={[styles(isDarkMode).pickerContainer,{borderColor: isDarkMode
+      <View
+        style={[
+          styles(isDarkMode).pickerContainer,
+          {
+            borderColor: isDarkMode
               ? darkTheme.textColor
-              : lightTheme.textColor
-            }]}>
+              : lightTheme.textColor,
+          },
+        ]}>
         <Picker selectedValue={selectedValue} onValueChange={handleValueChange}>
           <Picker.Item
             style={{
-              color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,}}
+              color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+            }}
             label={`Select ${label}`}
             value=""
           />

@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import {
+  ActivityIndicator,
+  Alert,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ActivityIndicator,
-  Alert,
 } from 'react-native';
 
-import {useNavigation, CommonActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import Link from '../components/Link';
 import Title from '../components/Title';
-import Axios from '../utils/Axios';
-import {useUser} from '../contexts/UserContext';
 import {useAppearance} from '../contexts/AppearenceContext';
+import {useUser} from '../contexts/UserContext';
+import Axios from '../utils/Axios';
 
 const LoginScreen = () => {
   const appearance = useAppearance();
@@ -26,7 +26,7 @@ const LoginScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setUser} = useUser();
+  const {setUser} = useUser();
 
   const navigation = useNavigation();
   const handleLogin = async () => {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding:20
+    padding: 20,
   },
   card: {
     backgroundColor: '#fff',

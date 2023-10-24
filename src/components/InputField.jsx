@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, StyleSheet} from 'react-native';
+import {StyleSheet, TextInput} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 const InputField = ({
@@ -23,9 +23,11 @@ const InputField = ({
       maxLength={maxLength}
       keyboardType={keyboardType}
       multiline={multiline}
-      style={[styles.input,style, {borderColor: isDarkMode
-        ? darkTheme.textColor
-        : lightTheme.textColor}]}
+      style={[
+        styles.input,
+        style,
+        {borderColor: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
+      ]}
     />
   );
 };

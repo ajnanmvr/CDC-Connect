@@ -1,18 +1,18 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import Axios from '../utils/Axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useUser} from '../contexts/UserContext';
-import {useAppearance} from '../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../styles/themes';
 import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Title from '../components/Title';
+import {useAppearance} from '../contexts/AppearenceContext';
+import {useUser} from '../contexts/UserContext';
+import {darkTheme, lightTheme} from '../styles/themes';
+import Axios from '../utils/Axios';
 
 const FilteredData = ({route}) => {
   const {query, title} = route.params;

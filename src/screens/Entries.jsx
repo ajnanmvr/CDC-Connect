@@ -1,10 +1,9 @@
-import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Title from '../components/Title';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
-import {useNavigation} from '@react-navigation/native';
-import Title from '../components/Title';
 
 const Entries = ({route}) => {
   const {entries} = route.params;
@@ -20,7 +19,7 @@ const Entries = ({route}) => {
       <Title>Latest Entries ({entries.length})</Title>
 
       {entries.map((item, index) => (
-          <TouchableOpacity
+        <TouchableOpacity
           onPress={() => {
             navigateToEntryDetails(item._id);
           }}
@@ -30,19 +29,12 @@ const Entries = ({route}) => {
             style={[
               styles.entryTitle,
               {
-                color: isDarkMode
-                  ? darkTheme.textColor
-                  : lightTheme.textColor,
+                color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
               },
             ]}>
             {item.name}
           </Text>
-          <Text
-            style={
-              styles.entryDetails
-            }>
-            {item.formNumber}
-          </Text>
+          <Text style={styles.entryDetails}>{item.formNumber}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -50,7 +42,7 @@ const Entries = ({route}) => {
 };
 
 const styles = StyleSheet.create({
-  container:{paddingVertical:20,paddingHorizontal:30},
+  container: {paddingVertical: 20, paddingHorizontal: 30},
   entryItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -67,7 +59,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 6,
   },
-
 });
 
 export default Entries;

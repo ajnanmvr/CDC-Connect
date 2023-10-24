@@ -1,11 +1,11 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import Axios from '../utils/Axios';
+import {StyleSheet, Text, View} from 'react-native';
+import Button from '../components/Button';
 import Title from '../components/Title';
 import {useUser} from '../contexts/UserContext';
-import Button from '../components/Button';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Axios from '../utils/Axios';
 
 const UserProfile = () => {
   const {params} = useRoute();
@@ -17,7 +17,7 @@ const UserProfile = () => {
       let response = await Axios.post('/user/logout');
       alert('Logged out successfully');
       setUser(null);
-      await AsyncStorage.clear()
+      await AsyncStorage.clear();
       navigation.navigate('Login');
     } catch (error) {
       alert('something went wrong');
@@ -45,8 +45,7 @@ const UserProfile = () => {
           <Text style={styles.label}>Address:</Text>
           <Text style={styles.info}>{params.user.address}</Text>
         </View>
-        <Button title="Logout" onPress={handleLogout}/>
-
+        <Button title="Logout" onPress={handleLogout} />
       </View>
     </View>
   );
@@ -78,7 +77,6 @@ const styles = StyleSheet.create({
     flex: 2,
     fontSize: 16,
   },
-
 });
 
 export default UserProfile;

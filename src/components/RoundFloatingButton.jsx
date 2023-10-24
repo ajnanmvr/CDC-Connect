@@ -1,8 +1,6 @@
 import React from 'react';
-import {TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../styles/themes';
-import LinearGradient from 'react-native-linear-gradient';
 
 const RoundFloatingButton = ({onPress, icon}) => {
   const appearance = useAppearance();
@@ -10,7 +8,7 @@ const RoundFloatingButton = ({onPress, icon}) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-     <Text style={styles.icon}>{icon}</Text>
+      <Text style={styles.icon}>{icon}</Text>
     </TouchableOpacity>
   );
 };
@@ -18,7 +16,7 @@ const RoundFloatingButton = ({onPress, icon}) => {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 50,
-    backgroundColor:"white",
+    backgroundColor: 'white',
     width: 60,
     height: 60,
     position: 'absolute',
@@ -27,14 +25,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 8,
-    borderWidth:5,
-    borderColor:"#067869"
-  },icon:{
-    fontSize:45,
-    marginTop:-12,
-    color:"#067869"
-  }
-
+    borderWidth: 5,
+    borderColor: '#067869',
+  },
+  icon: {
+    fontSize: 45,
+    marginTop: -12,
+    color: '#067869',
+  },
 });
 
 export default RoundFloatingButton;

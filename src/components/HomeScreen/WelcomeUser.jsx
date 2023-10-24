@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import {useAppearance} from '../../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../../styles/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useAppearance} from '../../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../../styles/themes';
 
 const WelcomeUser = ({mahallu}) => {
   const appearance = useAppearance();

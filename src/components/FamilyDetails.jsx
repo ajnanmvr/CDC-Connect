@@ -1,13 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
 import Tile from './Tile';
@@ -49,8 +42,11 @@ const LatestEntriesComponent = ({data, entryId}) => {
                   fontSize: 12,
                   backgroundColor: '#067869',
                   fontWeight: '500',
-                  borderRadius: 50,paddingVertical:2,paddingHorizontal:7, marginRight:8,
-                  fontWeight:"bold"
+                  borderRadius: 50,
+                  paddingVertical: 2,
+                  paddingHorizontal: 7,
+                  marginRight: 8,
+                  fontWeight: 'bold',
                 }}>
                 {index + 1}
               </Text>

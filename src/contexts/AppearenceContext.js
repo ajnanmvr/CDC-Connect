@@ -1,13 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Appearance } from 'react-native';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {Appearance} from 'react-native';
 
 const AppearanceContext = createContext();
 
-export const AppearanceProvider = ({ children }) => {
+export const AppearanceProvider = ({children}) => {
   const [appearance, setAppearance] = useState(Appearance.getColorScheme());
 
   useEffect(() => {
-    const handleAppearanceChange = ({ colorScheme }) => {
+    const handleAppearanceChange = ({colorScheme}) => {
       setAppearance(colorScheme);
     };
 

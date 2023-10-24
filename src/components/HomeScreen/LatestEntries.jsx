@@ -2,11 +2,11 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   ActivityIndicator,
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Image,
 } from 'react-native';
 import {useAppearance} from '../../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../../styles/themes';
@@ -63,7 +63,7 @@ const LatestEntriesComponent = ({data, loading}) => {
               style={[
                 styles.entryDetails,
                 {
-                  color: "white"
+                  color: 'white',
                 },
               ]}>
               {item.formNumber}
@@ -76,12 +76,20 @@ const LatestEntriesComponent = ({data, loading}) => {
       <TouchableOpacity
         style={styles.viewAllButton}
         onPress={() => navigation.navigate('ُEntries', {entries: data})}>
-        <Text style={[styles.viewAllButtonText,{color: isDarkMode
-                    ? darkTheme.primaryColor
-                    : lightTheme.primaryColor,borderColor: isDarkMode
-                    ? darkTheme.primaryColor
-                    : lightTheme.primaryColor,
-                }]}>View All Entries</Text>
+        <Text
+          style={[
+            styles.viewAllButtonText,
+            {
+              color: isDarkMode
+                ? darkTheme.primaryColor
+                : lightTheme.primaryColor,
+              borderColor: isDarkMode
+                ? darkTheme.primaryColor
+                : lightTheme.primaryColor,
+            },
+          ]}>
+          View All Entries
+        </Text>
       </TouchableOpacity>
     </Tile>
   );
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 25,
-    marginTop:3
+    marginTop: 3,
   },
 });
 

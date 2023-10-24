@@ -45,7 +45,7 @@ const SignUpScreen = ({navigation}) => {
       <Button title="Sign Up" onPress={handleSignUp} />
       <TouchableOpacity onPress={() => navigation.replace('Login')}>
         <Text style={styles.signInLink}>
-          Already have an account? <Link >Log In</Link>
+          Already have an account? <Link>Log In</Link>
         </Text>
       </TouchableOpacity>
     </View>
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',padding:20
+    alignItems: 'center',
+    padding: 20,
   },
   avatar: {
     height: 110,
