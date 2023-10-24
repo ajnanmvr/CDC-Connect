@@ -22,7 +22,6 @@ const Navigation = () => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
   const {user} = useUser();
-
   return (
     <NavigationContainer>
       <Stack.Navigator

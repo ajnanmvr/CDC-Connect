@@ -23,7 +23,6 @@ const SelectedEntry = ({route}) => {
   const isDarkMode = appearance === 'dark';
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log(data);
   const theme = isDarkMode ? darkTheme : lightTheme;
   // Add this function inside your component
   const getJobTypeLabel = jobType => {

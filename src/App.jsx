@@ -10,8 +10,7 @@ const App = () => {
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
   const statusBarStyle = isDarkMode ? 'light-content' : 'dark-content';
-  console.log(appearance);
-
+console.log(isDarkMode);
   return (
     <AppearanceProvider>
       <UserProvider>
