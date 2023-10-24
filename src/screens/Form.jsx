@@ -285,13 +285,13 @@ const Form = ({route}) => {
           onValueChange={value => handleInputChange('jobType', value)}
           label="Job Type"
           options={[
-            'Government Service',
+            'Govt. Service',
             'Private Sector',
             'Daily Wage',
             'Gulf',
           ]}
         />
-        {formData.jobType === 'Government Service' && (
+        {formData.jobType === 'Govt. Service' && (
           <Dropdown
             selectedValue={formData.govtType}
             onValueChange={value => handleInputChange('govtType', value)}
