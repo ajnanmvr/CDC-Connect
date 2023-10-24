@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import FamilyDetails from '../components/FamilyDetails'
 import Title from '../components/Title';
 import {useAppearance} from '../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../styles/themes';
@@ -44,6 +45,7 @@ const SelectedEntry = ({route}) => {
       let {data} = await Axios.get(`/entry/${entryId}`);
       setData(data.data);
       setRelatedData(data.relatedData);
+      
       setLoading(false);
     } catch (error) {
       console.log(error.response);
@@ -91,91 +93,197 @@ const SelectedEntry = ({route}) => {
             <Title>{data.name}</Title>
             <Text style={[styles(isDarkMode).label]}>Form Number</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.formNumber}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Mobile Number</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.mobileNumber}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Gender</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.gender}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Date Of Birth</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.dob}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Education</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.materialEducation}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Subject</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.educationalSubject ? data.educationalSubject : 'N/A'}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Blood Group</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.bloodGroup}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Job Details</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.jobDetails ? data.jobDetails : 'N/A'}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Profession</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.profession ? data.profession : 'N/A'}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Religious Education</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.religiousEducation ? data.religiousEducation : 'N/A'}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Govt Job Type</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.govtType ? data.govtType : 'N/A'}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Abroad</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.abroad ? data.abroad : 'N/A'}
             </Text>
             {/* <Text style={[styles(isDarkMode).label]}>
               House Number
             </Text>
-            <Text style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+            <Text style={[styles(isDarkMode).details, {color: theme.textColor,borderColor: isDarkMode
+                ? "whitesmoke"
+                : "#0a0a0a",backgroundColor: isDarkMode
+                ? "#0a0a0a"
+                : "whitesmoke",}]}>
               {data.houseNumber}
             </Text> */}
             {/* <Text style={[styles(isDarkMode).label]}>
               House Ownership
             </Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[styles(isDarkMode).details, {color: theme.textColor,borderColor: isDarkMode
+                ? "whitesmoke"
+                : "#0a0a0a",backgroundColor: isDarkMode
+                ? "#0a0a0a"
+                : "whitesmoke",}]}>
               {data.houseOwnership && data.houseOwnership.own
                 ? 'Own'
                 : 'Not Own'}
             </Text> */}
             <Text style={[styles(isDarkMode).label]}>Job Type</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {getJobTypeLabel(data.jobType)}
             </Text>
             <Text style={[styles(isDarkMode).label]}>Government Allowance</Text>
             <Text
-              style={[styles(isDarkMode).details, {color: theme.textColor}]}>
+              style={[
+                styles(isDarkMode).details,
+                {
+                  color: theme.textColor,
+                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                },
+              ]}>
               {data.govtAllowance ? data.govtAllowance : 'No Pension'}
             </Text>
-            {relatedData.length > 1 && <Title>House Members</Title>}
-            {relatedData
+            {relatedData.length > 1 && <FamilyDetails data={relatedData} entryId={entryId}/>}
+            {/* {relatedData
               .filter(item => item._id !== entryId) // Exclude the entry with matching entryId
               .map((item, key) => (
                 <TouchableOpacity
@@ -188,31 +296,70 @@ const SelectedEntry = ({route}) => {
                     {item.name}
                   </Text>
                 </TouchableOpacity>
-              ))}
+
+              ))} */}
+
           </>
         ) : (
           <Text style={styles(isDarkMode).notFound}>Data Not Found</Text>
         )}
-
-        <Button
+        {/* <Button
           title="Add Members"
           onPress={() =>
             navigation.navigate('Form', {formNumber: data.formNumber})
           }
-        />
+        /> */}
+        <Text
+          onPress={() =>
+            navigation.navigate('Form', {formNumber: data.formNumber})
+          }
+          style={[
+            styles(isDarkMode).details,
+            {
+              borderColor: '#067869',
+              borderWidth: 0.5,
+              color: '#067869',
+              marginTop: 7,
+              padding: 9,
+              textAlign: 'center',
+            },
+          ]}>
+         + Add Members
+        </Text>
         <View style={styles(isDarkMode).backbar}>
           {/* <Button title="Back" onPress={() => navigation.goBack()} /> */}
           <Text
             onPress={() => {
-              navigation.goBack()
-            }} style={[styles(isDarkMode).details,{color:"#067869",width:"49.1%",marginTop:7,padding:9,textAlign:"center"}]}>
-
+              navigation.goBack();
+            }}
+            style={[
+              styles(isDarkMode).details,
+              {
+                borderColor: '#067869',
+                borderWidth: 0.5,
+                color: '#067869',
+                width: '49.1%',
+                padding: 9,
+                textAlign: 'center',
+              },
+            ]}>
             Back
           </Text>
           <Text
             onPress={() => {
               deleteEntry(data._id);
-            }} style={[styles(isDarkMode).details,{borderColor:"#C70039",color:"#C70039",width:"49.1%",marginTop:7,padding:9,textAlign:"center"}]}>
+            }}
+            style={[
+              styles(isDarkMode).details,
+              {
+                borderColor: '#C70039',
+                borderWidth: 0.5,
+                color: '#C70039',
+                width: '49.1%',
+                padding: 9,
+                textAlign: 'center',
+              },
+            ]}>
             Delete
           </Text>
         </View>
@@ -224,27 +371,29 @@ const SelectedEntry = ({route}) => {
 const styles = isDarkMode =>
   StyleSheet.create({
     backbar: {
-      flex: 1,flexDirection:"row",
-      justifyContent:"space-between"
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
 
     label: {
       fontSize: 15,
+      marginLeft: 10,
+      marginVertical: 3,
     },
     details: {
       fontSize: 18,
       marginBottom: 10,
       fontWeight: '500',
-      paddingHorizontal:12,
-      borderWidth: 1,
-      borderColor: '#067869',
-      borderRadius: 10,
+      paddingHorizontal: 12,
+      borderWidth: 0.2,
+      borderRadius: 6,
       padding: 7,
     },
     relatedCard: {
       fontSize: 12,
       borderColor: '#067869',
-      borderWidth:1,
+      borderWidth: 1,
       fontWeight: '500',
       padding: 5,
       borderRadius: 6,

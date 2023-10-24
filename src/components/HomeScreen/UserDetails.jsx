@@ -121,7 +121,7 @@ const UserDetailsComponent = ({isLoading, entries}) => {
     getMahallu();
   }, []);
   return (
-    <View>
+    <View style={{marginBottom:35}}>
       <WelcomeUserComponent mahallu={user?.mahallu?.name} />
 
       <View style={styles(isDarkMode).cardContainer}>

@@ -9,21 +9,8 @@ const RoundFloatingButton = ({onPress, icon}) => {
   const isDarkMode = appearance === 'dark';
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <LinearGradient
-        colors={['white', 'white']}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
-        style={[
-          styles.button,
-          {
-            backgroundColor: isDarkMode
-              ? darkTheme.primaryColor
-              : lightTheme.primaryColor,
-          },
-        ]}><Text style={styles.icon}>{icon}</Text>
-        {/* <Image source={icon} style={styles.imageStyle} /> */}
-      </LinearGradient>
+    <TouchableOpacity onPress={onPress} style={styles.button}>
+     <Text style={styles.icon}>{icon}</Text>
     </TouchableOpacity>
   );
 };
@@ -31,6 +18,7 @@ const RoundFloatingButton = ({onPress, icon}) => {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 50,
+    backgroundColor:"white",
     width: 60,
     height: 60,
     position: 'absolute',
@@ -43,8 +31,7 @@ const styles = StyleSheet.create({
     borderColor:"#067869"
   },icon:{
     fontSize:45,
-    marginTop:-12
-    ,
+    marginTop:-12,
     color:"#067869"
   }
 

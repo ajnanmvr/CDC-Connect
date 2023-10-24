@@ -125,6 +125,8 @@ const Form = ({route}) => {
             value={formData.name}
             onChangeText={value => handleInputChange('name', value)}
             style={styles(isDarkMode).inputField}
+            placeholder="Full Name"
+
           />
         </View>
         <View style={styles(isDarkMode).input}>
@@ -142,10 +144,11 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('mobileNumber', value)}
             keyboardType="numeric"
             style={styles(isDarkMode).inputField}
+            placeholder="Mobile Number"
           />
         </View>
 
-        <View style={styles(isDarkMode).input}>
+        {/* <View style={styles(isDarkMode).input}>
           <Text style={styles(isDarkMode).label}>
             Age <Text style={styles(isDarkMode).star}>*</Text>
             {errors.age && (
@@ -160,8 +163,10 @@ const Form = ({route}) => {
             onChangeText={value => handleInputChange('age', value)}
             keyboardType="numeric"
             style={styles(isDarkMode).inputField}
+            placeholder={'DD-MM-YYYY'}
+
           />
-        </View>
+        </View> */}
         <View style={styles(isDarkMode).input}>
           <Text style={styles(isDarkMode).label}>
             Date Of Birth <Text style={styles(isDarkMode).star}>*</Text>

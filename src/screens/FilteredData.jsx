@@ -128,13 +128,7 @@ const styles = isDarkMode =>
       borderRadius: 8,
       overflow: 'hidden',
     },
-    title: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginVertical: 10,
-      color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-    },
+    
     headerRow: {
       flexDirection: 'row',
       backgroundColor: isDarkMode
@@ -158,8 +152,8 @@ const styles = isDarkMode =>
       flex: 1,
       padding: 10,
       textTransform: 'lowercase',
-      textTransform: 'capitalize',
-      textAlign: 'center',
+        textAlign:"center",
+        textTransform: 'capitalize',
       color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
     },
     nameCell: {width: 100}

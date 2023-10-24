@@ -17,14 +17,16 @@ const Dropdown = ({selectedValue, onValueChange, label, options, error}) => {
 
   return (
     <View style={styles(isDarkMode).container}>
-      <Text style={styles(isDarkMode).label}>{label} {error}  </Text>
+      <Text style={styles(isDarkMode).label}>{label} {error} </Text>
 
-      <View style={styles(isDarkMode).pickerContainer}>
+      <View style={[styles(isDarkMode).pickerContainer,{borderColor: isDarkMode
+              ? darkTheme.textColor
+              : lightTheme.textColor
+            }]}>
         <Picker selectedValue={selectedValue} onValueChange={handleValueChange}>
           <Picker.Item
             style={{
-              color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-            }}
+              color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,}}
             label={`Select ${label}`}
             value=""
           />

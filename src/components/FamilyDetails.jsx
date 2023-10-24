@@ -8,11 +8,11 @@ import {
   View,
   Image,
 } from 'react-native';
-import {useAppearance} from '../../contexts/AppearenceContext';
-import {darkTheme, lightTheme} from '../../styles/themes';
-import Tile from '../Tile';
+import {useAppearance} from '../contexts/AppearenceContext';
+import {darkTheme, lightTheme} from '../styles/themes';
+import Tile from './Tile';
 
-const LatestEntriesComponent = ({data, loading}) => {
+const LatestEntriesComponent = ({data, entryId}) => {
   const navigation = useNavigation();
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
@@ -24,60 +24,59 @@ const LatestEntriesComponent = ({data, loading}) => {
       <TouchableOpacity
         style={styles.viewAllButton}
         onPress={() => navigation.navigate('ُEntries', {entries: data})}>
-        <View style={styles.container}>
-          <Text
-            style={[
-              styles.latestEntriesHeader,
-              {color: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
-            ]}>
-            Latest Entries
-          </Text>
-
-          <Image
-            source={require('../../media/icons/right.png')}
-            style={styles.imageStyle}
-          />
-        </View>
+        <Text
+          style={[
+            styles.latestEntriesHeader,
+            {color: isDarkMode ? darkTheme.textColor : lightTheme.textColor},
+          ]}>
+          Family Members
+        </Text>
       </TouchableOpacity>
 
-      {!loading ? (
-        data?.slice(0, 5).map((item, index) => (
+      {data
+        ?.filter(item => item._id !== entryId)
+        .map((item, index) => (
           <TouchableOpacity
             onPress={() => {
               navigateToEntryDetails(item._id);
             }}
             key={index}
             style={styles.entryItem}>
-            <Text
-              style={[
-                styles.entryTitle,
-                {
-                  color: isDarkMode
-                    ? darkTheme.textColor
-                    : lightTheme.textColor,
-                },
-              ]}>
-              {item.name}
-            </Text>
+            <View style={styles.entryItem}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 12,
+                  backgroundColor: '#067869',
+                  fontWeight: '500',
+                  borderRadius: 50,paddingVertical:2,paddingHorizontal:7, marginRight:8,
+                  fontWeight:"bold"
+                }}>
+                {index + 1}
+              </Text>
+              <Text
+                style={[
+                  styles.entryTitle,
+                  {
+                    color: isDarkMode
+                      ? darkTheme.textColor
+                      : lightTheme.textColor,
+                  },
+                ]}>
+                {item.name}
+              </Text>
+            </View>
             <Text
               style={[
                 styles.entryDetails,
                 {
-                  color: "white"
+                  color: 'white',
                 },
               ]}>
               {item.formNumber}
             </Text>
           </TouchableOpacity>
-        ))
-      ) : (
-        <ActivityIndicator />
-      )}
-      <TouchableOpacity
-        style={styles.viewAllButton}
-        onPress={() => navigation.navigate('ُEntries', {entries: data})}>
-        <Text style={styles.viewAllButtonText}>View All Entries</Text>
-      </TouchableOpacity>
+        ))}
     </Tile>
   );
 };
@@ -101,11 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 8,
-    borderBottomWidth: 1,
     borderColor: '#E0E0E0',
-  },
-  entryTitle: {
-    fontSize: 14,
   },
   entryDetails: {
     fontSize: 12,
@@ -114,20 +109,6 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 5,
     borderRadius: 6,
-  },
-  viewAllButton: {
-    marginTop: 10,
-  },
-  viewAllButtonText: {
-    color: '#067869',
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    borderWidth: 1,
-    padding: 10,
-    borderColor: '#067869',
-    borderRadius: 25,
-    marginTop:3
   },
 });
 

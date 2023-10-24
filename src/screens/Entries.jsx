@@ -38,14 +38,9 @@ const Entries = ({route}) => {
             {item.name}
           </Text>
           <Text
-            style={[
-              styles.entryDetails,
-              {
-                color: isDarkMode
-                  ? darkTheme.backgroundColor
-                  : lightTheme.backgroundColor,
-              },
-            ]}>
+            style={
+              styles.entryDetails
+            }>
             {item.formNumber}
           </Text>
         </TouchableOpacity>
@@ -55,13 +50,7 @@ const Entries = ({route}) => {
 };
 
 const styles = StyleSheet.create({
-  container:{padding:20},
-  latestEntriesHeader: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
+  container:{paddingVertical:20,paddingHorizontal:30},
   entryItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -69,9 +58,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderBottomWidth: 1,
     borderColor: '#E0E0E0',
-  },
-  entryTitle: {
-    fontSize: 14,
   },
   entryDetails: {
     fontSize: 12,

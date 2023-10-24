@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import {useAppearance} from '../../contexts/AppearenceContext';
 import {darkTheme, lightTheme} from '../../styles/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -39,17 +39,22 @@ const WelcomeUser = ({mahallu}) => {
             : lightTheme.backgroundColor,
         },
       ]}>
-      <Text style={styles.mahallu}>{mahallu}</Text>
-
-      <Text
-        style={[
-          styles.welcomeText,
-          {
-            color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
-          },
-        ]}>
-        Good Day, {userData?.name}!
-      </Text>
+      <View>
+        <Text style={styles.mahallu}>{mahallu}</Text>
+        <Text
+          style={[
+            styles.welcomeText,
+            {
+              color: isDarkMode ? darkTheme.textColor : lightTheme.textColor,
+            },
+          ]}>
+          Good Day, {userData?.name}!
+        </Text>
+      </View>
+      <Image
+        source={require('../../media/icons/logout.png')}
+        style={styles.imageStyle}
+      />
     </TouchableOpacity>
   );
 };
@@ -58,6 +63,9 @@ const styles = StyleSheet.create({
   welcomeContainer: {
     paddingVertical: 20,
     paddingHorizontal: 20,
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   welcomeText: {
     fontSize: 18,
@@ -66,9 +74,10 @@ const styles = StyleSheet.create({
   },
   mahallu: {
     fontSize: 14,
-    textTransform:'lowercase',
-    textTransform:"capitalize"
+    textTransform: 'lowercase',
+    textTransform: 'capitalize',
   },
+  imageStyle: {width: 23, height: 25, marginVertical: 10, marginTop: 'auto'},
 });
 
 export default WelcomeUser;
