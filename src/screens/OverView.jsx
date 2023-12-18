@@ -70,9 +70,9 @@ const OverView = ({route}) => {
             query={'educationalSubject=Commerce'}
           />
           <Card
-            title={'Government Service'}
+            title={'Govt. Service'}
             value={mahalluData.govtServiceCount}
-            query={'jobType=Government Service'}
+            query={'jobType=Govt. Service'}
           />
           <Card
             title={'Private Sector'}

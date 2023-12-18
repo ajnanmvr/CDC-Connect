@@ -56,8 +56,10 @@ const FilteredData = ({route}) => {
         style={{
           textAlign: 'center',
           marginTop: -20,
-          marginBottom: 15,
-          color: darkTheme.primaryColor,
+          marginBottom: 35,
+          color: isDarkMode
+          ? darkTheme.primaryColor
+          : lightTheme.primaryColor,
           fontWeight: 'bold',
         }}>
         {filteredData.length} Data Found
@@ -144,7 +146,9 @@ const styles = isDarkMode =>
     },
     dataRow: {
       flexDirection: 'row',
-      borderBottomWidth: 1,
+      borderBottomWidth: 0.25,
+      backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
+    
       borderColor: '#ccc',
     },
     headerCell: {

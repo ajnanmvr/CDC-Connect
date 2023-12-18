@@ -28,7 +28,7 @@ const SelectedEntry = ({route}) => {
       if (jobType.dailyWage) {
         return 'Daily Wage';
       } else if (jobType.govtService) {
-        return 'Government Service';
+        return 'Govt. Service';
       } else if (jobType.privateSector) {
         return 'Private Sector';
       }
@@ -94,8 +94,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.formNumber}
@@ -106,8 +106,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.mobileNumber}
@@ -118,8 +118,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.gender}
@@ -130,8 +130,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.dob}
@@ -142,8 +142,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.materialEducation}
@@ -154,8 +154,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.educationalSubject ? data.educationalSubject : 'N/A'}
@@ -166,8 +166,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.bloodGroup}
@@ -178,8 +178,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.jobDetails ? data.jobDetails : 'N/A'}
@@ -190,8 +190,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.profession ? data.profession : 'N/A'}
@@ -202,8 +202,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.religiousEducation ? data.religiousEducation : 'N/A'}
@@ -214,8 +214,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.govtType ? data.govtType : 'N/A'}
@@ -226,8 +226,8 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.abroad ? data.abroad : 'N/A'}
@@ -236,10 +236,10 @@ const SelectedEntry = ({route}) => {
               House Number
             </Text>
             <Text style={[styles(isDarkMode).details, {color: theme.textColor,borderColor: isDarkMode
-                ? "whitesmoke"
+                ? "#F8FAFA"
                 : "#0a0a0a",backgroundColor: isDarkMode
                 ? "#0a0a0a"
-                : "whitesmoke",}]}>
+                : "#F8FAFA",}]}>
               {data.houseNumber}
             </Text> */}
             {/* <Text style={[styles(isDarkMode).label]}>
@@ -247,10 +247,10 @@ const SelectedEntry = ({route}) => {
             </Text>
             <Text
               style={[styles(isDarkMode).details, {color: theme.textColor,borderColor: isDarkMode
-                ? "whitesmoke"
+                ? "#F8FAFA"
                 : "#0a0a0a",backgroundColor: isDarkMode
                 ? "#0a0a0a"
-                : "whitesmoke",}]}>
+                : "#F8FAFA",}]}>
               {data.houseOwnership && data.houseOwnership.own
                 ? 'Own'
                 : 'Not Own'}
@@ -261,20 +261,20 @@ const SelectedEntry = ({route}) => {
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {getJobTypeLabel(data.jobType)}
             </Text>
-            <Text style={[styles(isDarkMode).label]}>Government Allowance</Text>
+            <Text style={[styles(isDarkMode).label]}>Govt. Allowance</Text>
             <Text
               style={[
                 styles(isDarkMode).details,
                 {
                   color: theme.textColor,
-                  borderColor: isDarkMode ? 'whitesmoke' : '#0a0a0a',
-                  backgroundColor: isDarkMode ? '#0a0a0a' : 'whitesmoke',
+                  borderColor: isDarkMode ? '#F8FAFA' : '#0a0a0a',
+                  backgroundColor: isDarkMode ? '#0a0a0a' : '#F8FAFA',
                 },
               ]}>
               {data.govtAllowance ? data.govtAllowance : 'No Pension'}

@@ -1,79 +1,85 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# CDC Connect
 
-# Getting Started
+CDC Connect is a cross-platform mobile application built in React Native using JavaScript. The app is designed for data collection with a focus on surveys.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Getting Started
 
-## Step 1: Start the Metro Server
+Follow these instructions to build and run the project.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### Setup React Native
 
-To start Metro, run the following command from the _root_ of your React Native project:
+A detailed guide for setting up React Native can be found [here](https://reactnative.dev/docs/getting-started).
 
-```bash
-# using npm
-npm start
+### Setup Project
 
-# OR using Yarn
-yarn start
-```
+- Clone this repository using `git clone https://github.com/ajnanmvr/cdc-connect.git`.
+- `cd` into `cdc-connect`.
+- Run `npm install` to install project dependencies.
 
-## Step 2: Start your Application
+### Running the app
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+Make sure you have a connected Android/iOS device or simulator, then run the following command to build and run the app in debug mode.
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+npx react-native run-android   # For Android
+npx react-native run-ios       # For iOS
 ```
 
-### For iOS
+# Features
 
-```bash
-# using npm
-npm run ios
+## Authentication
 
-# OR using Yarn
-yarn ios
-```
+- User authentication with login and signup functionality.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Data Collection
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- Authenticated users can add survey data.
+- Admin page to view collected data.
 
-## Step 3: Modifying your App
+## Survey Management
 
-Now that you have successfully run the app, let's modify it.
+- Surveys collect extensive data, which can be filtered and sorted.
+- Latest entries are prominently displayed.
+- Data is presented as tables and includes count and analysis.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Family Data Linking
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- Feature to add family data, linking and displaying it together.
 
-## Congratulations! :tada:
+## Platform Compatibility
 
-You've successfully run and modified your React Native App. :partying_face:
+- Usable on both Android and iOS devices.
 
-### Now what?
+## Light and Dark Modes
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+- The app supports both light and dark modes.
 
-# Troubleshooting
+# Screenshots
+### Light Mode
+<p>
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/fad72cfe-8da4-4249-a286-0e8d6fc4edd2" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/86de3b0e-6c47-471f-ad44-70061c4e20a9" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/052a6900-f960-4407-9003-806b899abc29" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/f5394ab3-ec44-40e8-b36b-17bc95e33114" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/3636382f-ca3e-4b74-ab30-caf68d3a747c" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/805d235a-7826-464f-b61f-ca428f6873fe" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/68acb938-c0dd-412b-9ff4-80af29f5cd8f" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/4a901645-7a04-4ddf-9918-5ae36a41b1a0" width="200" alt="screenshot">
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+</p>
 
-# Learn More
+### Dark Mode
+<p>
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/43d293e2-4e00-48c8-b661-838b0a2d750b" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/a03db356-0c11-4a22-b897-b51900b7d52a" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/e692db7e-4574-4119-9ece-f2e9b7bf6e05" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/6e4a95ad-2112-434b-a604-32a000d7f701" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/cb6fc8da-b053-4032-a8df-c083c87ea78e" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/037bb03c-73fc-49b7-9c37-6cd730cb350c" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/0c9efa54-f2c0-41a7-8e9a-a6a0345a859d" width="200" alt="screenshot">
+<img src="https://github.com/ajnanmvr/CDC-Connect/assets/94433947/bb401f82-244b-406d-90f3-302ea40be602" width="200" alt="screenshot">
+</p>
 
-To learn more about React Native, take a look at the following resources:
+# Community
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/cdc-connect/issues).
