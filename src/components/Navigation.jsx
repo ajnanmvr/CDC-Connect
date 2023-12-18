@@ -88,12 +88,36 @@ const Navigation = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="SendMessage" component={SendMessage} />
-        <Stack.Screen name="Overview" component={OverView} />
-        <Stack.Screen name="Form" component={Form} />
-        <Stack.Screen name="ُEntries" component={Entries} />
-        <Stack.Screen name="FilteredData" component={FilteredData} />
-        <Stack.Screen name="ُSelectedEntry" component={SelectedEntry} />
+        <Stack.Screen
+          name="SendMessage"
+          component={SendMessage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Overview"
+          component={OverView}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Form"
+          component={Form}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ُEntries"
+          component={Entries}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="FilteredData"
+          component={FilteredData}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ُSelectedEntry"
+          component={SelectedEntry}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

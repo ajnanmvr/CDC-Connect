@@ -45,7 +45,7 @@ const SelectedEntry = ({route}) => {
 
       setLoading(false);
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data);
       setLoading(false);
     }
   };

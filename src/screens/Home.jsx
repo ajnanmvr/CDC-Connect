@@ -27,7 +27,6 @@ const HomeScreen = ({route}) => {
       setData(response.data.data);
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
   useFocusEffect(
@@ -42,33 +41,7 @@ const HomeScreen = ({route}) => {
   useEffect(() => {
     getData();
   }, []);
-  const GridView = () => {
-    const data = [
-      {id: '1', iconName: require(`../media/icons/list.png`), text: 'Card 1'},
-      {
-        id: '2',
-        iconName: require(`../media/icons/male-user.png`),
-        text: 'Card 1',
-      },
-      {
-        id: '3',
-        iconName: require(`../media/icons/woman-avatar.png`),
-        text: 'Card 1',
-      },
-
-      // Add more objects as needed
-    ];
-
-    return (
-      <ScrollView horizontal={true} style={styles.scrollView}>
-        {data.map((item, index) => (
-          <View key={item.id} style={styles.cardContainer}>
-            <IconCard title={item.text} icon={item.iconName} />
-          </View>
-        ))}
-      </ScrollView>
-    );
-  };
+  
 
   return (
     <>

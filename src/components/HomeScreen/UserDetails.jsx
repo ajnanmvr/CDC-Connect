@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   ScrollView,
@@ -6,16 +6,18 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useAppearance } from '../../contexts/AppearenceContext';
-import { useUser } from '../../contexts/UserContext';
-import { darkTheme, lightTheme } from '../../styles/themes';
+import {useAppearance} from '../../contexts/AppearenceContext';
+import {useUser} from '../../contexts/UserContext';
+import {darkTheme, lightTheme} from '../../styles/themes';
 import Axios from '../../utils/Axios';
 import IconCard from '../IconCard';
 import LatestEntriesComponent from './LatestEntries';
 import WelcomeUserComponent from './WelcomeUser';
+import {useFocusEffect} from '@react-navigation/native';
 
-const UserDetailsComponent = ({isLoading, entries}) => {
+const UserDetailsComponent = ({isLoading, entries, route}) => {
   const [loading, setLoading] = useState(false);
+  const {reload} = route?.params || {};
   const {user} = useUser();
   const appearance = useAppearance();
   const isDarkMode = appearance === 'dark';
@@ -52,21 +54,6 @@ const UserDetailsComponent = ({isLoading, entries}) => {
     },
   ];
   const data2 = [
-    // {
-    //   title: 'Married',
-    //   value: mahalluDetails?.marriedCount,
-    //   query: 'maritalStatus=Married',
-    // },
-    // {
-    //   title: 'Unmarried',
-    //   value: mahalluDetails?.unmarriedCount,
-    //   query: 'maritalStatus=Unmarried',
-    // },
-    // {
-    //   title: 'Widow',
-    //   value: mahalluDetails?.widowCount,
-    //   query: 'maritalStatus=Widow/er',
-    // },
     {
       title: 'Science',
       icon: require('../../media/icons/flask.png'),
@@ -90,19 +77,10 @@ const UserDetailsComponent = ({isLoading, entries}) => {
     {
       title: 'Govt. Service',
       value: mahalluDetails?.govtServiceCount,
-      query: 'jobType=Government Service',
+      query: 'jobType=Govt. Service',
       icon: require('../../media/icons/development.png'),
     },
-    // {
-    //   title: 'Private Sector',
-    //   value: mahalluDetails?.privateSectorCount,
-    //   query: 'jobType=Private Sector',
-    // },
-    // {
-    //   title: 'Daily Wage',
-    //   value: mahalluDetails?.dailyWageCount,
-    //   query: 'jobType=Daily Wage',
-    // },
+
     {
       title: 'Doctor',
       value: mahalluDetails?.doctorCount,
@@ -116,7 +94,15 @@ const UserDetailsComponent = ({isLoading, entries}) => {
       icon: require('../../media/icons/teacher.png'),
     },
   ];
-
+  useFocusEffect(
+    React.useCallback(() => {
+      if (reload) {
+        // Perform your reload logic here
+        getMahallu();
+        navigation.setParams({reload: false});
+      }
+    }, [reload]),
+  );
   useEffect(() => {
     getMahallu();
   }, []);
